@@ -45,7 +45,7 @@ namespace BlizzStatistics.App.Views
 
         private void CreateGrid(MythicRootobject data)
         {   
-            Root.Children.Add(mainGrid);
+            MythicRoot.Children.Add(mainGrid);
             
             
                 Grid g = new Grid();
