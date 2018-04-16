@@ -25,16 +25,16 @@
         <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="test">
             <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" x:Name="Column1"/>
+                    <ColumnDefinition Width="*" x:Name="Column2"/>
+                    <ColumnDefinition Width="*" x:Name="Column3"/>
+                    <ColumnDefinition Width="*" x:Name="Column4"/>
+                    <ColumnDefinition Width="*" x:Name="Column5"/>
+                    <ColumnDefinition Width="*" x:Name="Column6"/>
+                    <ColumnDefinition Width="*" x:Name="Column7"/>
+                    <ColumnDefinition Width="*" x:Name="Column8"/>
+                    <ColumnDefinition Width="*" x:Name="Column9"/>
+                    <ColumnDefinition Width="*" x:Name="Column10"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -49,8 +49,8 @@
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="5" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <TextBlock Name="tbBestTime" Text="21:22:22"  FontSize="20"  HorizontalAlignment="Stretch"   VerticalAlignment="Center" />
+                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Name="tbBestTime" Text="21:22:22"  FontSize="10"  HorizontalAlignment="Center"   VerticalAlignment="Center" />
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,0,1">
@@ -78,7 +78,7 @@
                 </Border>
                 <Border Grid.ColumnSpan="6" Grid.Column="3" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
                     <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <TextBlock Text="Party composition" FontSize="22"  VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="Party composition" FontSize="16"  VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="9" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
@@ -87,7 +87,7 @@
                     </Viewbox>
                 </Border>
             </Grid>
-            <RelativePanel RelativePanel.Below="MenuGrid" x:Name="MythicRoot" RelativePanel.AlignLeftWithPanel="True" AlignRightWithPanel="True" AlignTopWithPanel="True">
+            <RelativePanel RelativePanel.Below="MenuGrid" x:Name="MythicRoot" RelativePanel.AlignLeftWithPanel="True" AlignRightWithPanel="True" >
                 
               
             </RelativePanel>
