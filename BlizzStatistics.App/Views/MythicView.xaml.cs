@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http;
 using Windows.ApplicationModel.Appointments.AppointmentsProvider;
@@ -18,13 +20,16 @@ namespace BlizzStatistics.App.Views
     /// </summary>
     public sealed partial class MythicView : Page
     {
-        
-        
-
+        int[] realmLinks;
+        private Grid _childGrid;
+        private string connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+        private string realmIndex = "509";
+        private string dungeonIndex = "199";
 
         public MythicView()
         {
             this.InitializeComponent();
+            
             GetData();
         }
 
@@ -33,11 +38,15 @@ namespace BlizzStatistics.App.Views
             
             try
             {
-                Uri ur = new Uri("https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/630?namespace=dynamic-eu&locale=en_GB&access_token=j6h9s8bbfwxstshzw57df2m4");
+                Uri ur = new Uri(connection);
                 var client = new HttpClient();
                 var response = await client.GetStringAsync(ur);
                 var data = JsonConvert.DeserializeObject<MythicRootobject>(response);
                 AddToColumns(data);
+                tbBestTime.Text = data.leading_groups[0].duration.ToString();
+                TbAff1.Text = data.keystone_affixes[0].keystone_affix.name;
+                TbAff2.Text = data.keystone_affixes[1].keystone_affix.name;
+                TbAff3.Text = data.keystone_affixes[2].keystone_affix.name;
             }
             catch (Exception e)
             {
@@ -45,7 +54,7 @@ namespace BlizzStatistics.App.Views
                 GetData();
             }
         }
-
+        
         private void DefineText(TextBlock tb)
         {
             tb.FontSize = 12;
@@ -57,10 +66,12 @@ namespace BlizzStatistics.App.Views
 
         private void AddToColumns(MythicRootobject data)
         {
-            Grid mainGrid = new Grid();
-            //RelativePanel.SetAlignLeftWithPanel(MenuGrid, true);
-            //RelativePanel.SetAlignRightWithPanel(MenuGrid, true);
-            MythicRoot.Children.Add(mainGrid);
+            Grid mainGrid = MenuGrid;
+            _childGrid = mainGrid;
+            RelativePanel.SetAlignLeftWithPanel(MainMythicPanel, true);
+            RelativePanel.SetAlignRightWithPanel(MainMythicPanel, true);
+            
+            //MythicRoot.Children.Add(mainGrid);
             for (int i = 0; i < 100; i++)
             {
                 for (int a = 0; a < 9; a++)
@@ -73,39 +84,33 @@ namespace BlizzStatistics.App.Views
                     {
                         case 0:
                             tb.Text = data.leading_groups[i].ranking.ToString();
-                            colWidth.Width = new GridLength(Column1.ActualWidth);
                             break;
                         case 1:
-                            tb.Text = data.leading_groups[i].keystone_level.ToString();
-                            colWidth.Width = new GridLength(Column2.ActualWidth);
+                            tb.Text = data.leading_groups[i].keystone_level.ToString();                        
                             break;
-                        case 2: tb.Text = data.leading_groups[i].duration.ToString();
-                            colWidth.Width = new GridLength(Column3.ActualWidth);
+                        case 2: tb.Text = data.leading_groups[i].duration.ToString();                           
                             break;
                         case 3:
-                            AddGroupMember(data, mainGrid, a, colWidth, i);
+                            AddGroupMember(data, mainGrid, a, i);
                             a = 7;
                             break;
                         case 8:
-                            tb.Text = data.leading_groups[i].completed_timestamp.ToString();
-                            colWidth.Width = new GridLength(Column9.ActualWidth);
+                            tb.Text = data.leading_groups[i].completed_timestamp.ToString();                           
                             break;
                     }
                     
                     if (a != 7)
                     {
                         Grid g = new Grid();
-                        AddtoGrid(g, mainGrid, tb, a, colWidth, i);
+                        AddtoGrid(g, mainGrid, tb, a, i);
                     }
                 }
             }
         }
         
-        private void AddtoGrid(Grid g, Grid mainGrid, TextBlock tb, int a, ColumnDefinition columnWidth, int i)
+        private void AddtoGrid(Grid g, Grid mainGrid, TextBlock tb, int a, int i)
         {
-            
             g.Children.Add(tb);
-
             // Here you set the Grid properties, such as border and alignment
             // You can add other properties and events you need
             g.BorderThickness = new Thickness(1, 2, 1, 2);
@@ -114,18 +119,16 @@ namespace BlizzStatistics.App.Views
             g.VerticalAlignment = VerticalAlignment.Stretch;
 
             // Add the newly created Grid to the outer Grid
-
             RowDefinition rowHeight = new RowDefinition();
             rowHeight.Height = new GridLength(50);
             mainGrid.RowDefinitions.Add(rowHeight);
-            mainGrid.ColumnDefinitions.Add(columnWidth);
 
-            Grid.SetRow(g, i);
+            Grid.SetRow(g, i+2);
             Grid.SetColumn(g, a);
             mainGrid.Children.Add(g);
         }
 
-        private void AddGroupMember(MythicRootobject data, Grid mainGrid, int a, ColumnDefinition colWidth, int i)
+        private void AddGroupMember(MythicRootobject data, Grid mainGrid, int a, int i)
         {
             
             int columnCount = a;
@@ -135,12 +138,60 @@ namespace BlizzStatistics.App.Views
                 TextBlock tb = new TextBlock();
                 DefineText(tb);
                 tb.Text = data.leading_groups[i].members[c].profile.name;
-                ColumnDefinition colW = new ColumnDefinition();
-                colW.Width = new GridLength(Column3.ActualWidth + Column3.ActualWidth * 1 / 5);
-                AddtoGrid(g, mainGrid, tb, columnCount, colW, i);
+                
+                AddtoGrid(g, mainGrid, tb, columnCount, i);
                 columnCount++;
             }
 
+        }
+
+        private void cbServer_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {   
+            
+            switch (cbServer.SelectedItem)
+            {
+                case "Garona":
+                    realmIndex = "509";
+                    break;
+                case "Vol'jin":
+                    realmIndex = "510";
+                    break;
+                case "Sunstrider":
+                    realmIndex = "511";
+                    break;
+            }
+
+            connection = "https://eu.api.battle.net/data/wow/connected-realm/"+realmIndex+"/mythic-leaderboard/"+dungeonIndex+ "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+            DestroyGrid();
+        }
+
+        private void cbDungeon_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cbDungeon.SelectedItem)
+            {
+                case "Black Rook Hold":
+                    dungeonIndex = "199";
+                    break;
+                case "Darkheart Thicket":
+                    dungeonIndex = "198";
+                    break;
+                case "Eye of Azshara":
+                    dungeonIndex = "197";
+                    break;
+            }
+            connection = "https://eu.api.battle.net/data/wow/connected-realm/" + realmIndex + "/mythic-leaderboard/" + dungeonIndex + "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+            DestroyGrid();
+        }
+        private void DestroyGrid()
+        {
+
+            for (int i = _childGrid.Children.Count-13; i > 12; i--)
+            {
+                _childGrid.Children.RemoveAt(i);
+            }
+            
+            
+            GetData();
         }
     }
     

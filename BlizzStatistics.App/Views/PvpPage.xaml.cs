@@ -16,7 +16,9 @@ namespace BlizzStatistics.App.Views
     /// </summary>
     public sealed partial class PvpPage
     {
-
+        private string[] classColors = { "#FFC79C6E", "#FFF58CBA", "#FFABD473", "#FFFFF569", "#FFFFFFFF", "#FFC41F3B", "#FF0070DE", "#FF69CCF0", "#FF9482C9", "#FF00FF96", "#FFFF7D0A", "#FFA330C9" };
+        private string[] playerClasses = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
+        private string[] raceArray = { "Human", "Orc", "Dwarf", "Night Elf", "Undead", "Tauren", "Gnome", "Troll", "Goblin", "Blood Elf", "Draenei", "Worgen", "Pandaren", "Nightborne", "Highmauntain Tauren", "Void Elf", "Lightforeged Draenei" };
         private string _classColor;
         private string _playerClass;
         private int _initNumber = 10;
@@ -103,10 +105,10 @@ namespace BlizzStatistics.App.Views
 
         private void CreateGrid(Rootobject data)
         {
-            Grid mainGrid = new Grid();
+            Grid mainGrid = MenuGrid;
             _childGrid = mainGrid;
-            Root.Children.Add(mainGrid);
-            int rowCount = 0;
+            
+            int rowCount = 2;
             _tempInitNumber = _initNumber;
             for (int i = 0; i < _tempInitNumber; i++)
             {
@@ -130,7 +132,7 @@ namespace BlizzStatistics.App.Views
         private void AddToColumns(int i, Rootobject data, Grid mainGrid, int rowCount)
         {
             _classColor = data.Rows[i].ClassId.ToString();
-            CheckClass(_classColor);
+            CheckClass(Int32.Parse(_classColor));
             for (int a = 0; a < 9; a++)
             {
                 TextBlock tb = new TextBlock();
@@ -159,7 +161,7 @@ namespace BlizzStatistics.App.Views
                         
                         break;
                     case 3:
-                        CheckClass(data.Rows[i].ClassId.ToString());
+                        CheckClass(data.Rows[i].ClassId);
                         tb.Text = _playerClass;
                         break;
                     case 4:
@@ -201,7 +203,7 @@ namespace BlizzStatistics.App.Views
                 mainGrid.RowDefinitions.Add(rowHeight);
                 ColumnDefinition colWidth = new ColumnDefinition();
                 colWidth.Width = new GridLength(166);
-                mainGrid.ColumnDefinitions.Add(colWidth);
+                //mainGrid.ColumnDefinitions.Add(colWidth);
 
                 Grid.SetRow(g, rowCount);
                 Grid.SetColumn(g, a);
@@ -211,58 +213,10 @@ namespace BlizzStatistics.App.Views
             
         }
 
-        private void CheckClass(string c)
+        private void CheckClass(int c)
         {
-            switch (c)
-            {
-                case "1" : _classColor = "#FFC79C6E";
-                    _playerClass = "Warrior";
-                    break;
-                case "2":
-                    _classColor = "#FFF58CBA";
-                    _playerClass = "Paladin";
-                    break;
-                case "3":
-                    _classColor = "#FFABD473";
-                    _playerClass = "Hunter";
-                    break;
-                case "4":
-                    _classColor = "#FFFFF569";
-                    _playerClass = "Rogue";
-                    break;
-                case "5":
-                    _classColor = "#FFFFFFFF";
-                    _playerClass = "Priest";
-                    break;
-                case "6":
-                    _classColor = "#FFC41F3B";
-                    _playerClass = "Death Knight";
-                    break;
-                case "7":
-                    _classColor = "#FF0070DE";
-                    _playerClass = "Shaman";
-                    break;
-                case "8":
-                    _classColor = "#FF69CCF0";
-                    _playerClass = "Mage";
-                    break;
-                case "9":
-                    _classColor = "#FF9482C9";
-                    _playerClass = "Warlock";
-                    break;
-                case "10":
-                    _classColor = "#FF00FF96";
-                    _playerClass = "Monk";
-                    break;
-                case "11":
-                    _classColor = "#FFFF7D0A";
-                    _playerClass = "Druid";
-                    break;
-                case "12":
-                    _classColor = "#FFA330C9";
-                    _playerClass = "Demon Hunter";
-                    break;
-            }              
+            _classColor = classColors[c - 1];
+            _playerClass = playerClasses[c - 1];
         }
 
         public SolidColorBrush GetSolidColorBrush(string hex)
@@ -292,7 +246,6 @@ namespace BlizzStatistics.App.Views
                     _initNumber = 100;
                     break;
             }
-
             DestroyGrid();
         }
 
@@ -310,122 +263,39 @@ namespace BlizzStatistics.App.Views
                     _factionIndex = 2;
                     break;
             }
-
             DestroyGrid();
         }
 
         private void CbClasses_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (CbClasses.SelectedItem)
+            for(int i = 0; i<playerClasses.Length;i++ )
             {
-                case "Warrior":
-                    _sortClassIndex = 1;
-                    break;
-                case "Paladin":
-                    _sortClassIndex = 2;
-                    break;
-                case "Hunter":
-                    _sortClassIndex = 3;
-                    break;
-                case "Rogue":
-                    _sortClassIndex = 4;
-                    break;
-                case "Priest":
-                    _sortClassIndex = 5;
-                    break;
-                case "Death Knight":
-                    _sortClassIndex = 6;
-                    break;
-                case "Shaman":
-                    _sortClassIndex = 7;
-                    break;
-                case "Mage":
-                    _sortClassIndex = 8;
-                    break;
-                case "Warlock":
-                    _sortClassIndex = 9;
-                    break;
-                case "Monk":
-                    _sortClassIndex = 10;
-                    break;
-                case "Druid":
-                    _sortClassIndex = 11;
-                    break;
-                case "Demon Hunter":
-                    _sortClassIndex = 12;
-                    break;
-                case "All Classes":
+                if (CbClasses.SelectedItem != null && CbClasses.SelectedItem.Equals(playerClasses[i]))
+                {
+                    _sortClassIndex = i + 1;
+                }else if (CbClasses.SelectedItem != null && CbClasses.SelectedItem.Equals( "All Classes"))
+                {
                     _sortClassIndex = 13;
-                    break;
+                }
             }
             DestroyGrid();
         }
 
         private void CheckRace(int raceIndex)
-        {
-            switch (raceIndex)
-            {
-                case 1: _playerRace = "Human";
-                    break;
-                case 2:
-                    _playerRace = "Orc";
-                    break;
-                case 3:
-                    _playerRace = "Dwarf";
-                    break;
-                case 4:
-                    _playerRace = "Night Elf";
-                    break;
-                case 5:
-                    _playerRace = "Undead";
-                    break;
-                case 6:
-                    _playerRace = "Tauren";
-                    break;
-                case 7:
-                    _playerRace = "Gnome";
-                    break;
-                case 8:
-                    _playerRace = "Troll";
-                    break;
-                case 9:
-                    _playerRace = "Goblin";
-                    break;
-                case 10:
-                    _playerRace = "Blood Elf";
-                    break;
-                case 11:
-                    _playerRace = "Draenei";
-                    break;
-                case 22:
-                    _playerRace = "Worgen";
-                    break;
-                case 24:
-                    _playerRace = "Pandaren";
-                    break;
-                case 25:
-                    _playerRace = "Pandaren";
-                    break;
-                case 26:
-                    _playerRace = "Pandaren";
-                    break;
-                case 27:
-                    _playerRace = "Nightborne";
-                    break;
-                case 28:
-                    _playerRace = "Highmauntain Tauren";
-                    break;
-                case 29:
-                    _playerRace = "Void Elf";
-                    break;
-                case 30:
-                    _playerRace = "Lightforged Draenei";
-                    break;
-            }
-
+        {   
             
+            if (raceIndex == 22)
+            {
+                raceIndex = 12;
+            } else if (raceIndex >= 24 && raceIndex <=26)
+            {
+                raceIndex = 13;
+            }else if (raceIndex >= 27)
+            {
+                raceIndex = raceIndex - 13;
+            }
+            _playerRace = raceArray[raceIndex - 1];
         }
-
 
         private void CbLadder_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -446,7 +316,10 @@ namespace BlizzStatistics.App.Views
 
         private void DestroyGrid()
         {
-            Root.Children.Remove(_childGrid);
+            for (int i = _childGrid.Children.Count - 18; i > 17; i--)
+            {
+                _childGrid.Children.RemoveAt(i);
+            }
             GetData();
         }
     }

@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
     xmlns:controls="using:Template10.Controls"
-    mc:Ignorable="d">
+    xmlns:classLibrary1="using:ClassLibrary1"
+    mc:Ignorable="d"
+    >
 
     <Page.DataContext>
         <viewModels:PvpPageViewModel x:Name="ViewModel" />
@@ -15,15 +17,15 @@
 
 
 
-    <RelativePanel AlignLeftWithPanel="True" AlignRightWithPanel="True">
+    <RelativePanel AlignLeftWithPanel="True" AlignRightWithPanel="True" x:Name="MainMythicPanel">
         <controls:PageHeader 
                 x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.AlignTopWithPanel="True"
                 Text="BlizzardLogo">
         </controls:PageHeader>
-        <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="test">
-            <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+        <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="test" >
+            <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" >
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="Auto" x:Name="Column1"/>
                     <ColumnDefinition Width="*" x:Name="Column2"/>
@@ -34,14 +36,21 @@
                     <ColumnDefinition Width="*" x:Name="Column7"/>
                     <ColumnDefinition Width="*" x:Name="Column8"/>
                     <ColumnDefinition Width="*" x:Name="Column9"/>
-                    <ColumnDefinition Width="*" x:Name="Column10"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" PlaceholderText="StormScale"   Height="50"></ComboBox>
-                <ComboBox Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" HorizontalAlignment="Stretch" PlaceholderText="Vault of the Wardens"  Height="50"></ComboBox>
+                <ComboBox Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbServer_OnSelectionChanged" Name="cbServer" PlaceholderText="Garona">
+                    <x:String>Garona</x:String>
+                    <x:String>Vol'jin</x:String>
+                    <x:String>Sunstrider</x:String>
+                </ComboBox>
+                <ComboBox Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbDungeon_OnSelectionChanged" Name="cbDungeon" PlaceholderText="Black Rook Hold">
+                    <x:String>Black Rook Hold</x:String>
+                    <x:String>Darkheart Thicket</x:String>
+                    <x:String>Eye of Azshara</x:String>
+                </ComboBox>
                
                 <Border Grid.Column="4" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="1,0,0,1">
                     <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -50,16 +59,24 @@
                 </Border>
                 <Border Grid.Column="5" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,1,1">
                     <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Name="tbBestTime" Text="21:22:22"  FontSize="10"  HorizontalAlignment="Center"   VerticalAlignment="Center" />
+                        <TextBlock x:Name="tbBestTime"   FontSize="10"  HorizontalAlignment="Center"   VerticalAlignment="Center" />
                     </Viewbox>
                 </Border>
-                <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,0,1">
+                
+                <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
                     <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <TextBlock Text="Weekly modifiers:" FontSize="20"  VerticalAlignment="Center" Margin="10,12,0,11"/>
+                        <TextBlock  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff1" />
                     </Viewbox>
                 </Border>
-                <Border Grid.Column="7" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,0,1">
-
+                <Border Grid.Column="7" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
+                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <TextBlock   FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff2" />
+                    </Viewbox>
+                </Border>
+                <Border Grid.Column="8" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,1,1">
+                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <TextBlock  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff3" />
+                    </Viewbox>
                 </Border>
                 <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
                     <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -87,7 +104,7 @@
                     </Viewbox>
                 </Border>
             </Grid>
-            <RelativePanel RelativePanel.Below="MenuGrid" x:Name="MythicRoot" RelativePanel.AlignLeftWithPanel="True" AlignRightWithPanel="True" >
+            <RelativePanel RelativePanel.Below="MenuGrid" x:Name="MythicRoot" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" >
                 
               
             </RelativePanel>

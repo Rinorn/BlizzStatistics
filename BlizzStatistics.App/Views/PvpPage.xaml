@@ -11,107 +11,106 @@
     <Page.DataContext>
         <viewModels:PvpPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
+    
 
-    <ScrollViewer Height="1000" ZoomMode="Disabled" HorizontalAlignment="Right"
-                  IsVerticalScrollChainingEnabled="True"
-                  HorizontalScrollBarVisibility=" Disabled "
-                  VerticalScrollMode=" Enabled " VerticalScrollBarVisibility=" Visible " >
-        <RelativePanel>
-            <controls:PageHeader 
+    <RelativePanel AlignRightWithPanel="True" AlignLeftWithPanel="True" AlignBottomWithPanel="True" AlignTopWithPanel="True">
+        
+
+        <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True" Text="Player vs Player"  >
-            </controls:PageHeader>
-            <Grid Background="Black" Name="MenuGrid" RelativePanel.Below="PageHeader">
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                    <ColumnDefinition Width="166" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-                <!-- Row 1-->
-                <ComboBox PlaceholderText="2v2 Ladder"  SelectionChanged="CbLadder_OnSelectionChanged" Name="CbLadder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <x:String>2v2 Ladder</x:String>
-                    <x:String>3v3 Ladder</x:String>
-                    <x:String>Rbg Ladder</x:String>
-                </ComboBox>
-                <ComboBox PlaceholderText="Classes" SelectionChanged="CbClasses_OnSelectionChanged"  Name="CbClasses" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <x:String>Warrior</x:String>
-                    <x:String>Paladin</x:String>
-                    <x:String>Hunter</x:String>
-                    <x:String>Rogue</x:String>
-                    <x:String>Priest</x:String>
-                    <x:String>Death Knight</x:String>
-                    <x:String>Shaman</x:String>
-                    <x:String>Mage</x:String>
-                    <x:String>Warlock</x:String>
-                    <x:String>Monk</x:String>
-                    <x:String>Druid</x:String>
-                    <x:String>Demon Hunter</x:String>
-                    <x:String>All Classes</x:String>
-                </ComboBox>
-                <ComboBox PlaceholderText="Faction" SelectionChanged="CbFaction_OnSelectionChanged" Name="CbFaction" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <x:String>Horde</x:String>
-                    <x:String>Alliance</x:String>
-                    <x:String>All Factions</x:String>
-                </ComboBox>
-                <ComboBox PlaceholderText="Top 10" SelectionChanged="CbSelNumber_OnSelectionChanged" Name="CbSelNumber" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <x:String>Top 10</x:String>
-                    <x:String>Top 25</x:String>
-                    <x:String>Top 50</x:String>
-                    <x:String>Top 100</x:String>
-                </ComboBox>
-                <TextBlock Text="Sort by:" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
-                <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center"/>
-                <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center"/>
-                <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center"/>
-                <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center"/>
-                <!-- Row 2-->
-                <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Rank"  VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </Border>
-                <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Player Name"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="2" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Faction"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="3" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Class"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="4" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Realm"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="5" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Rating"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="6" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Wins"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="7" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Losses"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                <Border Grid.Column="8" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                    <TextBlock Text="Race"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
-            <RelativePanel RelativePanel.Below="MenuGrid">
-                <Grid x:Name="Root">
-
-                </Grid>
-            </RelativePanel>
-        </RelativePanel>
-    </ScrollViewer>
-    
-    
+        </controls:PageHeader>
         
+        
+        <Grid Background="Black" Name="MenuGrid" RelativePanel.Below="PageHeader" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <!-- Row 1-->
+            <ComboBox PlaceholderText="2v2 Ladder"  SelectionChanged="CbLadder_OnSelectionChanged" Name="CbLadder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <x:String>2v2 Ladder</x:String>
+                <x:String>3v3 Ladder</x:String>
+                <x:String>Rbg Ladder</x:String>
+            </ComboBox>
+            <ComboBox PlaceholderText="Classes" SelectionChanged="CbClasses_OnSelectionChanged"  Name="CbClasses" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <x:String>Warrior</x:String>
+                <x:String>Paladin</x:String>
+                <x:String>Hunter</x:String>
+                <x:String>Rogue</x:String>
+                <x:String>Priest</x:String>
+                <x:String>Death Knight</x:String>
+                <x:String>Shaman</x:String>
+                <x:String>Mage</x:String>
+                <x:String>Warlock</x:String>
+                <x:String>Monk</x:String>
+                <x:String>Druid</x:String>
+                <x:String>Demon Hunter</x:String>
+                <x:String>All Classes</x:String>
+            </ComboBox>
+            <ComboBox PlaceholderText="Faction" SelectionChanged="CbFaction_OnSelectionChanged" Name="CbFaction" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <x:String>Horde</x:String>
+                <x:String>Alliance</x:String>
+                <x:String>All Factions</x:String>
+            </ComboBox>
+            <ComboBox PlaceholderText="Top 10" SelectionChanged="CbSelNumber_OnSelectionChanged" Name="CbSelNumber" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <x:String>Top 10</x:String>
+                <x:String>Top 25</x:String>
+                <x:String>Top 50</x:String>
+                <x:String>Top 100</x:String>
+            </ComboBox>
+            <TextBlock Text="Sort by:" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+            <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center"/>
+            <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center"/>
+            <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center"/>
+            <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center"/>
+            <!-- Row 2-->
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Rank"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+            <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Player Name"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="2" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Faction"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Class"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="4" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Realm"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Rating"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="6" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Wins"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Losses"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="8" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
+                <TextBlock Text="Race"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+        
+        
+        <!--<RelativePanel RelativePanel.Below="MenuGrid" x:Name="Root" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+                
+            </RelativePanel>-->
+    </RelativePanel>
+
 </Page>
