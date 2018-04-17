@@ -98,7 +98,6 @@ namespace BlizzStatistics.App.Views
                             tb.Text = data.leading_groups[i].completed_timestamp.ToString();                           
                             break;
                     }
-                    
                     if (a != 7)
                     {
                         Grid g = new Grid();
