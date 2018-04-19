@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Template10.Services.KeyboardService;
 using Template10.Services.NavigationService;
 
 namespace BlizzStatistics.App.ViewModels
@@ -19,7 +20,7 @@ namespace BlizzStatistics.App.ViewModels
             }
             await Task.CompletedTask;
         }
-
+        
         /// <summary>
         /// Raises the <see cref="E:NavigatingFromAsync" /> event.
         /// </summary>
