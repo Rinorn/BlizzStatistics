@@ -1,26 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using ClassLibrary1.Annotations;
 
 namespace ClassLibrary1
 {
-    class CharacterClass
+    public class CharacterClass : INotifyPropertyChanged
     {
 
-        public class Rootobject
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            public Class1[] classes { get; set; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public class Class1
-        {
+        
+
+            [Required]
             public int id { get; set; }
-            public int mask { get; set; }
-            public string powerType { get; set; }
-            public string name { get; set; }
-        }
 
+            [Required]
+            public string name { get; set; }
+            public string powerType { get; set; }
+            [Required]
+            public string classDescription { get; set; }
+            [Required]
+            public string ClassModel { get; set; }
+            [Required]
+            public string ClassIcon { get; set; }
+            
+            
+
+        
+       
     }
 }

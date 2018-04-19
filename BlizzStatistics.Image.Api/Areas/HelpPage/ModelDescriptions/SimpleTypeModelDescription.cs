@@ -1,0 +1,6 @@
+namespace BlizzStatistics.Image.Api.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
