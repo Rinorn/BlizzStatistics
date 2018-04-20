@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterClass.cs" />
+    <Compile Include="CharacterRace.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="MythicHandler.cs" />
     <Compile Include="Properties\Annotations.cs" />

@@ -178,7 +178,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="CreatedActionResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,6 +254,16 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlizzStatistics.DataAccess\BlizzStatistics.DataAccess.csproj">
+      <Project>{d3bd0ffc-a69c-4424-becb-508ceea8bf31}</Project>
+      <Name>BlizzStatistics.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary1\BlizzStatistics.Library.csproj">
+      <Project>{83ad0be0-c789-44a4-9f0f-c70871d4456c}</Project>
+      <Name>BlizzStatistics.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

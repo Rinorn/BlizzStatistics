@@ -10,9 +10,8 @@ using ClassLibrary1.Annotations;
 
 namespace ClassLibrary1
 {
-    public class CharacterClass : INotifyPropertyChanged
+    public class CharacterRace : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -21,27 +20,13 @@ namespace ClassLibrary1
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
-
-            [Required]
-            public int id { get; set; }
-
-            [Required]
-            public string name { get; set; }
-            
-
-
-            public string powerType { get; set; }
-            [Required]
-            public string classDescription { get; set; }
-            [Required]
-            public string ClassModel { get; set; }
-            [Required]
-            public string ClassIcon { get; set; }
-            
-            
-
-        
-       
+        [Required]
+        public int Id { get; set; }
+        [Required]
+        public string Faction { get; set; }
+        [Required]
+        public string RaceName { get; set; }
+        [Required]
+        public string FactionLogo { get; set; }
     }
 }
