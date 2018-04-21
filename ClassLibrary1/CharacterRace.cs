@@ -22,10 +22,14 @@ namespace ClassLibrary1
 
         [Required]
         public int Id { get; set; }
-        [Required]
+        
         public string Faction { get; set; }
         [Required]
         public string RaceName { get; set; }
+        [Required]
+        public string RaceModel { get; set; }
+        [Required]
+        public string RaceDescription { get; set; }
         [Required]
         public string FactionLogo { get; set; }
     }

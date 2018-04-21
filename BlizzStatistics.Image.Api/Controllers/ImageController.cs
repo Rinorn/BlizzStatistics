@@ -32,7 +32,6 @@ namespace BlizzStatistics.Image.Api.Controllers
             respons.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue($"image/{extension}");
             return respons;
         }
-
         /// <summary>
         /// Uploads a file.
         /// </summary>

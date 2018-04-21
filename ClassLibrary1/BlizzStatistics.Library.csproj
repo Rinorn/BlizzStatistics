@@ -38,9 +38,11 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCharacter.cs" />
     <Compile Include="CharacterClass.cs" />
     <Compile Include="CharacterRace.cs" />
     <Compile Include="GameCharacter.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="MythicHandler.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PvpHandler.cs" />

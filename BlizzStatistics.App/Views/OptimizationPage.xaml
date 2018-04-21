@@ -77,6 +77,11 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -109,67 +114,75 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <!--Large Boxes-->
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
-                </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
-                </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="11" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
-                </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="14" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
-                </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="17" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
-                </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="11" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="14" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="17" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
                 <!--Small boxes-->
-                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="3"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="2"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="6"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="5"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="9"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="8"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="12"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="11"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="15"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="14"  BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="16"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="18"  BorderBrush="Black">
@@ -178,30 +191,33 @@
                 <Border BorderThickness="1,1,1,1" Grid.Column="8"  Grid.Row="18"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="10"  Grid.Row="18"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="11"  Grid.Row="18"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="13"  Grid.Row="3"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="2"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="13"  Grid.Row="6"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="5"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="13"  Grid.Row="9"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="8"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="13"  Grid.Row="12"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="11"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="13"  Grid.Row="15"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="14"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="13"  Grid.Row="18"  BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="16"  BorderBrush="Black">
+                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="18"  BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
                 
                 <!--Optimized stats boxes-->
-                <Border BorderThickness="1,1,1,1" Grid.Column="6"  Grid.Row="1"  Grid.ColumnSpan="7" BorderBrush="Black" VerticalAlignment="Center">
+                <Border BorderThickness="1,1,1,1" Grid.Column="6"  Grid.Row="1"  Grid.ColumnSpan="8" BorderBrush="Black" VerticalAlignment="Center">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Optimized Player Statistics"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
@@ -246,42 +262,42 @@
                     <TextBlock Text="Stamina"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
                     <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>

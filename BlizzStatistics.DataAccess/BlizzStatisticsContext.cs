@@ -25,5 +25,11 @@ namespace BlizzStatistics.DataAccess
             
             
         }
+
+        public System.Data.Entity.DbSet<ClassLibrary1.CharacterRace> CharacterRaces { get; set; }
+
+        public System.Data.Entity.DbSet<ClassLibrary1.Item> Items { get; set; }
+
+        public System.Data.Entity.DbSet<ClassLibrary1.GameCharacter> GameCharacters { get; set; }
     }
 }
