@@ -128,6 +128,14 @@ namespace BlizzStatistics.App.Views
                 }
             }
         }
+        private void DefineText(TextBlock tb)
+        {
+            tb.FontSize = 12;
+            tb.TextAlignment = TextAlignment.Center;
+            tb.VerticalAlignment = VerticalAlignment.Center;
+            tb.FontSize = 20;
+            tb.Foreground = new SolidColorBrush(Colors.Black);
+        }
 
         private void AddToColumns(int i, Rootobject data, Grid mainGrid, int rowCount)
         {
@@ -136,11 +144,7 @@ namespace BlizzStatistics.App.Views
             for (int a = 0; a < 9; a++)
             {
                 TextBlock tb = new TextBlock();
-                tb.FontSize = 12;
-                tb.TextAlignment = TextAlignment.Center;
-                tb.VerticalAlignment = VerticalAlignment.Center;
-                tb.FontSize = 20;
-                tb.Foreground = new SolidColorBrush(Colors.Black);
+                DefineText(tb);
                 Grid g = new Grid();
                 switch (a)
                 {
@@ -182,35 +186,37 @@ namespace BlizzStatistics.App.Views
                         break;
                 }
                 
-                g.Children.Add(tb);
-
-                var color = GetSolidColorBrush(_classColor).Color;
-                SolidColorBrush brush = new SolidColorBrush(color);
-
-                // Here you set the Grid properties, such as border and alignment
-                // You can add other properties and events you need
-                g.BorderThickness = new Thickness(1, 2, 1, 2);
-                g.BorderBrush = new SolidColorBrush(Colors.Black);
-                g.HorizontalAlignment = HorizontalAlignment.Stretch;
-                g.VerticalAlignment = VerticalAlignment.Stretch;
-
-                g.Background = brush;
-
-                // Add the newly created Grid to the outer Grid
-                
-                RowDefinition rowHeight = new RowDefinition();
-                rowHeight.Height = new GridLength(50);
-                mainGrid.RowDefinitions.Add(rowHeight);
-                ColumnDefinition colWidth = new ColumnDefinition();
-                colWidth.Width = new GridLength(166);
-                //mainGrid.ColumnDefinitions.Add(colWidth);
-
-                Grid.SetRow(g, rowCount);
-                Grid.SetColumn(g, a);
-                mainGrid.Children.Add(g);
+               AddtoGrid(g, mainGrid, tb, a, rowCount);
                 
             }
             
+        }
+        private void AddtoGrid(Grid g, Grid mainGrid, TextBlock tb, int a, int rowCount)
+        {
+            g.Children.Add(tb);
+
+            var color = GetSolidColorBrush(_classColor).Color;
+            SolidColorBrush brush = new SolidColorBrush(color);
+
+            // Here you set the Grid properties, such as border and alignment
+            // You can add other properties and events you need
+            g.BorderThickness = new Thickness(1, 2, 1, 2);
+            g.BorderBrush = new SolidColorBrush(Colors.Black);
+            g.HorizontalAlignment = HorizontalAlignment.Stretch;
+            g.VerticalAlignment = VerticalAlignment.Stretch;
+
+            g.Background = brush;
+
+            // Add the newly created Grid to the outer Grid
+
+            RowDefinition rowHeight = new RowDefinition();
+            rowHeight.Height = new GridLength(50);
+            mainGrid.RowDefinitions.Add(rowHeight);
+
+
+            Grid.SetRow(g, rowCount);
+            Grid.SetColumn(g, a);
+            mainGrid.Children.Add(g);
         }
 
         private void CheckClass(int c)
