@@ -13,6 +13,10 @@ namespace BlizzStatistics.DataAccess
     {
         public virtual DbSet<CharacterClass> CharacterClasses { get; set; }
 
+        public virtual DbSet<CharacterRace> CharacterRaces { get; set; }
+
+        
+
         public BlizzStatisticsContext()
         {
             Configuration.ProxyCreationEnabled = false;
@@ -26,10 +30,6 @@ namespace BlizzStatistics.DataAccess
             
         }
 
-        public System.Data.Entity.DbSet<ClassLibrary1.CharacterRace> CharacterRaces { get; set; }
-
-        public System.Data.Entity.DbSet<ClassLibrary1.Item> Items { get; set; }
-
-        public System.Data.Entity.DbSet<ClassLibrary1.GameCharacter> GameCharacters { get; set; }
+        
     }
 }

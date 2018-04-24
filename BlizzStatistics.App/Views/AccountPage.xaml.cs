@@ -26,39 +26,25 @@ namespace BlizzStatistics.App.Views
     /// </summary>
     public sealed partial class AccountPage : Page
     {
-        public string Url;
-        public string Server;
-        public string Char;
+        
         public AccountPage()
         {
             this.InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Char = CnameTextblock.Text;
-            Server = SBox.Text;
-            Url ="https://eu.api.battle.net/wow/character/"+ Server +"/"+ Char +"?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
-            
-        }
-
-        private async void GetChar(string Url)
-        {
-            try
-            {
-                
-                var client = new HttpClient();
-                var response = await client.GetStringAsync(Url);
-                var data = JsonConvert.DeserializeObject<AddCharacter.CharacterRootobject>(response);
-                GameCharacter Charcter = new GameCharacter();
-                Charcter.CharacterName = data.name;
-                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-               
-            }
+            CharacterRootobject Character = await GameCharacter.GetCharacter("Rinnorn", "Stormscale");
+            TextBlock1.Text = Character.name;
+            TextBlock2.Text = Character.realm;
+            TextBlock3.Text = Character._class.ToString();
+            TextBlock4.Text = Character.items.head.context;
+            TextBlock5.Text = Character.items.head.appearance.itemAppearanceModId.ToString();
+            TextBlock6.Text = Character.items.head.icon;
+            TextBlock7.Text = Character.items.head.armor.ToString();
+            TextBlock8.Text = Character.items.head.itemLevel.ToString();
+            TextBlock9.Text = Character.items.head.stats[1].stat.ToString();
+            TextBlock10.Text = Character.items.head.stats[1].amount.ToString();
         }
     }
 }

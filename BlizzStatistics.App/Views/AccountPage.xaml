@@ -22,5 +22,36 @@
         <Button RelativePanel.Below="PageHeader" RelativePanel.RightOf="SBox" Width="80" Height="30" Click="ButtonBase_OnClick">
             <TextBlock Text="ADD"></TextBlock>
         </Button>
+        <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="SBox" RelativePanel.AlignBottomWithPanel="True">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="TextBlock1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="TextBlock2" Grid.Column="1" Grid.Row="0"></TextBlock>
+            <TextBlock x:Name="TextBlock3" Grid.Column="2" Grid.Row="0"></TextBlock>
+            <TextBlock x:Name="TextBlock4" Grid.Column="3" Grid.Row="0"></TextBlock>
+            <TextBlock x:Name="TextBlock5" Grid.Column="0" Grid.Row="1"></TextBlock>
+            <TextBlock x:Name="TextBlock6" Grid.Column="1" Grid.Row="1"></TextBlock>
+            <TextBlock x:Name="TextBlock7" Grid.Column="2" Grid.Row="1"></TextBlock>
+            <TextBlock x:Name="TextBlock8" Grid.Column="3" Grid.Row="1"></TextBlock>
+            <TextBlock x:Name="TextBlock9" Grid.Column="0" Grid.Row="2"></TextBlock>
+            <TextBlock x:Name="TextBlock10" Grid.Column="1" Grid.Row="2"></TextBlock>
+            <TextBlock x:Name="TextBlock11" Grid.Column="2" Grid.Row="2"></TextBlock>
+            <TextBlock x:Name="TextBlock12" Grid.Column="3" Grid.Row="2"></TextBlock>
+            <TextBlock x:Name="TextBlock13" Grid.Column="0" Grid.Row="3"></TextBlock>
+            <TextBlock x:Name="TextBlock14" Grid.Column="1" Grid.Row="3"></TextBlock>
+            <TextBlock x:Name="TextBlock15" Grid.Column="2" Grid.Row="3"></TextBlock>
+            <TextBlock x:Name="TextBlock16" Grid.Column="3" Grid.Row="3"></TextBlock>
+        </Grid>
     </RelativePanel>
 </Page>
