@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using ClassLibrary1;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,14 +12,21 @@ namespace BlizzStatistics.App.Views
     /// </summary>
     public sealed partial class OptimizationPage : Page
     {
+        public SavedCharacter Character;
+        public string CharacterName;
+        public string CharacterServer;
         public OptimizationPage()
         {
             this.InitializeComponent();
         }
 
-        private void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            Character = (SavedCharacter) CharacterListView.SelectedItem;
+            if (Character != null) CharacterName = Character.name;
+            if (Character != null) CharacterServer = Character.realm;
+
+            await BlizzardFacade.GetCharacter(CharacterName, CharacterServer);
         }
     }
 }

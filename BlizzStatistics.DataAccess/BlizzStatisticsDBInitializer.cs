@@ -249,7 +249,38 @@ namespace BlizzStatistics.DataAccess
                 RaceModel = "http://localhost:60158/api/images/lfdraenei_model.jpg/",
                 FactionLogo = "http://localhost:60158/api/images/alliance_icon.jpg/"
             });
-
+            context.SavedCharacters.Add(new SavedCharacter()
+            {
+                id = 1,
+                name = "PestErBest",
+                ClassName = "Priest",
+                realm = "StormScale",
+                level = 110
+            });
+            context.SavedCharacters.Add(new SavedCharacter()
+            {
+                id = 2,
+                name = "SuperSteinar",
+                ClassName = "Warrior",
+                realm = "StormScale",
+                level = 110
+            });
+            context.SavedCharacters.Add(new SavedCharacter()
+            {
+                id = 3,
+                name = "HelligDykker",
+                ClassName = "Paladin",
+                realm = "StormScale",
+                level = 110
+            });
+            context.SavedCharacters.Add(new SavedCharacter()
+            {
+                id = 4,
+                name = "RødtKjøtt",
+                ClassName = "Monk",
+                realm = "StormScale",
+                level = 110
+            });
             base.Seed(context);
         }
 

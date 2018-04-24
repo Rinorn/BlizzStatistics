@@ -26,25 +26,44 @@ namespace BlizzStatistics.App.Views
     /// </summary>
     public sealed partial class AccountPage : Page
     {
-        
+        public string CharacterName;
+        public string CharacterServer;
+        public string[] classes = {"Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter"};
         public AccountPage()
         {
             this.InitializeComponent();
         }
 
-        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        public async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            CharacterRootobject Character = await GameCharacter.GetCharacter("Rinnorn", "Stormscale");
-            TextBlock1.Text = Character.name;
-            TextBlock2.Text = Character.realm;
-            TextBlock3.Text = Character._class.ToString();
-            TextBlock4.Text = Character.items.head.context;
-            TextBlock5.Text = Character.items.head.appearance.itemAppearanceModId.ToString();
-            TextBlock6.Text = Character.items.head.icon;
-            TextBlock7.Text = Character.items.head.armor.ToString();
-            TextBlock8.Text = Character.items.head.itemLevel.ToString();
-            TextBlock9.Text = Character.items.head.stats[1].stat.ToString();
-            TextBlock10.Text = Character.items.head.stats[1].amount.ToString();
+            CharacterName = CnameTextField.Text;
+            CharacterServer = SBox.Text;
+            var url = "https://eu.api.battle.net/wow/character/" + CharacterServer + "/" + CharacterName + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7y";
+            var http = new HttpClient();
+            var response = await http.GetAsync(url);
+            var result = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<SavedCharacter>(result);
+            int test = data._class;
+
+
+            //Fungerer ikke.
+            SavedCharacter character = new SavedCharacter()
+            {
+                name = data.name,
+                level = data.level,
+                ClassName = classes[test],
+                realm = data.realm
+            };
+            try
+            {
+                await DataSource.SavedCharacters.Instance.AddSavedCharacter(character);
+            }
+            catch 
+            {
+                
+            }
+            
         }
+        
     }
 }

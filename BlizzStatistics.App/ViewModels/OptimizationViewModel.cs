@@ -24,20 +24,31 @@ namespace BlizzStatistics.App.ViewModels
         }
 
         private ObservableCollection<GameCharacter> gameCharacters;
-        public ObservableCollection<GameCharacter> GameCharacters { get { return gameCharacters; } set { Set(ref gameCharacters, value); } }
+        public ObservableCollection<GameCharacter> GameCharacters{get { return gameCharacters; }set { Set(ref gameCharacters, value); }}
+
+
+        private ObservableCollection<SavedCharacter> savedCharacters;
+        public  ObservableCollection<SavedCharacter> SavedCharacters{get { return savedCharacters; }set { Set(ref savedCharacters, value); }
+        }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
+            
+            if (SavedCharacters == null) // get authors 
+            {
+                SavedCharacters = new ObservableCollection<SavedCharacter>(await DataSource.SavedCharacters.Instance.GetSavedCharacter());
+            }
             if (GameCharacters == null) // get authors 
             {
                 GameCharacters = new ObservableCollection<GameCharacter>(await DataSource.GameCharacters.Instance.GetGameCharacters());
             }
-
             if (suspensionState.Any())
             {
             }
             await Task.CompletedTask;
         }
+        
+
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {

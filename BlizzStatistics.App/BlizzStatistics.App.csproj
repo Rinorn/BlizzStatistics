@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="DataSource\CharacterClasses.cs" />
     <Compile Include="DataSource\CharacterRaces.cs" />
+    <Compile Include="DataSource\SavedCharacters.cs" />
     <Compile Include="DataSource\GameCharacters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\SampleData.cs" />

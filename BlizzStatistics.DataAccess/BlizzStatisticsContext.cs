@@ -14,8 +14,8 @@ namespace BlizzStatistics.DataAccess
         public virtual DbSet<CharacterClass> CharacterClasses { get; set; }
 
         public virtual DbSet<CharacterRace> CharacterRaces { get; set; }
+        public virtual DbSet<SavedCharacter> SavedCharacters { get; set; }
 
-        
 
         public BlizzStatisticsContext()
         {

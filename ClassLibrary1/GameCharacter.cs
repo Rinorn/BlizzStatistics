@@ -11,41 +11,18 @@ using Newtonsoft.Json;
 
 namespace ClassLibrary1
 {
-    public class GameCharacter : INotifyPropertyChanged
+    public class GameCharacter 
     {
-        public async static Task<CharacterRootobject> GetCharacter(string charName, string server)
-        {
-            var http = new HttpClient();
-            var response = await http.GetAsync("https://eu.api.battle.net/wow/character/Stormscale/Rinnorn?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
-            var result = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<CharacterRootobject>(result);
-            return data;
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public class CharacterRootobject
-    {   
-        public long lastModified { get; set; }
+       
         public string name { get; set; }
         public string realm { get; set; }
-        public string battlegroup { get; set; }
-        public int _class { get; set; }
+        public int Class { get; set; }
         public int race { get; set; }
-        public int gender { get; set; }
         public int level { get; set; }
-        public int achievementPoints { get; set; }
         public string thumbnail { get; set; }
-        public string calcClass { get; set; }
         public int faction { get; set; }
         public Items items { get; set; }
-        public int totalHonorableKills { get; set; }
+        
     }
 
     public class Items

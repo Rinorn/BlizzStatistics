@@ -6,15 +6,28 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Template10.Controls"
-    
+    xmlns:classLibrary1="using:ClassLibrary1"
     xmlns:sampleData="using:BlizzStatistics.App.SampleData"
-    
+    xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
+
     mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModels:OptimizationViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
     <Page.Resources>
-        <sampleData:SampleData x:Key="SampleData"/>
+        <CollectionViewSource
+            x:Name="CharacterClassesViewSource"
+            Source="{x:Bind ViewModel.SavedCharacters}">
+        </CollectionViewSource>
+        <CollectionViewSource
+            x:Name="ItemsViewSource"
+            Source="{x:Bind ViewModel.GameCharacters}">
+        </CollectionViewSource>
     </Page.Resources>
 
-    <RelativePanel d:DataContext="{StaticResource SampleData}">
+
+    <RelativePanel >
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
@@ -22,26 +35,16 @@
             Text="BlizzardLogo">
         </controls:PageHeader>
         <ListView x:Name="CharacterListView" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  
-                  SelectionChanged="CharacterListView_OnSelectionChanged"  Background="Azure"
-                  >
-            
-                    <TextBlock Text="Rinorn" Foreground="Black"></TextBlock>
-            <TextBlock Text="PestErBest" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-            <TextBlock Text="Gggg" Foreground="Black"></TextBlock>
-
-                
+                  SelectionChanged="CharacterListView_OnSelectionChanged"  Background="BlanchedAlmond"
+                  ItemsSource="{Binding SavedCharacters}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="classLibrary1:SavedCharacter">
+                    <TextBlock Text="{Binding name}" Foreground="Black" FontSize="20"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <RelativePanel RelativePanel.RightOf="CharacterListView" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" x:Name="RelativeGrid">
-            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="Aquamarine">
+        <RelativePanel RelativePanel.RightOf="CharacterListView" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" x:Name="RelativeGrid" DataContext="{Binding}">
+            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="Aquamarine" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -353,6 +356,8 @@
                 <Border BorderThickness="1,1,1,1" Grid.Column="30" Grid.ColumnSpan="4" Grid.Row="25" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
                 </Border>
+                
+                
             </Grid>
 
         </RelativePanel>
