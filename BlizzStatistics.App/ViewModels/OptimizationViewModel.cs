@@ -23,8 +23,7 @@ namespace BlizzStatistics.App.ViewModels
 
         }
 
-        private ObservableCollection<GameCharacter> gameCharacters;
-        public ObservableCollection<GameCharacter> GameCharacters{get { return gameCharacters; }set { Set(ref gameCharacters, value); }}
+        
 
 
         private ObservableCollection<SavedCharacter> savedCharacters;
@@ -38,10 +37,7 @@ namespace BlizzStatistics.App.ViewModels
             {
                 SavedCharacters = new ObservableCollection<SavedCharacter>(await DataSource.SavedCharacters.Instance.GetSavedCharacter());
             }
-            if (GameCharacters == null) // get authors 
-            {
-                GameCharacters = new ObservableCollection<GameCharacter>(await DataSource.GameCharacters.Instance.GetGameCharacters());
-            }
+            
             if (suspensionState.Any())
             {
             }

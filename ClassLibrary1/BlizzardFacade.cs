@@ -16,14 +16,7 @@ namespace ClassLibrary1
     {
         
         
-        public async static Task<GameCharacter> GetCharacter(string name, string server)
-        {
-            var http = new HttpClient();
-            var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
-            var result = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<GameCharacter>(result);
-            return data;
-        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

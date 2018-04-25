@@ -43,6 +43,7 @@
     <Compile Include="CharacterRace.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="MythicHandler.cs" />
+    <Compile Include="OriginalCharacterStats.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PvpHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
