@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using ClassLibrary1.Annotations;
 
 namespace ClassLibrary1
@@ -24,16 +19,16 @@ namespace ClassLibrary1
         
 
             [Required]
-            public int id { get; set; }
+            public int Id { get; set; }
 
             [Required]
-            public string name { get; set; }
+            public string Name { get; set; }
             
 
 
-            public string powerType { get; set; }
+            public string PowerType { get; set; }
             [Required]
-            public string classDescription { get; set; }
+            public string ClassDescription { get; set; }
             [Required]
             public string ClassModel { get; set; }
             [Required]

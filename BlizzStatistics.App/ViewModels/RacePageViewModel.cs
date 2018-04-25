@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Navigation;
@@ -22,8 +20,8 @@ namespace BlizzStatistics.App.ViewModels
 
         }
 
-        private ObservableCollection<CharacterRace> characterRaces;
-        public ObservableCollection<CharacterRace> CharacterRaces { get { return characterRaces; } set { Set(ref characterRaces, value); } }
+        private ObservableCollection<CharacterRace> _characterRaces;
+        public ObservableCollection<CharacterRace> CharacterRaces { get { return _characterRaces; } set { Set(ref _characterRaces, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {

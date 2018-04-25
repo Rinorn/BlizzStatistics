@@ -1,13 +1,6 @@
-﻿using System;
-using BlizzStatistics.App.ViewModels;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using System.Collections.ObjectModel;
-
-namespace BlizzStatistics.App.Views
+﻿namespace BlizzStatistics.App.Views
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
         public MainPage()
         {

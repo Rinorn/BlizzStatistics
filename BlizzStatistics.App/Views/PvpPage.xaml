@@ -21,10 +21,10 @@
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True" Text="Player vs Player"  >
         </controls:PageHeader>
-        
-        
+
+
         <Grid Background="Black" Name="MenuGrid" RelativePanel.Below="PageHeader" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-            
+
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -106,11 +106,6 @@
                 <TextBlock Text="Race"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Grid>
-        
-        
-        <!--<RelativePanel RelativePanel.Below="MenuGrid" x:Name="Root" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
-                
-            </RelativePanel>-->
     </RelativePanel>
 
 </Page>

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Template10.Mvvm;
-using Template10.Services.SettingsService;
 using Windows.UI.Xaml;
 
 namespace BlizzStatistics.App.ViewModels
@@ -32,7 +30,7 @@ namespace BlizzStatistics.App.ViewModels
         public bool ShowHamburgerButton
         {
             get { return _settings.ShowHamburgerButton; }
-            set { _settings.ShowHamburgerButton = value; base.RaisePropertyChanged(); }
+            set { _settings.ShowHamburgerButton = value; RaisePropertyChanged(); }
         }
 
         public bool IsFullScreen
@@ -41,7 +39,7 @@ namespace BlizzStatistics.App.ViewModels
             set
             {
                 _settings.IsFullScreen = value;
-                base.RaisePropertyChanged();
+                RaisePropertyChanged();
                 if (value)
                 {
                     ShowHamburgerButton = false;
@@ -56,31 +54,31 @@ namespace BlizzStatistics.App.ViewModels
         public bool UseShellBackButton
         {
             get { return _settings.UseShellBackButton; }
-            set { _settings.UseShellBackButton = value; base.RaisePropertyChanged(); }
+            set { _settings.UseShellBackButton = value; RaisePropertyChanged(); }
         }
 
         public bool UseLightThemeButton
         {
             get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
-            set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; base.RaisePropertyChanged(); }
+            set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; RaisePropertyChanged(); }
         }
 
-        private string _BusyText = "Please wait...";
+        private string _busyText = "Please wait...";
         public string BusyText
         {
-            get { return _BusyText; }
+            get { return _busyText; }
             set
             {
-                Set(ref _BusyText, value);
-                _ShowBusyCommand.RaiseCanExecuteChanged();
+                Set(ref _busyText, value);
+                _showBusyCommand.RaiseCanExecuteChanged();
             }
         }
 
-        DelegateCommand _ShowBusyCommand;
+        DelegateCommand _showBusyCommand;
         public DelegateCommand ShowBusyCommand
-            => _ShowBusyCommand ?? (_ShowBusyCommand = new DelegateCommand(async () =>
+            => _showBusyCommand ?? (_showBusyCommand = new DelegateCommand(async () =>
             {
-                Views.Busy.SetBusy(true, _BusyText);
+                Views.Busy.SetBusy(true, _busyText);
                 await Task.Delay(5000);
                 Views.Busy.SetBusy(false);
             }, () => !string.IsNullOrEmpty(BusyText)));

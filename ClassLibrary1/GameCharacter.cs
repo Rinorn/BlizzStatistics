@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace ClassLibrary1
 {
+    //Not finished here yet. not optimized at all
     public class GameCharacter 
     {
        

@@ -34,8 +34,8 @@ namespace BlizzStatistics.App.Views
         private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Character = (SavedCharacter) CharacterListView.SelectedItem;
-            if (Character != null) CharacterName = Character.name;
-            if (Character != null) CharacterServer = Character.realm;
+            if (Character != null) CharacterName = Character.Name;
+            if (Character != null) CharacterServer = Character.Realm;
 
             await GetCharacter(CharacterName, CharacterServer);
             await GetCharacterStats(CharacterName, CharacterServer);
@@ -86,34 +86,72 @@ namespace BlizzStatistics.App.Views
             var charStatData = JsonConvert.DeserializeObject<OriginalCharacterStats>(result);
 
             CheckMainStat(charStatData);
-            OriginalClassResource.Text = charStatData.stats.power.ToString();
-            OriginalClassResourceBlock.Text = charStatData.stats.powerType;
-            OriginalCrit.Text = charStatData.stats.critRating.ToString();
-            OriginalHaste.Text = charStatData.stats.hasteRating.ToString();
-            OriginalHitpoints.Text = charStatData.stats.health.ToString();
-            OriginalMastery.Text = charStatData.stats.masteryRating.ToString();
-            OriginalStamina.Text = charStatData.stats.sta.ToString();
-            OriginalVersatility.Text = charStatData.stats.versatility.ToString();
+            SetOriginalStats(charStatData);
+            CheckOptimizedMainStats(charStatData);
+            SetOptimizedStats(charStatData);
             return charStatData;
+        }
+
+        public void CheckOptimizedMainStats(OriginalCharacterStats data)
+        {
+            if (OptimizedMainStatBlock.Text.Equals("Intellect"))
+            {
+                OptimizedMainStatBox.Text = data.Stats.Int.ToString();
+            }else if (OptimizedMainStatBlock.Text.Equals("Agility"))
+            {
+                OptimizedMainStatBox.Text = data.Stats.Agi.ToString();
+            }
+            else
+            {
+                OptimizedMainStatBox.Text = data.Stats.Str.ToString();
+            }
+        }
+        //Placeholder values for the optimized stats. there will need to be some kind of calculation done here
+        public void SetOptimizedStats(OriginalCharacterStats charStatData)
+        {
+            OptimizedClassResourceBox.Text = charStatData.Stats.Power.ToString();
+            OptimizedClassResourceBlock.Text = charStatData.Stats.PowerType;
+            OptimizedCritBox.Text = charStatData.Stats.CritRating.ToString();
+            OptimizedHasteBox.Text = charStatData.Stats.HasteRating.ToString();
+            OptimizedHpBox.Text = charStatData.Stats.Health.ToString();
+            OptimizedMasteryBox.Text = charStatData.Stats.MasteryRating.ToString();
+            OptimizedStaminaBox.Text = charStatData.Stats.Sta.ToString();
+            OptimizedVersatilityBox.Text = charStatData.Stats.Versatility.ToString();
+
+        }
+
+        public void SetOriginalStats(OriginalCharacterStats charStatData)
+        {
+            OriginalClassResource.Text = charStatData.Stats.Power.ToString();
+            OriginalClassResourceBlock.Text = charStatData.Stats.PowerType;
+            OriginalCrit.Text = charStatData.Stats.CritRating.ToString();
+            OriginalHaste.Text = charStatData.Stats.HasteRating.ToString();
+            OriginalHitpoints.Text = charStatData.Stats.Health.ToString();
+            OriginalMastery.Text = charStatData.Stats.MasteryRating.ToString();
+            OriginalStamina.Text = charStatData.Stats.Sta.ToString();
+            OriginalVersatility.Text = charStatData.Stats.Versatility.ToString();
         }
 
         public void CheckMainStat(OriginalCharacterStats charStatData)
         {
-            if (charStatData.stats.Int > charStatData.stats.agi && charStatData.stats.Int > charStatData.stats.str)
+            if (charStatData.Stats.Int > charStatData.Stats.Agi && charStatData.Stats.Int > charStatData.Stats.Str)
             {
-                OriginalMainStat.Text = charStatData.stats.Int.ToString();
+                OriginalMainStat.Text = charStatData.Stats.Int.ToString();
                 OriginalMainStatBlock.Text = "Intellect";
+                OptimizedMainStatBlock.Text = "Intellect";
             }
-            else if (charStatData.stats.agi > charStatData.stats.Int &&
-                     charStatData.stats.agi > charStatData.stats.str)
+            else if (charStatData.Stats.Agi > charStatData.Stats.Int &&
+                     charStatData.Stats.Agi > charStatData.Stats.Str)
             {
-                OriginalMainStat.Text = charStatData.stats.agi.ToString();
+                OriginalMainStat.Text = charStatData.Stats.Agi.ToString();
                 OriginalMainStatBlock.Text = "Agility";
+                OptimizedMainStatBlock.Text = "Agility";
             }
             else
             {
-                OriginalMainStat.Text = charStatData.stats.str.ToString();
+                OriginalMainStat.Text = charStatData.Stats.Str.ToString();
                 OriginalMainStatBlock.Text = "Strength";
+                OptimizedMainStatBlock.Text = "Strength";
             }
         }
 

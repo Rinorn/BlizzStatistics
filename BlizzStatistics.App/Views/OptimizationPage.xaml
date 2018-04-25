@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Template10.Controls"
     xmlns:classLibrary1="using:ClassLibrary1"
-    xmlns:sampleData="using:BlizzStatistics.App.SampleData"
+    
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
 
     mc:Ignorable="d">
@@ -36,7 +36,7 @@
                   ItemsSource="{Binding SavedCharacters}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classLibrary1:SavedCharacter">
-                    <TextBlock Text="{Binding name}" Foreground="Black" FontSize="20"></TextBlock>
+                    <TextBlock Text="{Binding Name}" Foreground="Black" FontSize="20"></TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -121,7 +121,7 @@
                 <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black">
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black">
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" >
                     <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black">
@@ -168,52 +168,116 @@
                 </Border>
                 <!--Small boxes-->
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="2"  BorderBrush="Black">
-                    <Image x:Name="HeadSlot" Stretch="Fill"></Image>
+                    <Image x:Name="HeadSlot" Stretch="Fill" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="5"  BorderBrush="Black">
-                    <Image x:Name="NeckSlot" Stretch="Fill"></Image>
+                    <Image x:Name="NeckSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="8"  BorderBrush="Black">
-                    <Image x:Name="ShoulderSlot" Stretch="Fill"></Image>
+                    <Image x:Name="ShoulderSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="11"  BorderBrush="Black">
-                    <Image x:Name="BackSlot" Stretch="Fill"></Image>
+                    <Image x:Name="BackSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="14"  BorderBrush="Black">
-                    <Image x:Name="ChestSlot" Stretch="Fill"></Image>
+                    <Image x:Name="ChestSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="16"  BorderBrush="Black">
-                    <Image x:Name="BracerSlot" Stretch="Fill"></Image>
+                    <Image x:Name="BracerSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="18"  BorderBrush="Black">
-                    <Image x:Name="Trinket1Slot" Stretch="Fill"></Image>
+                    <Image x:Name="Trinket1Slot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="8"  Grid.Row="18"  BorderBrush="Black">
-                    <Image x:Name="OffhandSlot" Stretch="Fill"></Image>
+                    <Image x:Name="OffhandSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="11"  Grid.Row="18"  BorderBrush="Black">
-                    <Image x:Name="MainhandSlot" Stretch="Fill"></Image>
+                    <Image x:Name="MainhandSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="2"  BorderBrush="Black">
-                    <Image x:Name="GlovesSlot" Stretch="Fill"></Image>
+                    <Image x:Name="GlovesSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="5"  BorderBrush="Black">
-                    <Image x:Name="BeltSlot" Stretch="Fill"></Image>
+                    <Image x:Name="BeltSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="8"  BorderBrush="Black">
-                    <Image x:Name="LegsSlot" Stretch="Fill"></Image>
+                    <Image x:Name="LegsSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="11"  BorderBrush="Black">
-                    <Image x:Name="FeetSlot" Stretch="Fill"></Image>
+                    <Image x:Name="FeetSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="14"  BorderBrush="Black">
-                    <Image x:Name="Ring1Slot" Stretch="Fill"></Image>
+                    <Image x:Name="Ring1Slot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="16"  BorderBrush="Black">
-                    <Image x:Name="Ring2Slot" Stretch="Fill"></Image>
+                    <Image x:Name="Ring2Slot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="18"  BorderBrush="Black">
-                    <Image x:Name="Trinket2Slot" Stretch="Fill"></Image>
+                    <Image x:Name="Trinket2Slot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 
                 <!--Optimized stats boxes-->
@@ -224,7 +288,7 @@
                 </Border>
                 <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="Main Stat"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedMainStatBlock"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
@@ -234,7 +298,7 @@
                 </Border>
                 <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="Class Resource"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedClassResourceBlock"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
@@ -249,7 +313,7 @@
                 </Border>
                 <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="Mastery"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Mastery"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
@@ -264,42 +328,42 @@
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedMainStatBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedHpBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedClassResourceBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedCritBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedHasteBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedMasteryBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock x:Name="OptimizedVersatilityBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
                 <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="DownOnly">
-                    <TextBlock Text="22222"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock x:Name="OptimizedStaminaBox"  HorizontalAlignment="Center"  Foreground="Blue" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>
                 </Border>
 

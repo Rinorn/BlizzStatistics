@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -46,7 +42,7 @@ namespace BlizzStatistics.Data.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != characterClass.id)
+            if (id != characterClass.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +80,7 @@ namespace BlizzStatistics.Data.Api.Controllers
             db.CharacterClasses.Add(characterClass);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = characterClass.id }, characterClass);
+            return CreatedAtRoute("DefaultApi", new { id = characterClass.Id }, characterClass);
         }
 
         // DELETE: api/CharacterClasses/5
@@ -114,7 +110,7 @@ namespace BlizzStatistics.Data.Api.Controllers
 
         private bool CharacterClassExists(int id)
         {
-            return db.CharacterClasses.Count(e => e.id == id) > 0;
+            return db.CharacterClasses.Count(e => e.Id == id) > 0;
         }
     }
 }

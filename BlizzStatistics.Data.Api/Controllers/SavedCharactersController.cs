@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -46,7 +42,7 @@ namespace BlizzStatistics.Data.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != savedCharacter.id)
+            if (id != savedCharacter.Id)
             {
                 return BadRequest();
             }
@@ -89,7 +85,7 @@ namespace BlizzStatistics.Data.Api.Controllers
             }
             catch (DbUpdateException)
             {
-                if (SavedCharacterExists(savedCharacter.id))
+                if (SavedCharacterExists(savedCharacter.Id))
                 {
                     return Conflict();
                 }
@@ -99,7 +95,7 @@ namespace BlizzStatistics.Data.Api.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { Name = savedCharacter.name }, savedCharacter);
+            return CreatedAtRoute("DefaultApi", new {savedCharacter.Name }, savedCharacter);
         }
 
         // DELETE: api/SavedCharacters/5
@@ -129,7 +125,7 @@ namespace BlizzStatistics.Data.Api.Controllers
 
         private bool SavedCharacterExists(int id)
         {
-            return db.SavedCharacters.Count(e => e.id == id) > 0;
+            return db.SavedCharacters.Count(e => e.Id == id) > 0;
         }
     }
 }

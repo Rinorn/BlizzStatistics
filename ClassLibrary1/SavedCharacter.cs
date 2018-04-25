@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using ClassLibrary1.Annotations;
 
 namespace ClassLibrary1
@@ -14,17 +9,17 @@ namespace ClassLibrary1
     {   
         [Key]
         [Required]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string realm { get; set; }
+        public string Realm { get; set; }
         
-        public int _class { get; set; }
+        public int Class { get; set; }
         [Required]
         public string ClassName { get; set; }
         [Required]
-        public int level { get; set; }
+        public int Level { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

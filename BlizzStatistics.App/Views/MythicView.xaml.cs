@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Net.Http;
-using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,17 +14,18 @@ namespace BlizzStatistics.App.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MythicView : Page
+    public sealed partial class MythicView
     {
-        int[] realmLinks;
+        
         private Grid _childGrid;
-        private string connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
-        private string realmIndex = "509";
-        private string dungeonIndex = "199";
+        private string _connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+        private string _realmIndex = "509";
+        private string _dungeonIndex = "199";
 
         public MythicView()
         {
-            this.InitializeComponent();
+           
+            InitializeComponent();
             
             GetData();
         }
@@ -38,15 +35,15 @@ namespace BlizzStatistics.App.Views
             
             try
             {
-                Uri ur = new Uri(connection);
+                Uri ur = new Uri(_connection);
                 var client = new HttpClient();
                 var response = await client.GetStringAsync(ur);
                 var data = JsonConvert.DeserializeObject<MythicRootobject>(response);
                 AddToColumns(data);
-                tbBestTime.Text = data.leading_groups[0].duration.ToString();
-                TbAff1.Text = data.keystone_affixes[0].keystone_affix.name;
-                TbAff2.Text = data.keystone_affixes[1].keystone_affix.name;
-                TbAff3.Text = data.keystone_affixes[2].keystone_affix.name;
+                TbBestTime.Text = data.leading_groups[0].Duration.ToString();
+                TbAff1.Text = data.keystone_affixes[0].keystone_affix.Name;
+                TbAff2.Text = data.keystone_affixes[1].keystone_affix.Name;
+                TbAff3.Text = data.keystone_affixes[2].keystone_affix.Name;
             }
             catch (Exception e)
             {
@@ -79,16 +76,16 @@ namespace BlizzStatistics.App.Views
                     TextBlock tb = new TextBlock();
                     DefineText(tb);
 
-                    ColumnDefinition colWidth = new ColumnDefinition();
+                    
                     switch (a)
                     {
                         case 0:
-                            tb.Text = data.leading_groups[i].ranking.ToString();
+                            tb.Text = data.leading_groups[i].Ranking.ToString();
                             break;
                         case 1:
                             tb.Text = data.leading_groups[i].keystone_level.ToString();                        
                             break;
-                        case 2: tb.Text = data.leading_groups[i].duration.ToString();                           
+                        case 2: tb.Text = data.leading_groups[i].Duration.ToString();                           
                             break;
                         case 3:
                             AddGroupMember(data, mainGrid, a, i);
@@ -136,7 +133,7 @@ namespace BlizzStatistics.App.Views
                 Grid g = new Grid();
                 TextBlock tb = new TextBlock();
                 DefineText(tb);
-                tb.Text = data.leading_groups[i].members[c].profile.name;
+                tb.Text = data.leading_groups[i].Members[c].Profile.Name;
                 
                 AddtoGrid(g, mainGrid, tb, columnCount, i);
                 columnCount++;
@@ -147,38 +144,38 @@ namespace BlizzStatistics.App.Views
         private void cbServer_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {   
             
-            switch (cbServer.SelectedItem)
+            switch (CbServer.SelectedItem)
             {
                 case "Garona":
-                    realmIndex = "509";
+                    _realmIndex = "509";
                     break;
                 case "Vol'jin":
-                    realmIndex = "510";
+                    _realmIndex = "510";
                     break;
                 case "Sunstrider":
-                    realmIndex = "511";
+                    _realmIndex = "511";
                     break;
             }
 
-            connection = "https://eu.api.battle.net/data/wow/connected-realm/"+realmIndex+"/mythic-leaderboard/"+dungeonIndex+ "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+            _connection = "https://eu.api.battle.net/data/wow/connected-realm/"+_realmIndex+"/mythic-leaderboard/"+_dungeonIndex+ "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
             DestroyGrid();
         }
 
         private void cbDungeon_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (cbDungeon.SelectedItem)
+            switch (CbDungeon.SelectedItem)
             {
                 case "Black Rook Hold":
-                    dungeonIndex = "199";
+                    _dungeonIndex = "199";
                     break;
                 case "Darkheart Thicket":
-                    dungeonIndex = "198";
+                    _dungeonIndex = "198";
                     break;
                 case "Eye of Azshara":
-                    dungeonIndex = "197";
+                    _dungeonIndex = "197";
                     break;
             }
-            connection = "https://eu.api.battle.net/data/wow/connected-realm/" + realmIndex + "/mythic-leaderboard/" + dungeonIndex + "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+            _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
             DestroyGrid();
         }
         private void DestroyGrid()
