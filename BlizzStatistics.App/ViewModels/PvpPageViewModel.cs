@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Template10.Services.KeyboardService;
 using Template10.Services.NavigationService;
 
 namespace BlizzStatistics.App.ViewModels

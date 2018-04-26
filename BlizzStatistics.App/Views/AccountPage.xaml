@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="BlizzStatistics.App.Views.AccountPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Template10.Controls"
+    mc:Ignorable="d">
+
+    
+    <RelativePanel>
+        <controls:PageHeader 
+            x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignTopWithPanel="True" Text="Blizzard Logo" >
+        </controls:PageHeader>
+        <TextBlock Text="Character name:" x:Name="CnameTextblock" RelativePanel.Below="PageHeader"></TextBlock>
+        <TextBox RelativePanel.Below="PageHeader" RelativePanel.RightOf="CnameTextblock" Width="200" x:Name="CnameTextField"></TextBox>
+        <TextBlock Text="Server:" RelativePanel.Below="PageHeader" RelativePanel.RightOf="CnameTextField" x:Name="Sblock"></TextBlock>
+        <TextBox RelativePanel.Below="PageHeader" RelativePanel.RightOf="Sblock" Width="200" x:Name="SBox"></TextBox>
+        <Button RelativePanel.Below="PageHeader" RelativePanel.RightOf="SBox" Width="80" Height="30" Click="ButtonBase_OnClick">
+            <TextBlock Text="ADD"></TextBlock>
+        </Button>
+        <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="SBox" RelativePanel.AlignBottomWithPanel="True">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
+    </RelativePanel>
+</Page>

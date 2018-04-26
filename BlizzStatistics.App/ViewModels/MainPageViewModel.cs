@@ -1,6 +1,5 @@
 ﻿using Template10.Mvvm;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
@@ -18,8 +17,8 @@ namespace BlizzStatistics.App.ViewModels
             }
         }
 
-        string _Value = "Gas";
-        public string Value { get { return _Value; } set { Set(ref _Value, value); } }
+        string _value = "Gas";
+        public string Value { get { return _value; } set { Set(ref _value, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {

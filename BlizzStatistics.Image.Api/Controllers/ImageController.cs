@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 
 namespace BlizzStatistics.Image.Api.Controllers
-{
+{   
+    //This image Api is taken directly from the course resources.
     public class ImageController : ApiController
     {
         /// <summary>
@@ -32,7 +30,6 @@ namespace BlizzStatistics.Image.Api.Controllers
             respons.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue($"image/{extension}");
             return respons;
         }
-
         /// <summary>
         /// Uploads a file.
         /// </summary>
