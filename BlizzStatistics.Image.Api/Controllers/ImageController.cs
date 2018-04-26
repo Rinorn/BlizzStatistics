@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Http;
 
 namespace BlizzStatistics.Image.Api.Controllers
-{
+{   
+    //This image Api is taken directly from the course resources.
     public class ImageController : ApiController
     {
         /// <summary>

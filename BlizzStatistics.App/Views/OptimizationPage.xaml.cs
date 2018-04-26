@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Net.Http;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
 
 namespace BlizzStatistics.App.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class OptimizationPage : Page
+    //This page is not finished, i am currently trying to work out how the optimizating part will work, therefore the page is not commented yet.
+    public sealed partial class OptimizationPage
     {
         public SavedCharacter Character;
         public string CharacterName;
@@ -28,7 +23,7 @@ namespace BlizzStatistics.App.Views
         
         public OptimizationPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -73,10 +68,7 @@ namespace BlizzStatistics.App.Views
                 Console.WriteLine(e);
                 throw;
             }
-            
-            
         }
-
         public async Task<OriginalCharacterStats> GetCharacterStats(string name, string server)
         {
             var http = new HttpClient();

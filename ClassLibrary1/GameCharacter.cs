@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace ClassLibrary1
 {
-    //Not finished here yet. not optimized at all
+    //This class in not finished yet. It will led to a lot of warnings in its current state. i Dont know what parts of the class i need to keep to make the app function the way i want it do, therefore i will leave it in its current state for now.
     public class GameCharacter 
     {
        

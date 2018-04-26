@@ -12,15 +12,27 @@ namespace BlizzStatistics.Data.Api.Controllers
 {
     public class CharacterClassesController : ApiController
     {
+        /// <summary>
+        /// The database
+        /// </summary>
         private BlizzStatisticsContext db = new BlizzStatisticsContext();
 
         // GET: api/CharacterClasses
+        /// <summary>
+        /// Gets the character classes.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<CharacterClass> GetCharacterClasses()
         {
             return db.CharacterClasses;
         }
 
         // GET: api/CharacterClasses/5
+        /// <summary>
+        /// Gets the character class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(CharacterClass))]
         public async Task<IHttpActionResult> GetCharacterClass(int id)
         {
@@ -34,6 +46,12 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // PUT: api/CharacterClasses/5
+        /// <summary>
+        /// Puts the character class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="characterClass">The character class.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCharacterClass(int id, CharacterClass characterClass)
         {
@@ -69,6 +87,11 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // POST: api/CharacterClasses
+        /// <summary>
+        /// Posts the character class.
+        /// </summary>
+        /// <param name="characterClass">The character class.</param>
+        /// <returns></returns>
         [ResponseType(typeof(CharacterClass))]
         public async Task<IHttpActionResult> PostCharacterClass(CharacterClass characterClass)
         {
@@ -84,6 +107,11 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // DELETE: api/CharacterClasses/5
+        /// <summary>
+        /// Deletes the character class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(CharacterClass))]
         public async Task<IHttpActionResult> DeleteCharacterClass(int id)
         {
@@ -99,6 +127,10 @@ namespace BlizzStatistics.Data.Api.Controllers
             return Ok(characterClass);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -108,6 +140,11 @@ namespace BlizzStatistics.Data.Api.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Characters the class exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool CharacterClassExists(int id)
         {
             return db.CharacterClasses.Count(e => e.Id == id) > 0;

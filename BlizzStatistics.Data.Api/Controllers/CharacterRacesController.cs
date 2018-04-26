@@ -12,15 +12,27 @@ namespace BlizzStatistics.Data.Api.Controllers
 {
     public class CharacterRacesController : ApiController
     {
+        /// <summary>
+        /// The database
+        /// </summary>
         private BlizzStatisticsContext db = new BlizzStatisticsContext();
 
         // GET: api/CharacterRaces
+        /// <summary>
+        /// Gets the character races.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<CharacterRace> GetCharacterRaces()
         {
             return db.CharacterRaces;
         }
 
         // GET: api/CharacterRaces/5
+        /// <summary>
+        /// Gets the character race.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(CharacterRace))]
         public async Task<IHttpActionResult> GetCharacterRace(int id)
         {
@@ -34,6 +46,12 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // PUT: api/CharacterRaces/5
+        /// <summary>
+        /// Puts the character race.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="characterRace">The character race.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCharacterRace(int id, CharacterRace characterRace)
         {
@@ -69,6 +87,11 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // POST: api/CharacterRaces
+        /// <summary>
+        /// Posts the character race.
+        /// </summary>
+        /// <param name="characterRace">The character race.</param>
+        /// <returns></returns>
         [ResponseType(typeof(CharacterRace))]
         public async Task<IHttpActionResult> PostCharacterRace(CharacterRace characterRace)
         {
@@ -84,6 +107,11 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // DELETE: api/CharacterRaces/5
+        /// <summary>
+        /// Deletes the character race.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(CharacterRace))]
         public async Task<IHttpActionResult> DeleteCharacterRace(int id)
         {
@@ -99,6 +127,10 @@ namespace BlizzStatistics.Data.Api.Controllers
             return Ok(characterRace);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -108,6 +140,11 @@ namespace BlizzStatistics.Data.Api.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Characters the race exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool CharacterRaceExists(int id)
         {
             return db.CharacterRaces.Count(e => e.Id == id) > 0;

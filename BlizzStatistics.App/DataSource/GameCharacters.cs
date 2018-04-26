@@ -6,14 +6,29 @@ using Newtonsoft.Json;
 
 namespace BlizzStatistics.App.DataSource
 {
-    class GameCharacters
+    public class GameCharacters
     {
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static GameCharacters Instance { get; } = new GameCharacters();
 
+        /// <summary>
+        /// The base URI
+        /// </summary>
         private const string BaseUri = "http://localhost:59292/api/";
 
-        HttpClient _client;
+        /// <summary>
+        /// The client
+        /// </summary>
+        private readonly HttpClient _client;
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="GameCharacters"/> class from being created.
+        /// </summary>
         private GameCharacters()
         {
             _client = new HttpClient
@@ -22,10 +37,14 @@ namespace BlizzStatistics.App.DataSource
             };
         }
 
+        /// <summary>
+        /// Gets the game characters.
+        /// </summary>
+        /// <returns></returns>
         public async Task<GameCharacter[]> GetGameCharacters()
         {
             var json = await _client.GetStringAsync("gameCharacters").ConfigureAwait(false);
-            GameCharacter[] gameCharacters = JsonConvert.DeserializeObject<GameCharacter[]>(json);
+            var gameCharacters = JsonConvert.DeserializeObject<GameCharacter[]>(json);
             return gameCharacters;
         }
     }

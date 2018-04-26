@@ -9,12 +9,27 @@ namespace BlizzStatistics.App.DataSource
 {
     public class SavedCharacters
     {
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static SavedCharacters Instance { get; } = new SavedCharacters();
 
+        /// <summary>
+        /// The base URI
+        /// </summary>
         private const string BaseUri = "http://localhost:59292/api/";
 
-        HttpClient _client;
+        /// <summary>
+        /// The client
+        /// </summary>
+        private readonly HttpClient _client;
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="SavedCharacters"/> class from being created.
+        /// </summary>
         private SavedCharacters()
         {
             _client = new HttpClient
@@ -23,16 +38,25 @@ namespace BlizzStatistics.App.DataSource
             };
         }
 
+        /// <summary>
+        /// Gets the saved character.
+        /// </summary>
+        /// <returns></returns>
         public async Task<SavedCharacter[]> GetSavedCharacter()
         {
             var json = await _client.GetStringAsync("savedCharacters").ConfigureAwait(false);
-            SavedCharacter[] savedCharacters = JsonConvert.DeserializeObject<SavedCharacter[]>(json);
+            var savedCharacters = JsonConvert.DeserializeObject<SavedCharacter[]>(json);
             return savedCharacters;
         }
 
+        /// <summary>
+        /// Adds the saved character.
+        /// </summary>
+        /// <param name="character">The character.</param>
+        /// <returns></returns>
         public async Task<bool> AddSavedCharacter(SavedCharacter character)
         {
-            string postBody = JsonConvert.SerializeObject(character);
+            var postBody = JsonConvert.SerializeObject(character);
             var response = await _client.PostAsync("SavedCharacters", new StringContent(postBody, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             return response.IsSuccessStatusCode;
         }

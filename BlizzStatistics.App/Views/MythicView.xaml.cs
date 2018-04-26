@@ -7,35 +7,46 @@ using Windows.UI.Xaml.Media;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
 
 namespace BlizzStatistics.App.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MythicView
     {
-        
+        /// <summary>
+        /// The child grid
+        /// </summary>
         private Grid _childGrid;
+        /// <summary>
+        /// The connection
+        /// </summary>
         private string _connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+        /// <summary>
+        /// The realm index
+        /// </summary>
         private string _realmIndex = "509";
+        /// <summary>
+        /// The dungeon index
+        /// </summary>
         private string _dungeonIndex = "199";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MythicView"/> class.
+        /// </summary>
         public MythicView()
         {
-           
             InitializeComponent();
-            
             GetData();
         }
 
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
         private async void GetData()
         {
-            
             try
             {
-                Uri ur = new Uri(_connection);
+                var ur = new Uri(_connection);
                 var client = new HttpClient();
                 var response = await client.GetStringAsync(ur);
                 var data = JsonConvert.DeserializeObject<MythicRootobject>(response);
@@ -51,8 +62,12 @@ namespace BlizzStatistics.App.Views
                 GetData();
             }
         }
-        
-        private void DefineText(TextBlock tb)
+
+        /// <summary>
+        /// Defines the text.
+        /// </summary>
+        /// <param name="tb">The tb.</param>
+        private static void DefineText(TextBlock tb)
         {
             tb.FontSize = 12;
             tb.TextAlignment = TextAlignment.Center;
@@ -61,22 +76,23 @@ namespace BlizzStatistics.App.Views
             tb.Foreground = new SolidColorBrush(Colors.White);
         }
 
+        /// <summary>
+        /// Adds to columns.
+        /// </summary>
+        /// <param name="data">The data.</param>
         private void AddToColumns(MythicRootobject data)
         {
-            Grid mainGrid = MenuGrid;
+            var mainGrid = MenuGrid;
             _childGrid = mainGrid;
             RelativePanel.SetAlignLeftWithPanel(MainMythicPanel, true);
             RelativePanel.SetAlignRightWithPanel(MainMythicPanel, true);
-            
-            //MythicRoot.Children.Add(mainGrid);
-            for (int i = 0; i < 100; i++)
+           
+            for (var i = 0; i < 100; i++)
             {
-                for (int a = 0; a < 9; a++)
+                for (var a = 0; a < 9; a++)
                 {
-                    TextBlock tb = new TextBlock();
+                    var tb = new TextBlock();
                     DefineText(tb);
-
-                    
                     switch (a)
                     {
                         case 0:
@@ -95,55 +111,66 @@ namespace BlizzStatistics.App.Views
                             tb.Text = data.leading_groups[i].completed_timestamp.ToString();                           
                             break;
                     }
-                    if (a != 7)
-                    {
-                        Grid g = new Grid();
-                        AddtoGrid(g, mainGrid, tb, a, i);
-                    }
+                    if (a == 7) continue;
+                    var g = new Grid();
+                    AddtoGrid(g, mainGrid, tb, a, i);
                 }
             }
         }
-        
-        private void AddtoGrid(Grid g, Grid mainGrid, TextBlock tb, int a, int i)
+
+        /// <summary>
+        /// Addtoes the grid.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        /// <param name="mainGrid">The main grid.</param>
+        /// <param name="tb">The tb.</param>
+        /// <param name="a">a.</param>
+        /// <param name="i">The i.</param>
+        private static void AddtoGrid(Grid g, Grid mainGrid, UIElement tb, int a, int i)
         {
             g.Children.Add(tb);
             // Here you set the Grid properties, such as border and alignment
-            // You can add other properties and events you need
             g.BorderThickness = new Thickness(1, 2, 1, 2);
             g.BorderBrush = new SolidColorBrush(Colors.Wheat);
             g.HorizontalAlignment = HorizontalAlignment.Stretch;
             g.VerticalAlignment = VerticalAlignment.Stretch;
 
             // Add the newly created Grid to the outer Grid
-            RowDefinition rowHeight = new RowDefinition();
-            rowHeight.Height = new GridLength(50);
+            var rowHeight = new RowDefinition {Height = new GridLength(50)};
             mainGrid.RowDefinitions.Add(rowHeight);
-
             Grid.SetRow(g, i+2);
             Grid.SetColumn(g, a);
             mainGrid.Children.Add(g);
         }
 
-        private void AddGroupMember(MythicRootobject data, Grid mainGrid, int a, int i)
+        /// <summary>
+        /// Adds the group member.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="mainGrid">The main grid.</param>
+        /// <param name="a">a.</param>
+        /// <param name="i">The i.</param>
+        private static void AddGroupMember(MythicRootobject data, Grid mainGrid, int a, int i)
         {
-            
-            int columnCount = a;
-            for (int c = 0; c < 5; c++)
+            var columnCount = a;
+            for (var c = 0; c < 5; c++)
             {
-                Grid g = new Grid();
-                TextBlock tb = new TextBlock();
+                var g = new Grid();
+                var tb = new TextBlock();
                 DefineText(tb);
                 tb.Text = data.leading_groups[i].Members[c].Profile.Name;
-                
                 AddtoGrid(g, mainGrid, tb, columnCount, i);
                 columnCount++;
             }
-
         }
 
+        /// <summary>
+        /// Handles the OnSelectionChanged event of the cbServer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private void cbServer_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {   
-            
+        {    
             switch (CbServer.SelectedItem)
             {
                 case "Garona":
@@ -156,11 +183,15 @@ namespace BlizzStatistics.App.Views
                     _realmIndex = "511";
                     break;
             }
-
             _connection = "https://eu.api.battle.net/data/wow/connected-realm/"+_realmIndex+"/mythic-leaderboard/"+_dungeonIndex+ "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
             DestroyGrid();
         }
 
+        /// <summary>
+        /// Handles the OnSelectionChanged event of the cbDungeon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private void cbDungeon_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (CbDungeon.SelectedItem)
@@ -178,15 +209,15 @@ namespace BlizzStatistics.App.Views
             _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
             DestroyGrid();
         }
+        /// <summary>
+        /// Destroys the grid.
+        /// </summary>
         private void DestroyGrid()
         {
-
-            for (int i = _childGrid.Children.Count-13; i > 12; i--)
+            for (var i = _childGrid.Children.Count-13; i > 12; i--)
             {
                 _childGrid.Children.RemoveAt(i);
             }
-            
-            
             GetData();
         }
     }

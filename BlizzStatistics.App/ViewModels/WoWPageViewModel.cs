@@ -4,11 +4,8 @@ using Template10.Services.NavigationService;
 
 namespace BlizzStatistics.App.ViewModels
 {
-    class WoWPageViewModel
+    public class WoWPageViewModel
     {
-
-
-
         public async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
             if (suspending)

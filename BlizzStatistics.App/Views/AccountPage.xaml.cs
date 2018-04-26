@@ -12,32 +12,52 @@ namespace BlizzStatistics.App.Views
     /// </summary>
     public sealed partial class AccountPage
     {
-        public string CharacterName;
-        public string CharacterServer;
-        public string[] Classes = {"Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter"};
+        /// <summary>
+        /// The character name
+        /// </summary>
+        private string _characterName;
+        /// <summary>
+        /// The character server
+        /// </summary>
+        private string _characterServer;
+        /// <summary>
+        /// The classes
+        /// </summary>
+        private readonly string[] _classes = {"Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter"};
+
+        public string CharacterName1 { get => _characterName; set => _characterName = value; }
+        public string CharacterServer1 { get => _characterServer; set => _characterServer = value; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountPage"/> class.
+        /// </summary>
         public AccountPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the OnClick event of the ButtonBase control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "e")]
         public async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            CharacterName = CnameTextField.Text;
-            CharacterServer = SBox.Text;
-            var url = "https://eu.api.battle.net/wow/character/" + CharacterServer + "/" + CharacterName + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
+            CharacterName1 = CnameTextField.Text;
+            CharacterServer1 = SBox.Text;
+            var url = "https://eu.api.battle.net/wow/character/" + CharacterServer1 + "/" + CharacterName1 + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
             var http = new HttpClient();
             var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<SavedCharacter>(result);
-            int classIndex = data.Class;
-
-
-            //Fungerer ikke.
-            SavedCharacter character = new SavedCharacter()
+            var classIndex = data.Class;
+            
+            var character = new SavedCharacter()
             {
                 Name = data.Name,
                 Level = data.Level,
-                ClassName = Classes[classIndex-1],
+                ClassName = _classes[classIndex-1],
                 Realm = data.Realm
             };
             try

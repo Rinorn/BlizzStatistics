@@ -244,6 +244,7 @@ namespace BlizzStatistics.DataAccess
                 RaceModel = "http://localhost:60158/api/images/lfdraenei_model.jpg/",
                 FactionLogo = "http://localhost:60158/api/images/alliance_icon.jpg/"
             });
+            //seeds the db with saved character objects
             context.SavedCharacters.Add(new SavedCharacter()
             {
                 Id = 1,

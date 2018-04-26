@@ -12,15 +12,27 @@ namespace BlizzStatistics.Data.Api.Controllers
 {
     public class SavedCharactersController : ApiController
     {
+        /// <summary>
+        /// The database
+        /// </summary>
         private BlizzStatisticsContext db = new BlizzStatisticsContext();
 
         // GET: api/SavedCharacters
+        /// <summary>
+        /// Gets the saved characters.
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<SavedCharacter> GetSavedCharacters()
         {
             return db.SavedCharacters;
         }
 
         // GET: api/SavedCharacters/5
+        /// <summary>
+        /// Gets the saved character.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(SavedCharacter))]
         public async Task<IHttpActionResult> GetSavedCharacter(string id)
         {
@@ -34,6 +46,12 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // PUT: api/SavedCharacters/5
+        /// <summary>
+        /// Puts the saved character.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="savedCharacter">The saved character.</param>
+        /// <returns></returns>
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutSavedCharacter(int id, SavedCharacter savedCharacter)
         {
@@ -69,6 +87,11 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // POST: api/SavedCharacters
+        /// <summary>
+        /// Posts the saved character.
+        /// </summary>
+        /// <param name="savedCharacter">The saved character.</param>
+        /// <returns></returns>
         [ResponseType(typeof(SavedCharacter))]
         public async Task<IHttpActionResult> PostSavedCharacter(SavedCharacter savedCharacter)
         {
@@ -99,6 +122,11 @@ namespace BlizzStatistics.Data.Api.Controllers
         }
 
         // DELETE: api/SavedCharacters/5
+        /// <summary>
+        /// Deletes the saved character.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ResponseType(typeof(SavedCharacter))]
         public async Task<IHttpActionResult> DeleteSavedCharacter(string id)
         {
@@ -114,6 +142,10 @@ namespace BlizzStatistics.Data.Api.Controllers
             return Ok(savedCharacter);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,6 +155,11 @@ namespace BlizzStatistics.Data.Api.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Saveds the character exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private bool SavedCharacterExists(int id)
         {
             return db.SavedCharacters.Count(e => e.Id == id) > 0;
