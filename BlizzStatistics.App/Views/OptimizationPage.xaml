@@ -22,6 +22,10 @@
         </CollectionViewSource>
         
     </Page.Resources>
+    
+        <!-- Standard tooltip for TextBox controls, displays Text property of parent control in a TextBlock -->
+        
+    
 
 
     <RelativePanel >
@@ -150,114 +154,146 @@
                 </Border>
                 <!--Small boxes-->
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="2"  BorderBrush="Black">
-                    <Image x:Name="HeadSlot" Stretch="Fill" >
-                        <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                    <Image x:Name="HeadSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip >
+                            <Grid x:Name="TtHeadSlotGrid">
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="5"  BorderBrush="Black">
                     <Image x:Name="NeckSlot" Stretch="Fill">
-                        <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                        <ToolTipService.ToolTip >
+                            <Grid x:Name="TtNeckSlotGrid">
+
+                            </Grid>
+                            
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="8"  BorderBrush="Black">
                     <Image x:Name="ShoulderSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtShoulderSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="11"  BorderBrush="Black">
                     <Image x:Name="BackSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtBackSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="14"  BorderBrush="Black">
                     <Image x:Name="ChestSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtChestSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="16"  BorderBrush="Black">
                     <Image x:Name="BracerSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtBracerSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="18"  BorderBrush="Black">
                     <Image x:Name="Trinket1Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
-                        </ToolTipService.ToolTip>
-                    </Image>
-                </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="8"  Grid.Row="18"  BorderBrush="Black">
-                    <Image x:Name="OffhandSlot" Stretch="Fill">
-                        <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtTrinket1SlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="11"  Grid.Row="18"  BorderBrush="Black">
+                    <Image x:Name="OffhandSlot" Stretch="Fill">
+                        <ToolTipService.ToolTip>
+                            <Grid x:Name="TtOffhandSlotGrid">
+
+                            </Grid>
+            </ToolTipService.ToolTip>
+                    </Image>
+                </Border>
+                <Border BorderThickness="1,1,1,1" Grid.Column="8"  Grid.Row="18"  BorderBrush="Black">
                     <Image x:Name="MainhandSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtMainhandSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="2"  BorderBrush="Black">
                     <Image x:Name="GlovesSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtGlovesSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="5"  BorderBrush="Black">
                     <Image x:Name="BeltSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtBeltSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="8"  BorderBrush="Black">
                     <Image x:Name="LegsSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtLegsSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="11"  BorderBrush="Black">
                     <Image x:Name="FeetSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtFeetSlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="14"  BorderBrush="Black">
                     <Image x:Name="Ring1Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtRing1SlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="16"  BorderBrush="Black">
                     <Image x:Name="Ring2Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtRing2SlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="14"  Grid.Row="18"  BorderBrush="Black">
                     <Image x:Name="Trinket2Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
-                            <ToolTip Content="Offset Tooltip" HorizontalOffset="5" VerticalOffset="-5"></ToolTip>
+                            <Grid x:Name="TtTrinket2SlotGrid">
+
+                            </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>

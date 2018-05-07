@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="CharacterClass.cs" />
     <Compile Include="CharacterRace.cs" />
+    <Compile Include="Equipment.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MythicHandler.cs" />

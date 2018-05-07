@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using ClassLibrary1.Annotations;
@@ -58,14 +59,49 @@ namespace ClassLibrary1
         /// <value>
         /// The level.
         /// </value>
+        
         [Required]
         public int Level { get; set; }
-
+        /*
+        [Required]
+        public int HeadSlot { get; set; }
+        [Required]
+        public int NeckSlot { get; set; }
+        [Required]
+        public int ShoulderSlot { get; set; }
+        [Required]
+        public int BackSlot { get; set; }
+        [Required]
+        public int ChestSlot { get; set; }
+        [Required]
+        public int WristSlot { get; set; }
+        [Required]
+        public int GlovesSlot { get; set; }
+        [Required]
+        public int BeltSlot { get; set; }
+        [Required]
+        public int LegsSlot { get; set; }
+        [Required]
+        public int FeetSlot { get; set; }
+        [Required]
+        public int Ring1Slot { get; set; }
+        [Required]
+        public int Ring2Slot { get; set; }
+        [Required]
+        public int Trinket1Slot { get; set; }
+        [Required]
+        public int Trinket2Slot { get; set; }
+        [Required]
+        public int MainHandSlot { get; set; }
+        [Required]
+        public int OffhandSlot { get; set; }
+        */
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        
         /// <summary>
         /// Called when [property changed].
         /// </summary>

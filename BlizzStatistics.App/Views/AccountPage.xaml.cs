@@ -46,11 +46,11 @@ namespace BlizzStatistics.App.Views
         {
             CharacterName1 = CnameTextField.Text;
             CharacterServer1 = SBox.Text;
-            var url = "https://eu.api.battle.net/wow/character/" + CharacterServer1 + "/" + CharacterName1 + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
+            var url = "https://eu.api.battle.net/wow/character/" + CharacterServer1 + "/" + CharacterName1 + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
             var http = new HttpClient();
             var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<SavedCharacter>(result);
+            var data = JsonConvert.DeserializeObject<GameCharacter>(result);
             var classIndex = data.Class;
             
             var character = new SavedCharacter()
@@ -58,7 +58,24 @@ namespace BlizzStatistics.App.Views
                 Name = data.Name,
                 Level = data.Level,
                 ClassName = _classes[classIndex-1],
-                Realm = data.Realm
+                Realm = data.Realm,
+                /*
+                HeadSlot = data.Items.head.id,
+                NeckSlot = data.Items.neck.id,
+                ShoulderSlot = data.Items.neck.id,
+                BackSlot = data.Items.back.id,
+                ChestSlot = data.Items.chest.id,
+                WristSlot = data.Items.wrist.id,
+                GlovesSlot = data.Items.hands.id,
+                BeltSlot = data.Items.waist.id,
+                LegsSlot = data.Items.legs.id,
+                FeetSlot = data.Items.feet.id,
+                Ring1Slot = data.Items.finger1.id,
+                Ring2Slot = data.Items.finger2.id,
+                Trinket1Slot = data.Items.trinket1.id,
+                Trinket2Slot = data.Items.trinket2.id,
+                MainHandSlot = data.Items.mainHand.id,
+                OffhandSlot = data.Items.offHand.id */
             };
             try
             {

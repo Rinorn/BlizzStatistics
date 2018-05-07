@@ -14,28 +14,63 @@ namespace ClassLibrary1
     //This class in not finished yet. It will led to a lot of warnings in its current state. i Dont know what parts of the class i need to keep to make the app function the way i want it do, therefore i will leave it in its current state for now.
     public class GameCharacter 
     {
-       
-        public string name { get; set; }
-        public string realm { get; set; }
+        [Key]
+        [Required]
+        public int Id { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        [Required]
+        public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the realm.
+        /// </summary>
+        /// <value>
+        /// The realm.
+        /// </value>
+        [Required]
+        public string Realm { get; set; }
+
+        /// <summary>
+        /// Gets or sets the class.
+        /// </summary>
+        /// <value>
+        /// The class.
+        /// </value>
         public int Class { get; set; }
-        public int race { get; set; }
-        public int level { get; set; }
-        public string thumbnail { get; set; }
-        public int faction { get; set; }
-        public Items items { get; set; }
+        /// <summary>
+        /// Gets or sets the name of the class.
+        /// </summary>
+        /// <value>
+        /// The name of the class.
+        /// </value>
+        [Required]
+        public string ClassName { get; set; }
+        /// <summary>
+        /// Gets or sets the level.
+        /// </summary>
+        /// <value>
+        /// The level.
+        /// </value>
+        [Required]
+        public int Level { get; set; }
+        [Required]
+        public int Race { get; set; }
+        [Required]
+        public Items Items { get; set; }
         
     }
 
     public class Items
     {
-        public int averageItemLevel { get; set; }
-        public int averageItemLevelEquipped { get; set; }
         public Head head { get; set; }
         public Neck neck { get; set; }
         public Shoulder shoulder { get; set; }
         public Back back { get; set; }
         public Chest chest { get; set; }
-        public Tabard tabard { get; set; }
         public Wrist wrist { get; set; }
         public Hands hands { get; set; }
         public Waist waist { get; set; }
@@ -56,29 +91,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams tooltipParams { get; set; }
         public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance appearance { get; set; }
-    }
 
-    public class Tooltipparams
-    {
-        public int timewalkerLevel { get; set; }
     }
-
-    public class Appearance
-    {
-        public int itemAppearanceModId { get; set; }
-    }
-
     public class Stat
     {
         public int stat { get; set; }
@@ -92,33 +108,11 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams1 tooltipParams { get; set; }
-        public Stat1[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance1 appearance { get; set; }
-    }
 
-    public class Tooltipparams1
-    {
-        public int timewalkerLevel { get; set; }
     }
-
-    public class Appearance1
-    {
-    }
-
-    public class Stat1
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
+ 
 
     public class Shoulder
     {
@@ -127,37 +121,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams2 tooltipParams { get; set; }
-        public Stat2[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance2 appearance { get; set; }
     }
 
-    public class Tooltipparams2
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance2
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
-    public class Stat2
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
 
     public class Back
     {
@@ -166,32 +133,9 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams3 tooltipParams { get; set; }
-        public Stat3[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance3 appearance { get; set; }
     }
-
-    public class Tooltipparams3
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance3
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
     public class Stat3
     {
         public int stat { get; set; }
@@ -205,69 +149,8 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams4 tooltipParams { get; set; }
-        public Stat4[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance4 appearance { get; set; }
-    }
-
-    public class Tooltipparams4
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance4
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
-    public class Stat4
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
-
-    public class Tabard
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string icon { get; set; }
-        public int quality { get; set; }
-        public int itemLevel { get; set; }
-        public Tooltipparams5 tooltipParams { get; set; }
-        public object[] stats { get; set; }
-        public int armor { get; set; }
-        public string context { get; set; }
-        public object[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance5 appearance { get; set; }
-    }
-
-    public class Tooltipparams5
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance5
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
     }
 
     public class Wrist
@@ -277,38 +160,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams6 tooltipParams { get; set; }
-        public Stat5[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance6 appearance { get; set; }
     }
-
-    public class Tooltipparams6
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance6
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
-    public class Stat5
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
-
+ 
     public class Hands
     {
         public int id { get; set; }
@@ -316,33 +171,8 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams7 tooltipParams { get; set; }
-        public Stat6[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance7 appearance { get; set; }
-    }
-
-    public class Tooltipparams7
-    {
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance7
-    {
-        public int itemAppearanceModId { get; set; }
-    }
-
-    public class Stat6
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
     }
 
     public class Waist
@@ -352,36 +182,8 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams8 tooltipParams { get; set; }
-        public Stat7[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance8 appearance { get; set; }
-    }
-
-    public class Tooltipparams8
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance8
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
-    public class Stat7
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
     }
 
     public class Legs
@@ -391,36 +193,8 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams9 tooltipParams { get; set; }
-        public Stat8[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance9 appearance { get; set; }
-    }
-
-    public class Tooltipparams9
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance9
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
-    public class Stat8
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
     }
 
     public class Feet
@@ -430,36 +204,8 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams10 tooltipParams { get; set; }
-        public Stat9[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance10 appearance { get; set; }
-    }
-
-    public class Tooltipparams10
-    {
-        public int transmogItem { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance10
-    {
-        public int itemId { get; set; }
-        public int itemAppearanceModId { get; set; }
-        public int transmogItemAppearanceModId { get; set; }
-    }
-
-    public class Stat9
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
     }
 
     public class Finger1
@@ -469,35 +215,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams11 tooltipParams { get; set; }
-        public Stat10[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance11 appearance { get; set; }
     }
 
-    public class Tooltipparams11
-    {
-        public int enchant { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance11
-    {
-        public int enchantDisplayInfoId { get; set; }
-    }
-
-    public class Stat10
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
 
     public class Finger2
     {
@@ -506,34 +227,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams12 tooltipParams { get; set; }
-        public Stat11[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance12 appearance { get; set; }
     }
 
-    public class Tooltipparams12
-    {
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance12
-    {
-        public int itemAppearanceModId { get; set; }
-    }
-
-    public class Stat11
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
 
     public class Trinket1
     {
@@ -542,34 +239,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams13 tooltipParams { get; set; }
-        public Stat12[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance13 appearance { get; set; }
     }
-
-    public class Tooltipparams13
-    {
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance13
-    {
-        public int itemAppearanceModId { get; set; }
-    }
-
-    public class Stat12
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
+ 
 
     public class Trinket2
     {
@@ -578,34 +251,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams14 tooltipParams { get; set; }
-        public Stat13[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance14 appearance { get; set; }
     }
-
-    public class Tooltipparams14
-    {
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance14
-    {
-    }
-
-    public class Stat13
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
-
+  
     public class Mainhand
     {
         public int id { get; set; }
@@ -613,28 +262,10 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams15 tooltipParams { get; set; }
-        public Stat14[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
         public Weaponinfo weaponInfo { get; set; }
-        public string context { get; set; }
-        public int[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public Artifacttrait[] artifactTraits { get; set; }
-        public Relic[] relics { get; set; }
-        public Appearance15 appearance { get; set; }
     }
-
-    public class Tooltipparams15
-    {
-        public int gem0 { get; set; }
-        public int gem1 { get; set; }
-        public int gem2 { get; set; }
-        public int timewalkerLevel { get; set; }
-    }
-
     public class Weaponinfo
     {
         public Damage damage { get; set; }
@@ -650,31 +281,6 @@ namespace ClassLibrary1
         public float exactMax { get; set; }
     }
 
-    public class Appearance15
-    {
-        public int itemAppearanceModId { get; set; }
-    }
-
-    public class Stat14
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
-    }
-
-    public class Artifacttrait
-    {
-        public int id { get; set; }
-        public int rank { get; set; }
-    }
-
-    public class Relic
-    {
-        public int socket { get; set; }
-        public int itemId { get; set; }
-        public int context { get; set; }
-        public int[] bonusLists { get; set; }
-    }
-
     public class Offhand
     {
         public int id { get; set; }
@@ -682,33 +288,23 @@ namespace ClassLibrary1
         public string icon { get; set; }
         public int quality { get; set; }
         public int itemLevel { get; set; }
-        public Tooltipparams16 tooltipParams { get; set; }
-        public Stat15[] stats { get; set; }
+        public Stat[] stats { get; set; }
         public int armor { get; set; }
-        public string context { get; set; }
-        public object[] bonusLists { get; set; }
-        public int artifactId { get; set; }
-        public int displayInfoId { get; set; }
-        public int artifactAppearanceId { get; set; }
-        public object[] artifactTraits { get; set; }
-        public object[] relics { get; set; }
-        public Appearance16 appearance { get; set; }
+        public Weaponinfo1 weaponInfo { get; set; }
+    }
+    public class Weaponinfo1
+    {
+        public Damage1 damage { get; set; }
+        public float weaponSpeed { get; set; }
+        public float dps { get; set; }
     }
 
-    public class Tooltipparams16
+    public class Damage1
     {
-        public int timewalkerLevel { get; set; }
-    }
-
-    public class Appearance16
-    {
-        public int itemAppearanceModId { get; set; }
-    }
-
-    public class Stat15
-    {
-        public int stat { get; set; }
-        public int amount { get; set; }
+        public int min { get; set; }
+        public int max { get; set; }
+        public float exactMin { get; set; }
+        public float exactMax { get; set; }
     }
 
 }
