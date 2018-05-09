@@ -96,7 +96,8 @@ namespace ClassLibrary1
 
     }
     public class Stat
-    {
+    {   
+        
         public int stat { get; set; }
         public int amount { get; set; }
     }

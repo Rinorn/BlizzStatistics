@@ -59,23 +59,7 @@ namespace BlizzStatistics.App.Views
                 Level = data.Level,
                 ClassName = _classes[classIndex-1],
                 Realm = data.Realm,
-                /*
-                HeadSlot = data.Items.head.id,
-                NeckSlot = data.Items.neck.id,
-                ShoulderSlot = data.Items.neck.id,
-                BackSlot = data.Items.back.id,
-                ChestSlot = data.Items.chest.id,
-                WristSlot = data.Items.wrist.id,
-                GlovesSlot = data.Items.hands.id,
-                BeltSlot = data.Items.waist.id,
-                LegsSlot = data.Items.legs.id,
-                FeetSlot = data.Items.feet.id,
-                Ring1Slot = data.Items.finger1.id,
-                Ring2Slot = data.Items.finger2.id,
-                Trinket1Slot = data.Items.trinket1.id,
-                Trinket2Slot = data.Items.trinket2.id,
-                MainHandSlot = data.Items.mainHand.id,
-                OffhandSlot = data.Items.offHand.id */
+                
             };
             try
             {

@@ -34,7 +34,7 @@ namespace BlizzStatistics.Data.Api.Controllers
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         [ResponseType(typeof(SavedCharacter))]
-        public async Task<IHttpActionResult> GetSavedCharacter(string id)
+        public async Task<IHttpActionResult> GetSavedCharacter(int id)
         {
             SavedCharacter savedCharacter = await db.SavedCharacters.FindAsync(id);
             if (savedCharacter == null)
@@ -128,7 +128,7 @@ namespace BlizzStatistics.Data.Api.Controllers
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         [ResponseType(typeof(SavedCharacter))]
-        public async Task<IHttpActionResult> DeleteSavedCharacter(string id)
+        public async Task<IHttpActionResult> DeleteSavedCharacter(int id)
         {
             SavedCharacter savedCharacter = await db.SavedCharacters.FindAsync(id);
             if (savedCharacter == null)

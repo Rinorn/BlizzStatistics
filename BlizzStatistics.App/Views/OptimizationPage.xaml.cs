@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using BlizzStatistics.App.ViewModels;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
@@ -22,8 +25,9 @@ namespace BlizzStatistics.App.Views
         public string ItemThumbnail;
         public string CombinedUrl;
         public string MainStatName;
-        
-        
+        public List<Equipment> Equipment;
+       
+
 
         public OptimizationPage()
         {
@@ -35,10 +39,31 @@ namespace BlizzStatistics.App.Views
             Character = (SavedCharacter) CharacterListView.SelectedItem;
             if (Character != null) CharacterName = Character.Name;
             if (Character != null) CharacterServer = Character.Realm;
-            DestroyGrid();
+            DestroyChildren();
+            try
+            {
+                await GetCharacterStats(CharacterName, CharacterServer);
+                await GetCharacter(CharacterName, CharacterServer);
+                //Fungerer. fortsett HER!!!!
+                if (Equipment == null)
+                {
+                    Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment());
+                }
+                var view = new OptimizationViewModel();
+                view.Equipments = new ObservableCollection<Equipment>();
+                foreach (var a in Equipment)
+                {
+                    view.Equipments.Add(a); 
+                }
+
+                ItemList.ItemsSource = view.Equipments;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
             
-            await GetCharacterStats(CharacterName, CharacterServer);
-            await GetCharacter(CharacterName, CharacterServer);
         }
         public  async Task<GameCharacter> GetCharacter(string name, string server)
         {
@@ -569,7 +594,7 @@ namespace BlizzStatistics.App.Views
                 }
                 AddToGrid(b, tbName, mainGrid, i);
             }
-            var item = data.Items.shoulder.stats;
+            var item = data.Items.mainHand.stats;
             DefineStats(mainGrid, rowCount, item);
         }
         public void DefineOffhandSlot(GameCharacter data)
@@ -586,25 +611,27 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        if (data.Items.offHand != null) tbName.Text = data.Items.offHand.name;
+                        tbName.Text = data.Items.offHand == null ? data.Items.mainHand.name : data.Items.offHand.name;
                         break;
                     case 1:
-                        if (data.Items.offHand != null) tbName.Text = "Item Level " + data.Items.offHand.itemLevel;
+                        tbName.Text = data.Items.offHand == null ? "Item Level " +  data.Items.mainHand.itemLevel : "Item Level " + data.Items.offHand.itemLevel;
                         break;
                     case 2:
-                        if (data.Items.offHand != null)
-                            tbName.Text = data.Items.offHand.weaponInfo.damage.min + " - " +
-                                          data.Items.offHand.weaponInfo.damage.max + " Damage            Speed " +
-                                          data.Items.offHand.weaponInfo.weaponSpeed;
+                            tbName.Text = data.Items.offHand == null ? 
+                                data.Items.mainHand.weaponInfo.damage.min + " - " +
+                                data.Items.mainHand.weaponInfo.damage.max + " Damage            Speed " +
+                                data.Items.mainHand.weaponInfo.weaponSpeed : 
+                                data.Items.offHand.weaponInfo.damage.min + " - " +
+                                data.Items.offHand.weaponInfo.damage.max + " Damage            Speed " +
+                                data.Items.offHand.weaponInfo.weaponSpeed;
                         break;
                     case 3:
-                        if (data.Items.offHand != null)
-                            tbName.Text = data.Items.offHand.weaponInfo.dps + " Damage per second";
+                            tbName.Text = data.Items.offHand == null ? data.Items.mainHand.weaponInfo.dps + " Damage per second"  : data.Items.offHand.weaponInfo.dps + " Damage per second";
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i);
             }
-            var item = data.Items.shoulder.stats;
+            var item = data.Items.offHand == null ? data.Items.mainHand.stats : data.Items.offHand.stats;
             DefineStats(mainGrid, rowCount, item);
         }
 
@@ -670,7 +697,7 @@ namespace BlizzStatistics.App.Views
             mainGrid.Children.Add(g);
 
         }
-        private void DestroyGrid()
+        private void DestroyChildren()
         {
             TtMainhandSlotGrid.Children.Clear();
             TtOffhandSlotGrid.Children.Clear();
@@ -688,6 +715,49 @@ namespace BlizzStatistics.App.Views
             TtShoulderSlotGrid.Children.Clear();
             TtNeckSlotGrid.Children.Clear();
             TtHeadSlotGrid.Children.Clear();
+            DestroyRowDef();
         }
+
+        private void DestroyRowDef()
+        {
+            TtMainhandSlotGrid.RowDefinitions.Clear();
+            TtOffhandSlotGrid.RowDefinitions.Clear();
+            TtTrinket2SlotGrid.RowDefinitions.Clear();
+            TtRing2SlotGrid.RowDefinitions.Clear();
+            TtRing1SlotGrid.RowDefinitions.Clear();
+            TtFeetSlotGrid.RowDefinitions.Clear();
+            TtLegsSlotGrid.RowDefinitions.Clear();
+            TtBeltSlotGrid.RowDefinitions.Clear();
+            TtGlovesSlotGrid.RowDefinitions.Clear();
+            TtTrinket1SlotGrid.RowDefinitions.Clear();
+            TtBracerSlotGrid.RowDefinitions.Clear();
+            TtChestSlotGrid.RowDefinitions.Clear();
+            TtBackSlotGrid.RowDefinitions.Clear();
+            TtShoulderSlotGrid.RowDefinitions.Clear();
+            TtNeckSlotGrid.RowDefinitions.Clear();
+            TtHeadSlotGrid.RowDefinitions.Clear();
+        }
+
+        private async void BtnDelete(object sender, RoutedEventArgs e)
+        {
+            SavedCharacter character = (SavedCharacter) CharacterListView.SelectedItem;
+            try
+            {
+                await DataSource.SavedCharacters.Instance.DeleteSavedCharacter(character);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            
+        }
+
+        private async void BtnShowItemList(object sender, RoutedEventArgs e)
+        {
+            var result = await ItemContentDialog.ShowAsync();
+            
+        }
+        
     }
 }

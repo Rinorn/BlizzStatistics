@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using ClassLibrary1.Annotations;
 
 namespace ClassLibrary1
 {
-    public class Equipment
+    public class Equipment : INotifyPropertyChanged
     {
         [Key]
-        public int AppDbEquiomentId { get; set; }
         [Required]
-        public int BlizzardItemId{ get; set; }
+        public int Id { get; set; }
         [Required]
-        public string Slot { get; set; }
+        public int Slot { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -22,8 +24,25 @@ namespace ClassLibrary1
         [Required]
         public int Ilvl { get; set; }
         [Required]
-        public string ArmorType { get; set; }
-        public Stat[] Stats { get; set; }
+        public int ArmorType { get; set; }
+        public int MainStat { get; set; }
+        public int Stamina { get; set; }
+        public int Mastery { get; set; }
+        public int Versatility { get; set; }
+        public int Crit { get; set; }
+        public int Haste { get; set; }
+        public int Leech { get; set; }
+        public int Armor { get; set; }
+        public string RestrictedToClass { get; set; }
+
         
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

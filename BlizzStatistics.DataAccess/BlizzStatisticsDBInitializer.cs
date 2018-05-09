@@ -1,4 +1,6 @@
 ﻿using System.Data.Entity;
+using System.Net.Http;
+using System.Threading.Tasks;
 using ClassLibrary1;
 
 namespace BlizzStatistics.DataAccess
@@ -277,8 +279,78 @@ namespace BlizzStatistics.DataAccess
                 Realm = "StormScale",
                 Level = 110
             });
+            /////////////////////Equipment//////////////////////
+
+            //mailhead//
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 3,
+                Name = "Headdress of Venerated Spirits",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidshamanraid_s_01.jpg",
+                Ilvl = 960,
+                Armor = 474,
+                MainStat =  3795,
+                Stamina = 5693,
+                Haste = 1167,
+                Versatility = 901,
+                RestrictedToClass = "Shaman"
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 3,
+                Name = "Helm of Awakened Soul",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidshamanraid_s_01.jpg",
+                Ilvl = 970,
+                Armor = 489,
+                MainStat = 4166,
+                Stamina = 6250,
+                Haste = 1165,
+                Mastery = 981,
+                RestrictedToClass = "Shaman"
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 3,
+                Name = "Nexus Conductor's Headgear",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhunter_s_01.jpg",
+                Ilvl = 960,
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1300,
+                Haste = 768
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 3,
+                Name = "Shadowfused Chain Coif",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhunter_s_01.jpg",
+                Ilvl = 960,
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 842,
+                Mastery = 1226
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 3,
+                Name = "Serpentstalker Helmet",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhunter_s_01.jpg",
+                Ilvl = 960,
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1004,
+                Versatility = 1063,
+                RestrictedToClass = "Hunter"
+            });
             base.Seed(context);
         }
-
     }
 }

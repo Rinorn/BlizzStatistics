@@ -35,6 +35,13 @@ namespace BlizzStatistics.App.ViewModels
             set => Set(ref _savedCharacters, value);
         }
 
+        private ObservableCollection<Equipment> _equipments;
+        public ObservableCollection<Equipment> Equipments
+        {
+            get => _equipments;
+            set => Set(ref _equipments, value);
+        }
+
         /// <summary>
         /// Called when [navigated to asynchronous].
         /// </summary>
@@ -45,10 +52,11 @@ namespace BlizzStatistics.App.ViewModels
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             
-            if (SavedCharacters == null) // get authors 
+            if (SavedCharacters == null) 
             {
                 SavedCharacters = new ObservableCollection<SavedCharacter>(await DataSource.SavedCharacters.Instance.GetSavedCharacter());
             }
+
             
             if (suspensionState.Any())
             {

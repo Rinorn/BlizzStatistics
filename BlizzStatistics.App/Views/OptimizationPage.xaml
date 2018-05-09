@@ -17,16 +17,14 @@
 
     <Page.Resources>
         <CollectionViewSource
-            x:Name="CharacterClassesViewSource"
+            x:Name="SavedCharactersViewSource"
             Source="{x:Bind ViewModel.SavedCharacters}">
         </CollectionViewSource>
-        
+        <CollectionViewSource
+            x:Name="EqipmentViewSource"
+            Source="{x:Bind ViewModel.Equipments}">
+        </CollectionViewSource>
     </Page.Resources>
-    
-        <!-- Standard tooltip for TextBox controls, displays Text property of parent control in a TextBlock -->
-        
-    
-
 
     <RelativePanel >
         <controls:PageHeader 
@@ -38,14 +36,14 @@
         <ListView x:Name="CharacterListView" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  
                   SelectionChanged="CharacterListView_OnSelectionChanged"  Background="BlanchedAlmond"
                   ItemsSource="{Binding SavedCharacters}">
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate >
                 <DataTemplate x:DataType="classLibrary1:SavedCharacter">
-                    <TextBlock Text="{Binding Name}" Foreground="Black" FontSize="20"></TextBlock>
+                    <TextBlock Text="{Binding CharacterInfo}" Foreground="Black" FontSize="20" ></TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <RelativePanel RelativePanel.RightOf="CharacterListView"  RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" x:Name="OptimizePanel" DataContext="{Binding}">
-            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="Aquamarine" >
+            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="SaddleBrown" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -71,9 +69,6 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-
-
-
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -97,60 +92,88 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-
-                
-
-
                 </Grid.RowDefinitions>
                 
                 <!--Large Boxes-->
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" >
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" ></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black">
-                    <Image Source="ms-appx:///Assets/MainPage/wow1.jpg"></Image>
+                <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                    <Button  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black">
+                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                    </Button>
                 </Border>
                 <!--Small boxes-->
                 <Border BorderThickness="1,1,1,1" Grid.Column="5"  Grid.Row="2"  BorderBrush="Black">
@@ -520,12 +543,42 @@
                 </Border>
                 <Border BorderThickness="0,0,0,0" Grid.Column="6"  Grid.Row="18"  Grid.ColumnSpan="4" BorderBrush="Black" >
                     <Viewbox StretchDirection="Both">
-                        <Button HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="LightGray">
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="LightGray" Click="BtnDelete">
                             <TextBlock Text="Delete character"  HorizontalAlignment="Stretch"  Foreground="Black" VerticalAlignment="Stretch" ></TextBlock>
                         </Button>
                     </Viewbox>
                 </Border>
             </Grid>
+            <ContentDialog x:Name="ItemContentDialog">
+                <ContentDialog.TitleTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="Select Item" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ContentDialog.TitleTemplate>
+                <ListView x:Name="ItemList" HorizontalAlignment="Stretch" >
+                    <ListView.ItemTemplate >
+                        <DataTemplate x:DataType="classLibrary1:Equipment">
+                            <Grid  HorizontalAlignment="Stretch" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border BorderThickness="1,1,1,1" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2" BorderBrush="Black" >
+                                    <Image Source="{Binding Icon}"  Stretch="Fill" ></Image>
+                                </Border>
+                                <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="0"></TextBlock>
+                                <TextBlock Text="{Binding Ilvl}" Grid.Column="1" Grid.Row="1"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ContentDialog>
         </RelativePanel>
     </RelativePanel>
 </Page>

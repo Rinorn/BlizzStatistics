@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
@@ -18,7 +19,7 @@ namespace ClassLibrary1
         /// <value>
         /// The identifier.
         /// </value>
-        [Key]
+        
         [Required]
         public int Id { get; set; }
         /// <summary>
@@ -62,6 +63,11 @@ namespace ClassLibrary1
         
         [Required]
         public int Level { get; set; }
+
+        public string CharacterInfo
+        {
+            get => $"{Name}" + Environment.NewLine + $"{ Level}  { ClassName}";
+        }
         /*
         [Required]
         public int HeadSlot { get; set; }
