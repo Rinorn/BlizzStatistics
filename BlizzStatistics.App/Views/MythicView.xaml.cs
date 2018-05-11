@@ -69,10 +69,10 @@ namespace BlizzStatistics.App.Views
         /// <param name="tb">The tb.</param>
         private static void DefineText(TextBlock tb)
         {
-            tb.FontSize = 12;
+           
             tb.TextAlignment = TextAlignment.Center;
             tb.VerticalAlignment = VerticalAlignment.Center;
-            tb.FontSize = 20;
+            tb.FontSize = 50;
             tb.Foreground = new SolidColorBrush(Colors.White);
         }
 
@@ -136,7 +136,7 @@ namespace BlizzStatistics.App.Views
             g.VerticalAlignment = VerticalAlignment.Stretch;
 
             // Add the newly created Grid to the outer Grid
-            var rowHeight = new RowDefinition {Height = new GridLength(50)};
+            var rowHeight = new RowDefinition {Height = new GridLength(5.0,GridUnitType.Star)};
             mainGrid.RowDefinitions.Add(rowHeight);
             Grid.SetRow(g, i+2);
             Grid.SetColumn(g, a);

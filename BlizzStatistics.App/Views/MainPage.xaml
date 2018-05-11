@@ -25,14 +25,7 @@
         </controls:PageHeader>
 
 
-        <FlipView MaxWidth="600" Height="300" 
-                  RelativePanel.AlignVerticalCenterWithPanel="True"
-                  RelativePanel.AlignHorizontalCenterWithPanel="True">
-            <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" />
-            <Image Source="ms-appx:///Assets/MainPage//wow2.jpg"/>
-            <Image Source="ms-appx:///Assets/MainPage//wow3.jpg"/>
-
-        </FlipView>
+        
 
 
 

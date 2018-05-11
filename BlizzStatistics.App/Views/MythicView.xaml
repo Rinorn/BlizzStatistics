@@ -22,22 +22,25 @@
                 RelativePanel.AlignTopWithPanel="True"
                 Text="BlizzardLogo">
         </controls:PageHeader>
+
         <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-            <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" >
+            <ScrollViewer x:Name="ScrollViewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" >
+            <Viewbox>
+                <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" >
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.8*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.8*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50" MinHeight="50"/>
+                    <RowDefinition Height="50" MinHeight="50"/>
                 </Grid.RowDefinitions>
                 <ComboBox Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbServer_OnSelectionChanged" Name="CbServer" PlaceholderText="Garona">
                     <x:String>Garona</x:String>
@@ -51,14 +54,14 @@
                 </ComboBox>
                
                 <Border Grid.Column="4" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="1,0,0,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    
                         <TextBlock Text="Weakly best time: " FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
-                    </Viewbox>
+                    
                 </Border>
                 <Border Grid.Column="5" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,1,1">
-                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+                    
                         <TextBlock x:Name="TbBestTime"   FontSize="10"  HorizontalAlignment="Center"   VerticalAlignment="Center" />
-                    </Viewbox>
+                    
                 </Border>
                 
                 <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
@@ -102,10 +105,13 @@
                     </Viewbox>
                 </Border>
             </Grid>
-            <RelativePanel RelativePanel.Below="MenuGrid"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" >
+            </Viewbox>
+            </ScrollViewer>
+                <!--<RelativePanel RelativePanel.Below="MenuGrid"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" >
                 
               
-            </RelativePanel>
+            </RelativePanel>-->
+            
         </RelativePanel>
     </RelativePanel>
 </Page>

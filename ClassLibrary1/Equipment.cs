@@ -33,7 +33,9 @@ namespace ClassLibrary1
         public int Haste { get; set; }
         public int Leech { get; set; }
         public int Armor { get; set; }
-        public string RestrictedToClass { get; set; }
+        public string ConvertedArmor => $" Armor {Armor}";
+        public string ConvertedIlvl => $"Item Level {Ilvl}";
+        public int RestrictedToClass { get; set; }
 
         
 

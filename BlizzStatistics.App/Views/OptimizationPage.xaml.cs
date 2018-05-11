@@ -5,11 +5,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media.Imaging;
 using BlizzStatistics.App.ViewModels;
 using ClassLibrary1;
 using Newtonsoft.Json;
-
+using Template10.Utils;
 
 
 namespace BlizzStatistics.App.Views
@@ -26,7 +27,14 @@ namespace BlizzStatistics.App.Views
         public string CombinedUrl;
         public string MainStatName;
         public List<Equipment> Equipment;
-       
+        public int SelectedCharacterArmorType;
+        private GameCharacter _selectedChar;
+        private int itemSlot;
+
+        enum ClassArmorType
+        {
+            Plate=4, Mail = 3, Leather = 2, Cloth = 1, Misc = 0
+        }
 
 
         public OptimizationPage()
@@ -44,19 +52,7 @@ namespace BlizzStatistics.App.Views
             {
                 await GetCharacterStats(CharacterName, CharacterServer);
                 await GetCharacter(CharacterName, CharacterServer);
-                //Fungerer. fortsett HER!!!!
-                if (Equipment == null)
-                {
-                    Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment());
-                }
-                var view = new OptimizationViewModel();
-                view.Equipments = new ObservableCollection<Equipment>();
-                foreach (var a in Equipment)
-                {
-                    view.Equipments.Add(a); 
-                }
-
-                ItemList.ItemsSource = view.Equipments;
+              
             }
             catch (Exception exception)
             {
@@ -91,6 +87,7 @@ namespace BlizzStatistics.App.Views
                 DefineTrinket2Slot(data);
                 DefineMainhandSlot(data);
                 DefineOffhandSlot(data);
+                _selectedChar = data;
                 return data;
             }
             catch (Exception e)
@@ -755,9 +752,75 @@ namespace BlizzStatistics.App.Views
 
         private async void BtnShowItemList(object sender, RoutedEventArgs e)
         {
-            var result = await ItemContentDialog.ShowAsync();
+            var clickedBtn = sender as Button;
+            DefineItemSlots(clickedBtn);
+            DefineArmorType();
+            FillOptItemList(SelectedCharacterArmorType);
+            var itemWindow = await ItemContentDialog.ShowAsync();
             
         }
-        
+
+        private async void FillOptItemList(int armorType)
+        {
+            if (Equipment == null){Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment());}
+            var view = new OptimizationViewModel {Equipments = new ObservableCollection<Equipment>()};
+            foreach (var a in Equipment)
+            {
+                if (a.ArmorType == armorType && a.RestrictedToClass == 0 || a.ArmorType == armorType && a.RestrictedToClass == _selectedChar.Class){if (a.Slot == itemSlot){view.Equipments.Add(a);}}
+                else if (a.ArmorType == 0 && a.Slot == itemSlot){view.Equipments.Add(a);}
+            }
+            ItemList.ItemsSource = view.Equipments;
+           
+        }
+
+        private void DefineItemSlots(Button clickedBtn)
+        {
+            if (clickedBtn == BtnHeadSlot){itemSlot = 1;}
+            else if (clickedBtn == BtnNeckSlot){itemSlot = 2;}
+            else if (clickedBtn == BtnShoulderSlot){itemSlot = 3;}
+            else if (clickedBtn == BtnBackSlot){itemSlot = 16;}
+            else if (clickedBtn == BtnChestSlot){itemSlot = 5;}
+            else if (clickedBtn == BtnBeltSlot){itemSlot = 6;}
+            else if (clickedBtn == BtnLegsSlot){itemSlot = 7;}
+            else if (clickedBtn == BtnFeetSlot){itemSlot = 8;}
+            else if (clickedBtn == BtnWristSlot){itemSlot = 9;}
+            else if (clickedBtn == BtnHeadSlot){itemSlot = 10;}
+            else if (clickedBtn == BtnRing1Slot){itemSlot = 11;}
+            else if (clickedBtn == BtnRing2Slot){itemSlot = 11;}
+            else if (clickedBtn == BtnTrinket1Slot){itemSlot = 12;}
+            else if (clickedBtn == BtnTrinketSlot){itemSlot = 12;}
+        }
+        private void DefineArmorType()
+        {
+            switch (_selectedChar.Class)
+            {
+                case 1:
+                case 2:
+                case 6:
+                    SelectedCharacterArmorType = (int)ClassArmorType.Plate;
+                    break;
+                case 3:
+                case 7:
+                    SelectedCharacterArmorType = (int)ClassArmorType.Mail;
+                    break;
+                case 4:
+                case 10:
+                case 11:
+                case 12:
+                    SelectedCharacterArmorType = (int)ClassArmorType.Leather;
+                    break;
+                case 5:
+                case 8:
+                case 9:
+                    SelectedCharacterArmorType = (int)ClassArmorType.Cloth;
+                    break;
+            }
+        }
+        private void ItemList_SelectedItem(object sender, SelectionChangedEventArgs e)
+        {
+            ItemContentDialog.Hide();
+            var a = (Equipment) ItemList.SelectedItem;
+            if (a != null) OptHeadSlotImg.Source = new BitmapImage(new Uri(a.Icon));
+        }
     }
 }

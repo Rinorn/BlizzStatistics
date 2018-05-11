@@ -20,7 +20,7 @@ namespace BlizzStatistics.App.Views
         private readonly string[] _raceArray = { "Human", "Orc", "Dwarf", "Night Elf", "Undead", "Tauren", "Gnome", "Troll", "Goblin", "Blood Elf", "Draenei", "Worgen", "Pandaren", "Nightborne", "Highmauntain Tauren", "Void Elf", "Lightforged Draenei" };
         private string _classColor;
         private string _playerClass;
-        private int _initNumber = 10;
+        private int _initNumber = 50;
         private Grid _childGrid;
         private int _factionIndex = 2;
         private int _tempInitNumber;
@@ -58,6 +58,8 @@ namespace BlizzStatistics.App.Views
                     GetLadder(_ladderToGet);
                     break;
             }
+
+            
         }
 
         /// <summary>
@@ -186,6 +188,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="rowCount">The row count.</param>
         private void AddtoGrid(Grid g, Grid mainGrid, UIElement tb, int a, int rowCount)
         {
+            
             g.Children.Add(tb);
             var color = GetSolidColorBrush(_classColor).Color;
             var brush = new SolidColorBrush(color);
@@ -195,7 +198,7 @@ namespace BlizzStatistics.App.Views
             g.VerticalAlignment = VerticalAlignment.Stretch;
             g.Background = brush;
             // Add the newly created Grid to the outer Grid
-            var rowHeight = new RowDefinition {Height = new GridLength(50)};
+            var rowHeight = new RowDefinition {Height = new GridLength(5.0,GridUnitType.Star)};
             mainGrid.RowDefinitions.Add(rowHeight);
             Grid.SetRow(g, rowCount);
             Grid.SetColumn(g, a);
@@ -237,17 +240,17 @@ namespace BlizzStatistics.App.Views
         {
             switch (CbSelNumber.SelectedItem)
             {
-                case "Top 10":
-                    _initNumber = 10;
-                    break;
-                case "Top 25":
-                    _initNumber = 25;
-                    break;
                 case "Top 50":
                     _initNumber = 50;
                     break;
                 case "Top 100":
                     _initNumber = 100;
+                    break;
+                case "Top 150":
+                    _initNumber = 150;
+                    break;
+                case "Top 200":
+                    _initNumber = 200;
                     break;
             }
             DestroyGrid();
@@ -324,13 +327,13 @@ namespace BlizzStatistics.App.Views
         {
             switch (CbLadder.SelectedItem)
             {
-                case "2v2 Ladder":
+                case "2v2":
                     _selectedLadder = 1;
                     break;
-                case "3v3 Ladder":
+                case "3v3":
                     _selectedLadder = 2;
                     break;
-                case "Rbg Ladder":
+                case "Rbg":
                     _selectedLadder = 3;
                     break;
             }
@@ -342,7 +345,7 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         private void DestroyGrid()
         {
-            for (var i = _childGrid.Children.Count - 18; i > 17; i--)
+            for (var i = _childGrid.Children.Count - 1; i > 17; i--)
             {
                 _childGrid.Children.RemoveAt(i);
             }

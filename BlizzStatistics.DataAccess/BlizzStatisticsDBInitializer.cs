@@ -294,7 +294,7 @@ namespace BlizzStatistics.DataAccess
                 Stamina = 5693,
                 Haste = 1167,
                 Versatility = 901,
-                RestrictedToClass = "Shaman"
+                RestrictedToClass = 7
             });
             context.Equipments.Add(new Equipment()
             {
@@ -308,7 +308,7 @@ namespace BlizzStatistics.DataAccess
                 Stamina = 6250,
                 Haste = 1165,
                 Mastery = 981,
-                RestrictedToClass = "Shaman"
+                RestrictedToClass = 7
             });
             context.Equipments.Add(new Equipment()
             {
@@ -348,7 +348,7 @@ namespace BlizzStatistics.DataAccess
                 Stamina = 5693,
                 Haste = 1004,
                 Versatility = 1063,
-                RestrictedToClass = "Hunter"
+                RestrictedToClass = 3
             });
             base.Seed(context);
         }
