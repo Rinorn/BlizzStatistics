@@ -34,15 +34,15 @@
             Text="BlizzardLogo">
         </controls:PageHeader>
         <ListView x:Name="CharacterListView" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  
-                  SelectionChanged="CharacterListView_OnSelectionChanged"  Background="BlanchedAlmond"
-                  ItemsSource="{Binding SavedCharacters}">
+                   Background="BlanchedAlmond"
+                  ItemsSource="{Binding Source={StaticResource SavedCharactersViewSource}}"  SelectionChanged="CharacterListView_OnSelectionChanged">
             <ListView.ItemTemplate >
-                <DataTemplate x:DataType="classLibrary1:SavedCharacter">
-                    <TextBlock Text="{Binding CharacterInfo}" Foreground="Black" FontSize="20" ></TextBlock>
+                <DataTemplate x:DataType="classLibrary1:SavedCharacter" >
+                    <TextBlock Text="{Binding CharacterInfo, Mode=OneWay}" Foreground="Black" FontSize="20" ></TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <RelativePanel RelativePanel.RightOf="CharacterListView"  RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" x:Name="OptimizePanel" DataContext="{Binding}">
+        <RelativePanel RelativePanel.RightOf="CharacterListView"  RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" x:Name="OptimizePanel" >
             <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="SaddleBrown" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -107,77 +107,81 @@
                 </Border>
                 <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnNeckSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptNeckSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnShoulderSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptShoulderSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnBackSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptBackSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnChestSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptChestSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnWristSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptWristSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnTrinket1Slot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptTrinket1SlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
-                    <Button x:Name="BtnMainhandSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
-                    </Button>
+                    <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" Opacity="0.6">
+                        <ToolTipService.ToolTip>
+                            <TextBlock TextWrapping="Wrap" Text="In the current expansion every character in the game uses a weapon type called artifact weapon. these cant be changed. however in the next expansion that launches in august, the game returns to its old weapon system, and players will be able choose weapons again. i therefor chose to implement the optimize weapon slots to the app at this point, so that i can add the functionality for it as soon as the expansion is released."></TextBlock>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
-                    <Button x:Name="BtnOffhandSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
-                    </Button>
+                    <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" Opacity="0.6">
+                        <ToolTipService.ToolTip>
+                            <TextBlock TextWrapping="Wrap" Text="In the current expansion every character in the game uses a weapon type called artifact weapon. these cant be changed. however in the next expansion that launches in august, the game returns to its old weapon system, and players will be able choose weapons again. i therefor chose to implement the optimize weapon slots to the app at this point, so that i can add the functionality for it as soon as the expansion is released."></TextBlock>
+                        </ToolTipService.ToolTip>
+                    </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnBeltSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptBeltSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnLegsSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptLegsSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnFeetSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptFeetSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnRing1Slot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptRing1SlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnRing2Slot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptRing2SlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnGlovesSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptGlovesSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="19" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnTrinketSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
-                        <Image Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
+                        <Image x:Name="OptTrinket2SlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" ></Image>
                     </Button>
                 </Border>
                 <!--Small boxes-->

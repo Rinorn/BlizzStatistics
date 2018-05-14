@@ -4,15 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
+    
     xmlns:controls="using:Template10.Controls"
+   
     mc:Ignorable="d"
     >
-
-    <Page.DataContext>
-        <viewModels:PvpPageViewModel x:Name="ViewModel" />
-    </Page.DataContext>
-
+    
 
 
     <RelativePanel AlignLeftWithPanel="True" AlignRightWithPanel="True" x:Name="MainMythicPanel">
@@ -24,11 +21,10 @@
         </controls:PageHeader>
 
         <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-            <ScrollViewer x:Name="ScrollViewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" >
-            <Viewbox>
-                <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" >
+            <ScrollViewer x:Name="ScrollViewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" VerticalScrollBarVisibility="Hidden">
+                <Grid x:Name="MenuGrid" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True">
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" x:Name="RowDef"/>
                     <ColumnDefinition Width="0.8*" />
                     <ColumnDefinition Width="0.6*" />
                     <ColumnDefinition Width="0.5*" />
@@ -42,27 +38,23 @@
                     <RowDefinition Height="50" MinHeight="50"/>
                     <RowDefinition Height="50" MinHeight="50"/>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbServer_OnSelectionChanged" Name="CbServer" PlaceholderText="Garona">
-                    <x:String>Garona</x:String>
-                    <x:String>Vol'jin</x:String>
-                    <x:String>Sunstrider</x:String>
+                        <ComboBox Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbServer_OnSelectionChanged" Name="CbServer" PlaceholderText="Garona" >
+                    
                 </ComboBox>
-                <ComboBox Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbDungeon_OnSelectionChanged" Name="CbDungeon" PlaceholderText="Black Rook Hold">
-                    <x:String>Black Rook Hold</x:String>
-                    <x:String>Darkheart Thicket</x:String>
-                    <x:String>Eye of Azshara</x:String>
+                <ComboBox Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="cbDungeon_OnSelectionChanged" Name="CbDungeon" PlaceholderText="Black Rook Hold" >
+                    
                 </ComboBox>
                
                 <Border Grid.Column="4" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="1,0,0,1">
-                    
-                        <TextBlock Text="Weakly best time: " FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
-                    
-                </Border>
+                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Weakly best time: " FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Viewbox>
+                    </Border>
                 <Border Grid.Column="5" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,1,1">
-                    
-                        <TextBlock x:Name="TbBestTime"   FontSize="10"  HorizontalAlignment="Center"   VerticalAlignment="Center" />
-                    
-                </Border>
+                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock x:Name="TbBestTime"   FontSize="10"  HorizontalAlignment="Center"   VerticalAlignment="Center" />
+                    </Viewbox>
+                    </Border>
                 
                 <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
                     <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -105,7 +97,7 @@
                     </Viewbox>
                 </Border>
             </Grid>
-            </Viewbox>
+            
             </ScrollViewer>
                 <!--<RelativePanel RelativePanel.Below="MenuGrid"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" >
                 

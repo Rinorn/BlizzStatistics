@@ -1,12 +1,21 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using ClassLibrary1;
+using Newtonsoft.Json;
 
 namespace BlizzStatistics.DataAccess
 {
     public class BlizzStatisticsDbInitializer : DropCreateDatabaseIfModelChanges<BlizzStatisticsContext>
     {
+        public string[] RealmName = new string[267];
+        public bool DataReady = false;
+        public string[] StrengthAgility = {"Strength", "Agility"};
+        public string[] Strength = {"Strength"};
+        public string[] Agility = {"Agility"};
+        public string[] Intellect = {"Intellect"};
         protected override void Seed(BlizzStatisticsContext context)
         {
             
@@ -350,7 +359,802 @@ namespace BlizzStatistics.DataAccess
                 Versatility = 1063,
                 RestrictedToClass = 3
             });
+            ////Neck/////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 2,
+                ArmorType = 0,
+                Name = "Chain of the Unmaker",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_necklace_18a.jpg",
+                Ilvl = 970,
+                Stamina = 3515,
+                Crit = 2948,
+                Haste = 1538
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 2,
+                ArmorType = 0,
+                Name = "Collar of Null-Flame",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_necklace_07b.jpg",
+                Ilvl = 960,
+                Stamina = 3203,
+                Versatility = 1809,
+                Mastery = 2413
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 2,
+                ArmorType = 0,
+                Name = "Riveted Choker of Delirium",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_necklace_04b.jpg",
+                Ilvl = 960,
+                Stamina = 3203,
+                Haste = 2533,
+                Mastery = 1689
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 2,
+                ArmorType = 0,
+                Name = "Vulcanacore Pendant",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_necklace_14b.jpg",
+                Ilvl = 960,
+                Stamina = 3203,
+                Crit = 1930,
+                Versatility = 2292
+            });
+            /////Mail Shoulders//////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Serpentstalker Mantle",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidhunter_s_01.jpg",
+                Armor = 437,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 942,
+                Haste = 609,
+                RestrictedToClass = 3
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 3,
+                Ilvl = 970,
+                Name = "Pauldrons of Colossal Burden",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidshamanraid_s_01.jpg",
+                Armor = 451,
+                MainStat =3124,
+                Stamina = 4687,
+                Crit = 644,
+                Mastery = 966
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Pauldrons of the Soulburner",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidhunter_s_01.jpg",
+                Armor = 437,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 964,
+                Mastery = 587
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Pauldrons of Venerated Spirits",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidshamanraid_s_01.jpg",
+                Armor = 437,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 631,
+                Versatility = 919,
+                RestrictedToClass = 7
+
+            });
+            //////////Cloak///////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 16,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Cloak of the Burning Vanguard",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_cape_raidmagemythic_s_01.jpg",
+                Armor = 193,
+                MainStat = 2135,
+                Stamina = 3203,
+                Crit = 623,
+                Mastery = 540
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 16,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Drape of the Spirited Hunt",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_cape_plate_raiddeathknight_s_01_long.jpg",
+                Armor = 193,
+                MainStat = 2135,
+                Stamina = 3203,
+                Haste = 490,
+                Mastery = 673
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 16,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Drape of Venerated Spirits",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_cape_mail_raidshamanraid_s_01.jpg",
+                Armor = 193,
+                MainStat = 2135,
+                Stamina = 3203,
+                Versatility = 448,
+                Mastery = 714,
+                RestrictedToClass = 7
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 16,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Greatcloak of the Dark Pantheon",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidroguemythic_s_01_cape.jpg",
+                Armor = 193,
+                MainStat = 2135,
+                Stamina = 3203,
+                Haste = 490,
+                Crit = 531
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 16,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Serpentstalker Drape",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_cape_raidhunter_s_01.jpg",
+                Armor = 193,
+                MainStat = 2135,
+                Stamina = 3203,
+                Versatility = 515,
+                Mastery = 648,
+                RestrictedToClass = 3
+            });
+            //////Mail chest///////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Fleet Commander's Hauberk",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhunter_s_01.jpg",
+                Armor = 583,
+                MainStat = 3793,
+                Stamina = 5693,
+                Crit = 1182,
+                Mastery = 886
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Robes of the Forsaken Dreadlord",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_robe_mail_raidshaman_s_01.jpg",
+                Armor = 583,
+                MainStat = 3793,
+                Stamina = 5693,
+                Haste = 901,
+                Mastery = 1167,
+                
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Robes of Venerated Spirits",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_robe_mail_raidshaman_s_01.jpg",
+                Armor = 583,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1300,
+                Haste = 768,
+                RestrictedToClass = 7
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Serpentstalker Tunic",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhunter_s_01.jpg",
+                Armor = 583,
+                MainStat = 3795,
+                Stamina = 5693,
+                Versatility = 1241,
+                Mastery = 827,
+                RestrictedToClass = 3
+            });
+            ////////////////MailWrist////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Reality-Splitting Wristguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_bracer_mail_raidshamanraid_s_01.jpg",
+                Armor = 255,
+                MainStat = 2135,
+                Stamina = 3203,
+                Haste = 748,
+                Versatility = 415
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Scalding Shatterguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_bracer_mail_raidhunter_s_01.jpg",
+                Armor = 255,
+                MainStat = 2135,
+                Stamina = 3203,
+                Haste = 432,
+                Mastery = 731
+            });
+            //////////////Mail Gloves/////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Gloves of Venerated Spirits",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidshamanraid_s_01.jpg",
+                Armor = 364,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 587,
+                Mastery = 964,
+                RestrictedToClass = 7
+                
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Heedless Eradication Gauntlets",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidshamanraid_s_01.jpg",
+                Armor = 364,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 665,
+                Mastery = 886
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Praysnare Vicegrips",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhunter_s_01.jpg",
+                Armor = 364,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 930,
+                Haste = 620
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Serpentstalker Grips",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhunter_s_01.jpg",
+                Armor = 364,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 676,
+                Haste = 875,
+                RestrictedToClass = 3
+
+            });
+            ////////////////////mail Waist////////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Depraved Tactician's Waistguard",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_raidshamanraid_s_01.jpg",
+                Armor = 328,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 676,
+                Mastery = 875
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Sash of the Gilded Rose",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_raidhunter_s_01.jpg",
+                Armor = 328,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 897,
+                Mastery = 653
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "World-Ravager Waistguard",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_raidshamanraid_s_01.jpg",
+                Armor = 328,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 554,
+                Haste = 997
+            });
+            //////////////mail legs/////////////////
+            
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Battalion-Shattering Leggings",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidshamanraid_s_01.jpg",
+                Armor = 510,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 842,
+                Haste = 1226
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Leggings of Venerated Spirits",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidshamanraid_s_01.jpg",
+                Armor = 510,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1122,
+                Mastery = 945,
+                RestrictedToClass = 7
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Legguards of Numbing Gloom",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhunter_s_01.jpg",
+                Armor = 510,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1300,
+                Versatility = 768
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Serpentstalker Legguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhunter_s_01.jpg",
+                Armor = 510,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 975,
+                Mastery = 1093,
+                RestrictedToClass = 3
+
+            });
+            ///////////////mail Feet///////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Deft Soulhunter's Sabatons",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_raidhunter_s_01.jpg",
+                Armor = 401,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 709,
+                Haste = 842
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Greatboots of the Searing Tempest",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_raidshamanraid_s_01.jpg",
+                Armor = 401,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 598,
+                Mastery = 953
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 3,
+                Ilvl = 960,
+                Name = "Nathrezim Shade-Walkers",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_raidshamanraid_s_01.jpg",
+                Armor = 401,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 897,
+                Versatility = 653
+            });
+            /////////////Ring////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 11,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Band of the Sargerite Smith",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_70_raid_ring4a.jpg",
+                Stamina = 3203,
+                Crit = 2232,
+                Mastery = 1991
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 11,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Loop of the Life-Binder",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_70_raid_ring7d.jpg",
+                Stamina = 3203,
+                Haste = 1447,
+                Mastery = 2775
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 11,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Seal of the Portalmaster",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_70_raid_ring2c.jpg",
+                Stamina = 3203,
+                Haste = 1568,
+                Versatility = 2654
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 11,
+                ArmorType = 0,
+                Ilvl = 970,
+                Name = "Sullied Seal of the Pantheon",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_70_raid_ring3a.jpg",
+                Stamina = 3515,
+                Versatility = 1922,
+                Mastery = 2563
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 11,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Zealous Tormentor's Ring",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_70_quest_ring7a.jpg",
+                Stamina = 3203,
+                Crit = 1689,
+                Haste = 2533
+            });
+            //////////////Trinkets////////////////////////
+            /////Healer Trinkets/////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Carafe of Searing Light",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_offhand_pvealliance_d_01_gold.jpg",
+                MainStat = 3608,
+                EquipmentEffect = "Use: Sear an enemy with holy light, inflicting x Holy damage over 18 sec. Restores x mana each time damage is dealt.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 940,
+                Name = "Eonar's Compassion",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_green.jpg",
+                MainStat = 2994,
+                EquipmentEffect = "Equip: Your healing effects have a chance to grow an Emerald Blossom nearby, which heals a random injured ally for x every 2 sec. Lasts 12 sec.\n\nEonar's Verdant Embrace\nWhen empowered by the Pantheon, your next 4 direct healing spells grant the target a shield that prevents x damage for 30 sec.",
+                RestrictedToStat = Intellect
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Garothi Feedback Conduit",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_06.jpg",
+                MainStat = 3608,
+                EquipmentEffect = "Equip: Your healing effects have a chance to increase your Haste by x for 8 sec, stacking up to 5 times. This is more likely to occur when you heal allies who are at low health.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Highfather's Machination",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/spell_nature_astralrecalgroup.jpg",
+                Mastery = 1477,
+                EquipmentEffect = "Equip: Your healing effects have a chance to apply a charge of Highfather's Timekeeping for 1 min, max 5 charges. When the ally falls below x% health, Highfather's Timekeeping is consumed to instantly heal them for x health per charge.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Ishkar's Felshield Emitter",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_shellshieldgenerator_green.jpg",
+                Versatility = 1477,
+                EquipmentEffect = "Use: Place a Felshield on an ally, absorbing x damage for 9 sec. When the shield is consumed or expires, it explodes dealing x% of the absorbed damage as Fire split amongst all enemies within 8 yds."
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Tarratus Keystone",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_datacrystal06.jpg",
+                MainStat = 3608,
+                EquipmentEffect = "Use: Open a portal at an ally's location that releases brilliant light, restoring x health split amongst injured allies within 20 yds.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Vitality Resonator",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_trinket_08d.jpg",
+                Versatility = 1477,
+                EquipmentEffect = "Use: Redirect the life force of an enemy, increasing your Intellect by up to x for 15 sec. This grants more Intellect when used against targets at high health.",
+                RestrictedToStat = Intellect
+            });
+            ///////////////Spell dps trinkets/////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Acrid Catalyst Injector",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_trinket_01c.jpg",
+                MainStat = 3608,
+                EquipmentEffect = "Equip: Your damaging spells that critically strike have a chance to increase your Haste, Mastery, or Critical Strike by x for 45 sec, stacking up to 5 times. When any stack reaches 5, all effects are consumed to grant you x of all three attributes for 12 sec.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 940,
+                Name = "Norgannon's Prowess",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_blue.jpg",
+                Mastery = 1370,
+                EquipmentEffect = "Equip: Your damaging spells have a chance to increase your Intellect by x for 12 sec.\n\nNorgannon's Command\nWhen empowered by the Pantheon, you gain 6 charges of Norgannon's Command for 15 sec. Your damaging spells expend a charge to inflict an additional x damage to the target, from a random school of magic.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Prototype Personnel Decimator",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_cannonballbarrage.jpg",
+                Haste = 1477,
+                EquipmentEffect = "Equip: Your ranged attacks and spells have a chance to launch a Homing Missile if your target is at least x yds away, dealing up to x Fire damage to all enemies within 20 yds. Targets closer to the impact take more damage."
+
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Sheath of Asara",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_ritualofsacrifice.jpg",
+                MainStat = 3608,
+                EquipmentEffect = "Equip: Your damaging spells have a chance to conjure x Shadow Blades. After 2 sec, the swords begin launching foward, each dealing x Shadow damage to the first enemy in their path and increasing damage taken from your subsequent Shadow Blades by x% for 3 sec, up to x%.",
+                RestrictedToStat = Intellect
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Terminus Signaling Beacon",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_trinket_010d.jpg",
+                Mastery = 1477,
+                EquipmentEffect = "Use: Call a Legion ship to bombard the target's location for 9 sec, dealing x Fire damage to all targets within 12 yds, including the ship.",
+                RestrictedToStat = Intellect
+            });
+            ///////////////////Agility trinkets/////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Forgefiend's Fabricator",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_orgrimmarraid_trinket_04_green.jpg",
+                Mastery = 1477,
+                EquipmentEffect = "Equip: Your melee and ranged attacks have a chance to plant Fire Mines at the enemy's feet. Fire Mines detonate after 15 sec, inflicting x Fire damage to all enemies within 12 yds",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 940,
+                Name = "Golganneth's Vitality",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_grey.jpg",
+                MainStat = 2994,
+                EquipmentEffect = "Equip: Your damaging abilities have a chance to create a Ravaging Storm at your target's location, inflicting x Nature damage split among all enemies within 6 yds over 6 sec.\n\nGolganneth's Thunderous Wrath\nWhen empowered by the Pantheon, your autoattacks cause an explosion of lightning dealing 12 Nature damage to all enemies within 8 yds of the target. Lasts 15 sec.",
+                RestrictedToStat = Agility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Gorshalach's Legacy",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_sword_1h_firelandsraid_d_01.jpg",
+                Haste = 1477,
+                EquipmentEffect = "Equip: Your melee attacks have a chance to grant an Echo of Gorshalach. On reaching 15 applications, you lash out with a devastating combination of attacks, critically striking enemies in a 15 yd cone in front of you for x Fire damage.",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Seeping Scourgewing",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_03.jpg",
+                Versatility = 1477,
+                EquipmentEffect = "Equip: Your melee attacks have a chance to deal x Shadow damage to the target. If there are no other enemies within x yds of them, this deals an additional x damage.",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Shadow-Singed Fang",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_blacksaberonfang.jpg",
+                EquipmentEffect = "Equip: Your melee and ranged abilities have a chance to increase your Strength or Agility by x for 12 sec.\n\n\n Equip: Your autoattacks have a chance to increase your Critical Strike by x for 12 sec.",
+                RestrictedToStat = StrengthAgility
+            });
+            ///////////////Strength dps trinket///////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 940,
+                Name = "Khaz'goroth's Courage",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_red.jpg",
+                MainStat = 2994,
+                EquipmentEffect = "Equip: Your damaging attacks have a chance to make your weapon glow hot with the fire of Khaz'goroth's forge, causing your autoattacks to do x additional Fire damage for 12 sec.\n\n\n\nKhaz'goroth's Shaping\n\nWhen empowered by the Pantheon, your Critical Strike, Haste, Mastery, or Versatility is increased by x for 15 sec. Khaz'goroth always empowers your highest stat.",
+                RestrictedToStat = Strength
+            });
+            ///////////////Tank Trinkets////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 940,
+                Name = "Aggramar's Conviction",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_orange.jpg",
+                MainStat = 2994,
+                EquipmentEffect = "Equip: Taking damage has a chance to increase your Versatility by x for 14 sec.\n\nAggramar's Fortitude\nWhen empowered by the Pantheon, your maximum health is increased by x for 15 sec, and you are healed to full health.",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Apocalypse Drive",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_11.jpg",
+                Haste = 1477,
+                EquipmentEffect = "Use: Reduce the damage of the next 10 melee attacks against you by up to x each. Lasts up to 20 sec.\n\nSuffering melee attacks reduces the cooldown of this ability by 1 sec.",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Diima's Glacial Aegis",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_glacialtrap.jpg",
+                MainStat = 3608,
+                EquipmentEffect = "Use: Increase your Armor by x for 12 sec, and inflict x Frost damage to enemies within 12 yds and reduce their movement speed by x for 12 sec",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Eye of F'harg",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enchantedpearlc.jpg",
+                MainStat = 3608,
+                Armor = 1131,
+                EquipmentEffect = "Equip: Grants x additional Versatility to a nearby tank-specialized ally bearing the Eye of Shatug\n\n\n Use: Transform to Eye of Shatug",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Eye of Shatug",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enchantedpearlc.jpg",
+                Stamina = 5412,
+                Versatility = 1477,
+                EquipmentEffect = "Equip: Grants x additional Armor to a nearby tank-specialized ally bearing the Eye of F'harg\n\n\n Use: Transform to Eye of F'harg",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Riftworld Codex",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_offhand_pvp330_d_02.jpg",
+                Crit = 1477,
+                EquipmentEffect = "Equip: Taking damage has a chance to open a portal to another world, either healing you, providing an absorption shield, or empowering you with shadowflame magic",
+                RestrictedToStat = StrengthAgility
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 12,
+                ArmorType = 0,
+                Ilvl = 960,
+                Name = "Smoldering Titanguard",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_shieldmastery.jpg",
+                Mastery = 1477,
+                EquipmentEffect = "Use: Channel a Bulwark of Flame that absorbs x damage for 3 sec. When the Bulwark expires you unleash x Waves of Flame, dealing x Fire damage to all enemies in their path.\n\nYou cannot move or use abilities during Bulwark of Flame",
+                RestrictedToStat = StrengthAgility
+            });
             base.Seed(context);
+
         }
+        
+
+       
     }
 }

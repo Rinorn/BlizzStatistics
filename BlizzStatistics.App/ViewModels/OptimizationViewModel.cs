@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using ClassLibrary1;
@@ -33,14 +34,17 @@ namespace BlizzStatistics.App.ViewModels
         /// </value>
         public ObservableCollection<SavedCharacter> SavedCharacters{get => _savedCharacters;
             set => Set(ref _savedCharacters, value);
+            
         }
-
+        
         private ObservableCollection<Equipment> _equipments;
         public ObservableCollection<Equipment> Equipments
         {
             get => _equipments;
             set => Set(ref _equipments, value);
+            
         }
+
 
         /// <summary>
         /// Called when [navigated to asynchronous].

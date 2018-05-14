@@ -30,6 +30,7 @@ namespace BlizzStatistics.App.Views
         public int SelectedCharacterArmorType;
         private GameCharacter _selectedChar;
         private int itemSlot;
+        private Image _clickedImage;
 
         enum ClassArmorType
         {
@@ -40,10 +41,12 @@ namespace BlizzStatistics.App.Views
         public OptimizationPage()
         {
             InitializeComponent();
+            
         }
 
         private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             Character = (SavedCharacter) CharacterListView.SelectedItem;
             if (Character != null) CharacterName = Character.Name;
             if (Character != null) CharacterServer = Character.Realm;
@@ -766,8 +769,25 @@ namespace BlizzStatistics.App.Views
             var view = new OptimizationViewModel {Equipments = new ObservableCollection<Equipment>()};
             foreach (var a in Equipment)
             {
-                if (a.ArmorType == armorType && a.RestrictedToClass == 0 || a.ArmorType == armorType && a.RestrictedToClass == _selectedChar.Class){if (a.Slot == itemSlot){view.Equipments.Add(a);}}
-                else if (a.ArmorType == 0 && a.Slot == itemSlot){view.Equipments.Add(a);}
+                if (a.ArmorType == armorType && a.RestrictedToClass == 0 || a.ArmorType == armorType && a.RestrictedToClass == _selectedChar.Class)
+                {
+                    if (a.Slot == itemSlot)
+                    {
+                        view.Equipments.Add(a);
+
+                    }
+
+                }
+                else if (a.ArmorType == 0 && a.Slot == itemSlot || a.ArmorType == 1 && a.Slot == itemSlot)
+                {
+                    foreach (var t in a.RestrictedToStat)
+                    {
+                        if (t == MainStatName)
+                        {
+                            view.Equipments.Add(a);
+                        }
+                    }
+                }
             }
             ItemList.ItemsSource = view.Equipments;
            
@@ -775,20 +795,48 @@ namespace BlizzStatistics.App.Views
 
         private void DefineItemSlots(Button clickedBtn)
         {
-            if (clickedBtn == BtnHeadSlot){itemSlot = 1;}
-            else if (clickedBtn == BtnNeckSlot){itemSlot = 2;}
-            else if (clickedBtn == BtnShoulderSlot){itemSlot = 3;}
-            else if (clickedBtn == BtnBackSlot){itemSlot = 16;}
-            else if (clickedBtn == BtnChestSlot){itemSlot = 5;}
-            else if (clickedBtn == BtnBeltSlot){itemSlot = 6;}
-            else if (clickedBtn == BtnLegsSlot){itemSlot = 7;}
-            else if (clickedBtn == BtnFeetSlot){itemSlot = 8;}
-            else if (clickedBtn == BtnWristSlot){itemSlot = 9;}
-            else if (clickedBtn == BtnHeadSlot){itemSlot = 10;}
-            else if (clickedBtn == BtnRing1Slot){itemSlot = 11;}
-            else if (clickedBtn == BtnRing2Slot){itemSlot = 11;}
-            else if (clickedBtn == BtnTrinket1Slot){itemSlot = 12;}
-            else if (clickedBtn == BtnTrinketSlot){itemSlot = 12;}
+            if (clickedBtn == BtnHeadSlot){itemSlot = 1;
+                _clickedImage = OptHeadSlotImg;
+            }
+            else if (clickedBtn == BtnNeckSlot){itemSlot = 2;
+                _clickedImage = OptNeckSlotImg;
+            }
+            else if (clickedBtn == BtnShoulderSlot){itemSlot = 3;
+                _clickedImage = OptShoulderSlotImg;
+            }
+            else if (clickedBtn == BtnBackSlot){itemSlot = 16;
+                _clickedImage = OptBackSlotImg;
+            }
+            else if (clickedBtn == BtnChestSlot){itemSlot = 5;
+                _clickedImage = OptChestSlotImg;
+            }
+            else if (clickedBtn == BtnBeltSlot){itemSlot = 6;
+                _clickedImage = OptBeltSlotImg;
+            }
+            else if (clickedBtn == BtnLegsSlot){itemSlot = 7;
+                _clickedImage = OptLegsSlotImg;
+            }
+            else if (clickedBtn == BtnFeetSlot){itemSlot = 8;
+                _clickedImage = OptFeetSlotImg;
+            }
+            else if (clickedBtn == BtnWristSlot){itemSlot = 9;
+                _clickedImage = OptWristSlotImg;
+            }
+            else if (clickedBtn == BtnGlovesSlot){itemSlot = 10;
+                _clickedImage = OptGlovesSlotImg;
+            }
+            else if (clickedBtn == BtnRing1Slot){itemSlot = 11;
+                _clickedImage = OptRing1SlotImg;
+            }
+            else if (clickedBtn == BtnRing2Slot){itemSlot = 11;
+                _clickedImage = OptRing2SlotImg;
+            }
+            else if (clickedBtn == BtnTrinket1Slot){itemSlot = 12;
+                _clickedImage = OptTrinket1SlotImg;
+            }
+            else if (clickedBtn == BtnTrinketSlot){itemSlot = 12;
+                _clickedImage = OptTrinket2SlotImg;
+            }
         }
         private void DefineArmorType()
         {
@@ -820,7 +868,9 @@ namespace BlizzStatistics.App.Views
         {
             ItemContentDialog.Hide();
             var a = (Equipment) ItemList.SelectedItem;
-            if (a != null) OptHeadSlotImg.Source = new BitmapImage(new Uri(a.Icon));
+            if (a != null) _clickedImage.Source = new BitmapImage(new Uri(a.Icon));
         }
+
+       
     }
 }

@@ -101,6 +101,7 @@
     <Compile Include="DataSource\CharacterClasses.cs" />
     <Compile Include="DataSource\CharacterRaces.cs" />
     <Compile Include="DataSource\Equipments.cs" />
+    <Compile Include="DataSource\Realms.cs" />
     <Compile Include="DataSource\SavedCharacters.cs" />
     <Compile Include="DataSource\GameCharacters.cs" />
     <Compile Include="GlobalSuppressions.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿
+using System.Net.Http;
 using Windows.UI.Xaml;
 using ClassLibrary1;
 using Newtonsoft.Json;
@@ -34,6 +35,7 @@ namespace BlizzStatistics.App.Views
         public AccountPage()
         {
             InitializeComponent();
+            
         }
 
         /// <summary>
@@ -71,6 +73,8 @@ namespace BlizzStatistics.App.Views
                 // ignored
             }
         }
-        
+
+      
+
     }
 }

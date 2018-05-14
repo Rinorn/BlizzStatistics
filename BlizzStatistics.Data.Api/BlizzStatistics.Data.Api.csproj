@@ -188,6 +188,7 @@
     <Compile Include="Controllers\CharacterRacesController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RealmsController.cs" />
     <Compile Include="Controllers\SavedCharactersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

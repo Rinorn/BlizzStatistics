@@ -13,9 +13,7 @@
     </Page.DataContext>
 
     <Page.Resources>
-        
 
-        
         <CollectionViewSource
             x:Name="CharacterClassesViewSource"
             Source="{x:Bind ViewModel.CharacterClasses}">

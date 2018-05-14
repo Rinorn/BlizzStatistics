@@ -61,5 +61,7 @@ namespace BlizzStatistics.DataAccess
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<ClassLibrary1.Realm> Realms { get; set; }
     }
 }

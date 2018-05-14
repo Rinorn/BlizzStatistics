@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Net.Http;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -20,7 +23,7 @@ namespace BlizzStatistics.App.Views
         /// <summary>
         /// The connection
         /// </summary>
-        private string _connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+        private string _connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/645?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
         /// <summary>
         /// The realm index
         /// </summary>
@@ -51,7 +54,7 @@ namespace BlizzStatistics.App.Views
                 var response = await client.GetStringAsync(ur);
                 var data = JsonConvert.DeserializeObject<MythicRootobject>(response);
                 AddToColumns(data);
-                TbBestTime.Text = data.leading_groups[0].Duration.ToString();
+                ConvertTimeStampToTime(data.leading_groups[0].Duration, TbBestTime);
                 TbAff1.Text = data.keystone_affixes[0].keystone_affix.Name;
                 TbAff2.Text = data.keystone_affixes[1].keystone_affix.Name;
                 TbAff3.Text = data.keystone_affixes[2].keystone_affix.Name;
@@ -63,6 +66,23 @@ namespace BlizzStatistics.App.Views
             }
         }
 
+        private void ConvertTimeStampToTime(long time, TextBlock tb)
+        {
+            time = time / 1000;
+            var timeHour = DateTimeOffset.FromUnixTimeSeconds(time).DateTime.Hour;
+            var timeMin = DateTimeOffset.FromUnixTimeSeconds(time).DateTime.Minute;
+            var timeSec = DateTimeOffset.FromUnixTimeSeconds(time).DateTime.Second;
+            
+            tb.Text = timeHour +":"+ timeMin + ":" + timeSec;
+        }
+        private void ConvertTimeStampToDate(long time, TextBlock tb)
+        {
+            var timeHour = DateTimeOffset.FromUnixTimeMilliseconds(time).Day + "/" +DateTimeOffset.FromUnixTimeMilliseconds(time).Month + "/" + DateTimeOffset.FromUnixTimeMilliseconds(time).Year;
+            
+
+            tb.Text = timeHour;
+        }
+
         /// <summary>
         /// Defines the text.
         /// </summary>
@@ -72,8 +92,9 @@ namespace BlizzStatistics.App.Views
            
             tb.TextAlignment = TextAlignment.Center;
             tb.VerticalAlignment = VerticalAlignment.Center;
-            tb.FontSize = 50;
+            tb.FontSize = 15;
             tb.Foreground = new SolidColorBrush(Colors.White);
+            tb.FontStretch = FontStretch.ExtraCondensed;
         }
 
         /// <summary>
@@ -101,14 +122,15 @@ namespace BlizzStatistics.App.Views
                         case 1:
                             tb.Text = data.leading_groups[i].keystone_level.ToString();                        
                             break;
-                        case 2: tb.Text = data.leading_groups[i].Duration.ToString();                           
+                        case 2:
+                            ConvertTimeStampToTime(data.leading_groups[i].Duration, tb); ;                           
                             break;
                         case 3:
                             AddGroupMember(data, mainGrid, a, i);
                             a = 7;
                             break;
                         case 8:
-                            tb.Text = data.leading_groups[i].completed_timestamp.ToString();                           
+                            ConvertTimeStampToDate(data.leading_groups[i].completed_timestamp, tb);                           
                             break;
                     }
                     if (a == 7) continue;
@@ -127,8 +149,12 @@ namespace BlizzStatistics.App.Views
         /// <param name="a">a.</param>
         /// <param name="i">The i.</param>
         private static void AddtoGrid(Grid g, Grid mainGrid, UIElement tb, int a, int i)
-        {
-            g.Children.Add(tb);
+        {   
+            Viewbox view = new Viewbox();
+            view.Height = 40;
+            view.Child = tb;
+            
+            g.Children.Add(view);
             // Here you set the Grid properties, such as border and alignment
             g.BorderThickness = new Thickness(1, 2, 1, 2);
             g.BorderBrush = new SolidColorBrush(Colors.Wheat);
@@ -136,7 +162,12 @@ namespace BlizzStatistics.App.Views
             g.VerticalAlignment = VerticalAlignment.Stretch;
 
             // Add the newly created Grid to the outer Grid
-            var rowHeight = new RowDefinition {Height = new GridLength(5.0,GridUnitType.Star)};
+            var rowHeight = new RowDefinition
+            {
+                Height = new GridLength(0.1,GridUnitType.Auto)
+                
+            };
+            
             mainGrid.RowDefinitions.Add(rowHeight);
             Grid.SetRow(g, i+2);
             Grid.SetColumn(g, a);
