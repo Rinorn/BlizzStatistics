@@ -36,11 +36,11 @@ namespace ClassLibrary1
         public string ConvertedArmor => $" Armor {Armor}";
         public string ConvertedIlvl => $"Item Level {Ilvl}";
         public int RestrictedToClass { get; set; }
-        public string[] RestrictedToStat { get; set; }
+        public int RestrictedToStat { get; set; }
         public string EquipmentEffect { get; set; }
-
         
 
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

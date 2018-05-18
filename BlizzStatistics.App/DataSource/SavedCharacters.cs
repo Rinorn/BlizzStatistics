@@ -60,9 +60,10 @@ namespace BlizzStatistics.App.DataSource
             var response = await _client.PostAsync("SavedCharacters", new StringContent(postBody, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             return response.IsSuccessStatusCode;
         }
+
         public async Task<bool> DeleteSavedCharacter(SavedCharacter character)
         {
-            var response = await _client.DeleteAsync($"savedCharacters/{character.Id}").ConfigureAwait(false);
+            var response = await _client.DeleteAsync($"SavedCharacters/{character.Id}").ConfigureAwait(false);
             return response.IsSuccessStatusCode || response.StatusCode == System.Net.HttpStatusCode.NotFound;
         }
     }

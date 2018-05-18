@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Xaml.Navigation;
 using ClassLibrary1;
 using Template10.Mvvm;
@@ -10,6 +12,30 @@ using Template10.Services.NavigationService;
 
 namespace BlizzStatistics.App.ViewModels
 {
+    public class DeleteSavedCharacterCommand : ICommand
+    {
+        private OptimizationViewModel _viewModel;
+
+        public DeleteSavedCharacterCommand(OptimizationViewModel viewModel)
+        {
+            _viewModel = viewModel;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter) => parameter != null;
+
+        public async void Execute(object parameter)
+        {
+            if (CanExecute(parameter))
+            {
+                if (await DataSource.SavedCharacters.Instance.DeleteSavedCharacter((SavedCharacter)parameter))
+                    _viewModel.SavedCharacters.Remove(((SavedCharacter)parameter));
+            }
+        }
+    }
+
+
     public class OptimizationViewModel : ViewModelBase
     {
 
@@ -20,6 +46,9 @@ namespace BlizzStatistics.App.ViewModels
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             { }
+
+            DeleteSavedCharacterCommand = new DeleteSavedCharacterCommand(this);
+            
         }
 
         /// <summary>
@@ -92,5 +121,7 @@ namespace BlizzStatistics.App.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
+
+        public ICommand DeleteSavedCharacterCommand { get; set; }
     }
 }

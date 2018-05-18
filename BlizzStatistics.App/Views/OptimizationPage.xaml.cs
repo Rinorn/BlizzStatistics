@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography.Core;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using BlizzStatistics.App.ViewModels;
 using ClassLibrary1;
@@ -29,9 +32,24 @@ namespace BlizzStatistics.App.Views
         public List<Equipment> Equipment;
         public int SelectedCharacterArmorType;
         private GameCharacter _selectedChar;
-        private int itemSlot;
+        private int _itemSlot;
         private Image _clickedImage;
+        private Grid _clickedImgGrid;
+        private Equipment _selectedEquipment;
+        private int _mainStatIndex;
+        private Stat[] _selectedItemStats;
+        private int _orgMainStatValue;
+        private int _orgStaminaValue;
+        private int _orgMasteryValue;
+        private int _orgHasteValue;
+        private int _orgCritValue;
+        private int _orgVersatilityValue;
 
+
+
+        private readonly string[] _classes = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
+        
+        
         enum ClassArmorType
         {
             Plate=4, Mail = 3, Leather = 2, Cloth = 1, Misc = 0
@@ -102,11 +120,9 @@ namespace BlizzStatistics.App.Views
         public async Task<OriginalCharacterStats> GetCharacterStats(string name, string server)
         {
             var http = new HttpClient();
-
             var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=stats&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
             var result = await response.Content.ReadAsStringAsync();
             var charStatData = JsonConvert.DeserializeObject<OriginalCharacterStats>(result);
-
             CheckMainStat(charStatData);
             SetOriginalStats(charStatData);
             CheckOptimizedMainStats(charStatData);
@@ -119,13 +135,16 @@ namespace BlizzStatistics.App.Views
             if (OptimizedMainStatBlock.Text.Equals("Intellect"))
             {
                 OptimizedMainStatBox.Text = data.Stats.Int.ToString();
+                _mainStatIndex = 1;
             }else if (OptimizedMainStatBlock.Text.Equals("Agility"))
             {
                 OptimizedMainStatBox.Text = data.Stats.Agi.ToString();
+                _mainStatIndex = 2;
             }
             else
             {
                 OptimizedMainStatBox.Text = data.Stats.Str.ToString();
+                _mainStatIndex = 3;
             }
         }
         //Placeholder values for the optimized stats. there will need to be some kind of calculation done here
@@ -203,7 +222,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.head.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
 
             var item = data.Items.head.stats;
@@ -229,7 +248,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Item Level " + data.Items.neck.itemLevel;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.neck.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -257,7 +276,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.shoulder.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.shoulder.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -285,7 +304,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.back.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.back.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -313,7 +332,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.chest.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.chest.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -339,7 +358,7 @@ namespace BlizzStatistics.App.Views
                         break;
                     
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.wrist.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -364,7 +383,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Item Level " + data.Items.trinket1.itemLevel;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.trinket1.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -392,7 +411,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.hands.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.hands.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -420,7 +439,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.waist.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.waist.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -448,7 +467,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.legs.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.legs.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -476,7 +495,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.feet.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.feet.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -504,7 +523,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.finger1.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.finger1.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -532,7 +551,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.finger2.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i,15);
             }
             var item = data.Items.finger2.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -560,7 +579,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = "Armor " + data.Items.trinket2.armor;
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.trinket2.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -592,7 +611,7 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = data.Items.mainHand.weaponInfo.dps + " Damage per second";
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.mainHand.stats;
             DefineStats(mainGrid, rowCount, item);
@@ -603,6 +622,7 @@ namespace BlizzStatistics.App.Views
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             OffhandSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 4;
+            var rowOffsett = 0;
             var mainGrid = TtOffhandSlotGrid;
             for (var i = 0; i < 4; i++)
             {
@@ -617,22 +637,49 @@ namespace BlizzStatistics.App.Views
                         tbName.Text = data.Items.offHand == null ? "Item Level " +  data.Items.mainHand.itemLevel : "Item Level " + data.Items.offHand.itemLevel;
                         break;
                     case 2:
-                            tbName.Text = data.Items.offHand == null ? 
-                                data.Items.mainHand.weaponInfo.damage.min + " - " +
-                                data.Items.mainHand.weaponInfo.damage.max + " Damage            Speed " +
-                                data.Items.mainHand.weaponInfo.weaponSpeed : 
-                                data.Items.offHand.weaponInfo.damage.min + " - " +
-                                data.Items.offHand.weaponInfo.damage.max + " Damage            Speed " +
-                                data.Items.offHand.weaponInfo.weaponSpeed;
+                        if (data.Items.offHand == null)
+                        {
+                            tbName.Text = data.Items.mainHand.weaponInfo.damage.min + " - " +
+                                          data.Items.mainHand.weaponInfo.damage.max + " Damage            Speed " +
+                                          data.Items.mainHand.weaponInfo.weaponSpeed;
+                        }
+                        else
+                        {
+                            if (data.Items.offHand.weaponInfo != null)
+                            {
+                                tbName.Text = data.Items.offHand.weaponInfo.damage.min + " - " +
+                                              data.Items.offHand.weaponInfo.damage.max + " Damage            Speed " +
+                                              data.Items.offHand.weaponInfo.weaponSpeed;
+                            }
+                            else
+                            {
+                                rowOffsett = 1;
+                                continue;
+                            }
+                        }     
                         break;
                     case 3:
-                            tbName.Text = data.Items.offHand == null ? data.Items.mainHand.weaponInfo.dps + " Damage per second"  : data.Items.offHand.weaponInfo.dps + " Damage per second";
+                        if (data.Items.offHand == null)
+                        {
+                            tbName.Text = data.Items.mainHand.weaponInfo.dps + " Damage per second";
+                        }
+                        else
+                        {
+                            if (data.Items.offHand.weaponInfo != null)
+                            {
+                                tbName.Text = data.Items.offHand.weaponInfo.dps + " Damage per second";
+                            }
+                            else
+                            {
+                                tbName.Text = "Armor " + data.Items.offHand.armor;
+                            }
+                        } 
                         break;
                 }
-                AddToGrid(b, tbName, mainGrid, i);
+                AddToGrid(b, tbName, mainGrid, i-rowOffsett, 15);
             }
             var item = data.Items.offHand == null ? data.Items.mainHand.stats : data.Items.offHand.stats;
-            DefineStats(mainGrid, rowCount, item);
+            DefineStats(mainGrid, rowCount-rowOffsett, item);
         }
 
         public void DefineStats(Grid mainGrid, int rowCount, Stat[] item) 
@@ -682,15 +729,15 @@ namespace BlizzStatistics.App.Views
                         tb.Text = "Unidentified Stat";
                         break;
                 }
-                AddToGrid(g, tb, mainGrid, rowCount);
+                AddToGrid(g, tb, mainGrid, rowCount,15);
                 rowCount++;
             }
         }
-        public void AddToGrid(Grid g, TextBlock tb, Grid mainGrid, int rowCount)
+        public void AddToGrid(Grid g, TextBlock tb, Grid mainGrid, int rowCount, int prefRowHeight)
         {
             g.Children.Add(tb);
             // Add the newly created Grid to the outer Grid
-            var rowHeight = new RowDefinition { Height = new GridLength(15) };
+            var rowHeight = new RowDefinition { Height = new GridLength(prefRowHeight) };
             mainGrid.RowDefinitions.Add(rowHeight);
             Grid.SetRow(g, rowCount);
             Grid.SetColumn(g, 0);
@@ -771,23 +818,27 @@ namespace BlizzStatistics.App.Views
             {
                 if (a.ArmorType == armorType && a.RestrictedToClass == 0 || a.ArmorType == armorType && a.RestrictedToClass == _selectedChar.Class)
                 {
-                    if (a.Slot == itemSlot)
+                    if (a.Slot == _itemSlot)
                     {
                         view.Equipments.Add(a);
-
+                       
                     }
 
                 }
-                else if (a.ArmorType == 0 && a.Slot == itemSlot || a.ArmorType == 1 && a.Slot == itemSlot)
+                else if (a.ArmorType == 0 && a.Slot == _itemSlot && a.RestrictedToStat == 0|| a.ArmorType == 1 && a.Slot == _itemSlot)
                 {
-                    foreach (var t in a.RestrictedToStat)
+                    view.Equipments.Add(a);
+                }
+                else if (a.ArmorType == 0 && a.Slot == _itemSlot && a.RestrictedToStat != 0)
+                {
+                    if (a.RestrictedToStat == _mainStatIndex || a.RestrictedToStat == 4 && _mainStatIndex == 2 ||
+                        a.RestrictedToStat == 4 && _mainStatIndex == 3)
                     {
-                        if (t == MainStatName)
-                        {
-                            view.Equipments.Add(a);
-                        }
+                        view.Equipments.Add(a);
                     }
                 }
+                
+                
             }
             ItemList.ItemsSource = view.Equipments;
            
@@ -795,47 +846,76 @@ namespace BlizzStatistics.App.Views
 
         private void DefineItemSlots(Button clickedBtn)
         {
-            if (clickedBtn == BtnHeadSlot){itemSlot = 1;
+            if (clickedBtn == BtnHeadSlot){_itemSlot = 1;
                 _clickedImage = OptHeadSlotImg;
+                _clickedImgGrid = OptTtHeadSlotGrid;
+                _selectedItemStats = _selectedChar.Items.head.stats;
+
             }
-            else if (clickedBtn == BtnNeckSlot){itemSlot = 2;
+            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2;
                 _clickedImage = OptNeckSlotImg;
+                _clickedImgGrid = OptTtNeckSlotGrid;
+                _selectedItemStats = _selectedChar.Items.neck.stats;
             }
-            else if (clickedBtn == BtnShoulderSlot){itemSlot = 3;
+            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3;
                 _clickedImage = OptShoulderSlotImg;
+                _clickedImgGrid = OptTtShoulderSlotGrid;
+                _selectedItemStats = _selectedChar.Items.shoulder.stats;
             }
-            else if (clickedBtn == BtnBackSlot){itemSlot = 16;
+            else if (clickedBtn == BtnBackSlot){_itemSlot = 16;
                 _clickedImage = OptBackSlotImg;
+                _clickedImgGrid = OptTtBackSlotGrid;
+                _selectedItemStats = _selectedChar.Items.back.stats;
             }
-            else if (clickedBtn == BtnChestSlot){itemSlot = 5;
+            else if (clickedBtn == BtnChestSlot){_itemSlot = 5;
                 _clickedImage = OptChestSlotImg;
+                _clickedImgGrid = OptTtChestSlotGrid;
+                _selectedItemStats = _selectedChar.Items.chest.stats;
             }
-            else if (clickedBtn == BtnBeltSlot){itemSlot = 6;
+            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6;
                 _clickedImage = OptBeltSlotImg;
+                _clickedImgGrid = OptTtBeltSlotGrid;
+                _selectedItemStats = _selectedChar.Items.waist.stats;
             }
-            else if (clickedBtn == BtnLegsSlot){itemSlot = 7;
+            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7;
                 _clickedImage = OptLegsSlotImg;
+                _clickedImgGrid = OptTtLegsSlotGrid;
+                _selectedItemStats = _selectedChar.Items.legs.stats;
             }
-            else if (clickedBtn == BtnFeetSlot){itemSlot = 8;
+            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8;
                 _clickedImage = OptFeetSlotImg;
+                _clickedImgGrid = OptTtFeetSlotGrid;
+                _selectedItemStats = _selectedChar.Items.feet.stats;
             }
-            else if (clickedBtn == BtnWristSlot){itemSlot = 9;
+            else if (clickedBtn == BtnWristSlot){_itemSlot = 9;
                 _clickedImage = OptWristSlotImg;
+                _clickedImgGrid = OptTtWristSlotGrid;
+                _selectedItemStats = _selectedChar.Items.wrist.stats;
             }
-            else if (clickedBtn == BtnGlovesSlot){itemSlot = 10;
+            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10;
                 _clickedImage = OptGlovesSlotImg;
+                _clickedImgGrid = OptTtGlovesSlotGrid;
+                _selectedItemStats = _selectedChar.Items.hands.stats;
             }
-            else if (clickedBtn == BtnRing1Slot){itemSlot = 11;
+            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11;
                 _clickedImage = OptRing1SlotImg;
+                _clickedImgGrid = OptTtRing1SlotGrid;
+                _selectedItemStats = _selectedChar.Items.finger1.stats;
             }
-            else if (clickedBtn == BtnRing2Slot){itemSlot = 11;
+            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11;
                 _clickedImage = OptRing2SlotImg;
+                _clickedImgGrid = OptTtRing2SlotGrid;
+                _selectedItemStats = _selectedChar.Items.finger2.stats;
             }
-            else if (clickedBtn == BtnTrinket1Slot){itemSlot = 12;
+            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12;
                 _clickedImage = OptTrinket1SlotImg;
+                _clickedImgGrid = OptTtTrinket1SlotGrid;
+                _selectedItemStats = _selectedChar.Items.trinket1.stats;
             }
-            else if (clickedBtn == BtnTrinketSlot){itemSlot = 12;
+            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12;
                 _clickedImage = OptTrinket2SlotImg;
+                _clickedImgGrid = OptTtTrinket2SlotGrid;
+                _selectedItemStats = _selectedChar.Items.trinket2.stats;
             }
         }
         private void DefineArmorType()
@@ -867,10 +947,175 @@ namespace BlizzStatistics.App.Views
         private void ItemList_SelectedItem(object sender, SelectionChangedEventArgs e)
         {
             ItemContentDialog.Hide();
+            _clickedImgGrid.Children.Clear();
+            _clickedImgGrid.RowDefinitions.Clear();
             var a = (Equipment) ItemList.SelectedItem;
-            if (a != null) _clickedImage.Source = new BitmapImage(new Uri(a.Icon));
+            if (a == null) return;
+            _selectedEquipment = a;
+            _clickedImage.Source = new BitmapImage(new Uri(a.Icon));
+            DefineToolTip(a);
+            GetOrgSlotStats();
+            RedefineOptStats();
         }
 
+        private void RedefineOptStats()
+        {
+            
+                OptimizedMainStatBox.Text = (int.Parse(OptimizedMainStatBox.Text) + (_selectedEquipment.MainStat - _orgMainStatValue)).ToString();
+          
+                OptimizedStaminaBox.Text = (int.Parse(OptimizedStaminaBox.Text) + (_selectedEquipment.Stamina - _orgStaminaValue)).ToString();
+                OptimizedHpBox.Text = (int.Parse(OptimizedStaminaBox.Text) * 60).ToString();
+           
+                OptimizedMasteryBox.Text = (int.Parse(OptimizedMasteryBox.Text) + (_selectedEquipment.Mastery - _orgMasteryValue)).ToString();
+           
+                OptimizedCritBox.Text = (int.Parse(OptimizedCritBox.Text) + (_selectedEquipment.Crit - _orgCritValue)).ToString();
+            
+           
+                OptimizedHasteBox.Text = (int.Parse(OptimizedHasteBox.Text) + (_selectedEquipment.Haste - _orgHasteValue)).ToString();
+         
+                OptimizedVersatilityBox.Text = (int.Parse(OptimizedVersatilityBox.Text) + (_selectedEquipment.Versatility - _orgVersatilityValue)).ToString();
+            CheckIfChangeIsPositive();
+        }
+
+        private void CheckIfChangeIsPositive()
+        {
+
+            if (int.Parse(OptimizedMainStatBox.Text) > int.Parse(OriginalMainStat.Text)){OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Green);}
+            else if (int.Parse(OptimizedMainStatBox.Text) < int.Parse(OriginalMainStat.Text)) {OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Red);}
+
+            if (int.Parse(OptimizedStaminaBox.Text) > int.Parse(OriginalStamina.Text)){ OptimizedStaminaBox.Foreground = new SolidColorBrush(Colors.Green); OptimizedHpBox.Foreground = new SolidColorBrush(Colors.Green);}
+            else if(int.Parse(OptimizedStaminaBox.Text) < int.Parse(OriginalStamina.Text)){ OptimizedStaminaBox.Foreground = new SolidColorBrush(Colors.Red); OptimizedHpBox.Foreground = new SolidColorBrush(Colors.Red);}
+
+            if (int.Parse(OptimizedMasteryBox.Text) > int.Parse(OriginalMastery.Text)){ OptimizedMasteryBox.Foreground = new SolidColorBrush(Colors.Green);}
+            else if (int.Parse(OptimizedMasteryBox.Text) < int.Parse(OriginalMastery.Text)){ OptimizedMasteryBox.Foreground = new SolidColorBrush(Colors.Red);}
+
+            if (int.Parse(OptimizedCritBox.Text) > int.Parse(OriginalCrit.Text)) { OptimizedCritBox.Foreground = new SolidColorBrush(Colors.Green);}
+            else if (int.Parse(OptimizedCritBox.Text) > int.Parse(OriginalCrit.Text)) { OptimizedCritBox.Foreground = new SolidColorBrush(Colors.Red);}
+
+            if (int.Parse(OptimizedHasteBox.Text) > int.Parse(OriginalHaste.Text)) { OptimizedHasteBox.Foreground = new SolidColorBrush(Colors.Green); }
+            else if (int.Parse(OptimizedHasteBox.Text) > int.Parse(OriginalHaste.Text)) { OptimizedHasteBox.Foreground = new SolidColorBrush(Colors.Red); }
+
+            if (int.Parse(OptimizedVersatilityBox.Text) > int.Parse(OriginalVersatility.Text)) { OptimizedVersatilityBox.Foreground = new SolidColorBrush(Colors.Green); }
+            else if (int.Parse(OptimizedVersatilityBox.Text) > int.Parse(OriginalVersatility.Text)) { OptimizedVersatilityBox.Foreground = new SolidColorBrush(Colors.Red); }
+
+            ClearStats();
+        }
+
+        private void ClearStats()
+        {
+            _orgMainStatValue = 0;
+            _orgStaminaValue = 0;
+            _orgMasteryValue = 0;
+            _orgCritValue = 0;
+            _orgHasteValue = 0;
+            _orgVersatilityValue = 0;
+        }
+        private void GetOrgSlotStats()
+        {
+            
+            foreach (var a in _selectedItemStats)
+            {
+                
+                switch (a.stat)
+                {
+                    case 74:
+                    case 73:
+                    case 71:
+                    case 3:
+                    case 4:
+                    case 5:
+                        _orgMainStatValue = a.amount;
+                        break;
+                    case 40:
+                        _orgVersatilityValue = a.amount;
+                        break;
+                    case 49:
+                        _orgMasteryValue = a.amount;
+                        break;
+                    case 7:
+                        _orgStaminaValue = a.amount;
+                        break;
+                    case 32:
+                        _orgCritValue = a.amount;
+                        break;
+                    case 36:
+                        _orgHasteValue = a.amount;
+                        break;
+                }
+                
+            }
+        }
+        
+        
+
+        private void DefineToolTip(Equipment equipment)
+        {
+            var rowOffsett = 0;
+            var rowHeight = 15;
+            for (var i = 0; i < 10; i++)
+            {
+                var g = new Grid();
+                var tb = new TextBlock();
+                switch (i)
+                {
+                    case 0: tb.Text = equipment.Name; break;
+                    case 1: tb.Text = equipment.ConvertedIlvl; break;
+                    case 2: if (equipment.Armor != 0){tb.Text = equipment.ConvertedArmor;}else{rowOffsett++; continue;} break;
+                    case 3: if (equipment.MainStat != 0){tb.Text = equipment.MainStat + " " + MainStatName;}else{rowOffsett++; continue;} break;
+                    case 4: if (equipment.Stamina != 0){tb.Text = equipment.Stamina + " Stamina";}else{rowOffsett++;continue;} break;
+                    case 5: if (equipment.Mastery != 0){tb.Text = equipment.Mastery + " Mastery";}else{rowOffsett++;continue;} break;
+                    case 6: if (equipment.Crit != 0){tb.Text = equipment.Crit + " Critical Strike";}else{rowOffsett++;continue;} break;
+                    case 7: if (equipment.Haste != 0){tb.Text = equipment.Haste + " Haste";}else{rowOffsett++;continue;} break;
+                    case 8: if (equipment.Versatility != 0){tb.Text = equipment.Versatility + " Versatility"; }else{rowOffsett++;continue;} break;
+                    case 9: if (equipment.EquipmentEffect != null) { rowHeight = 135; tb.Width = 300; tb.Text = equipment.EquipmentEffect;
+                            tb.TextWrapping = TextWrapping.Wrap; var colDef = new ColumnDefinition {Width = new GridLength(1, GridUnitType.Auto)};
+                            g.ColumnDefinitions.Add(colDef); g.Height = 500; g.Width = 400;}
+                        else{rowOffsett++;continue;} break;
+                }
+                AddToGrid(g, tb, _clickedImgGrid, i-rowOffsett, rowHeight);
+            }
+        }
        
+        public async void UpdateCharacterToDb(object sender, RoutedEventArgs e)
+        {
+            var view = await UpdateCharacterContentDialog.ShowAsync();
+            if (view == ContentDialogResult.Primary)
+            {
+
+            }
+        }
+        public async void AddNewCharacterToDb(object sender, RoutedEventArgs e)
+        {   
+            var view = await AddNewCharacterContentDialog.ShowAsync();
+            if (view != ContentDialogResult.Primary) return;
+            CharacterName = AddCharNameBox.Text;
+            CharacterServer = AddCharServerBox.Text;
+            try
+            {
+                var url = "https://eu.api.battle.net/wow/character/" + CharacterServer + "/" + CharacterName + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
+                var http = new HttpClient();
+                var response = await http.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<GameCharacter>(result);
+                var classIndex = data.Class;
+
+                var character = new SavedCharacter()
+                {
+                    Name = data.Name,
+                    Level = data.Level,
+                    ClassName = _classes[classIndex - 1],
+                    Realm = data.Realm,
+
+                };
+                await DataSource.SavedCharacters.Instance.AddSavedCharacter(character);
+                ViewModel.SavedCharacters.Add(character);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+
+        }
     }
 }

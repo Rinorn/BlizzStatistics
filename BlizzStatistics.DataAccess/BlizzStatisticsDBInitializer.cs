@@ -879,7 +879,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_offhand_pvealliance_d_01_gold.jpg",
                 MainStat = 3608,
                 EquipmentEffect = "Use: Sear an enemy with holy light, inflicting x Holy damage over 18 sec. Restores x mana each time damage is dealt.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -890,7 +890,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_green.jpg",
                 MainStat = 2994,
                 EquipmentEffect = "Equip: Your healing effects have a chance to grow an Emerald Blossom nearby, which heals a random injured ally for x every 2 sec. Lasts 12 sec.\n\nEonar's Verdant Embrace\nWhen empowered by the Pantheon, your next 4 direct healing spells grant the target a shield that prevents x damage for 30 sec.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
 
             });
             context.Equipments.Add(new Equipment()
@@ -902,7 +902,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_06.jpg",
                 MainStat = 3608,
                 EquipmentEffect = "Equip: Your healing effects have a chance to increase your Haste by x for 8 sec, stacking up to 5 times. This is more likely to occur when you heal allies who are at low health.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -913,7 +913,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/spell_nature_astralrecalgroup.jpg",
                 Mastery = 1477,
                 EquipmentEffect = "Equip: Your healing effects have a chance to apply a charge of Highfather's Timekeeping for 1 min, max 5 charges. When the ally falls below x% health, Highfather's Timekeeping is consumed to instantly heal them for x health per charge.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -934,7 +934,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_datacrystal06.jpg",
                 MainStat = 3608,
                 EquipmentEffect = "Use: Open a portal at an ally's location that releases brilliant light, restoring x health split amongst injured allies within 20 yds.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -945,7 +945,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_trinket_08d.jpg",
                 Versatility = 1477,
                 EquipmentEffect = "Use: Redirect the life force of an enemy, increasing your Intellect by up to x for 15 sec. This grants more Intellect when used against targets at high health.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             ///////////////Spell dps trinkets/////////////////
             context.Equipments.Add(new Equipment()
@@ -957,7 +957,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_trinket_01c.jpg",
                 MainStat = 3608,
                 EquipmentEffect = "Equip: Your damaging spells that critically strike have a chance to increase your Haste, Mastery, or Critical Strike by x for 45 sec, stacking up to 5 times. When any stack reaches 5, all effects are consumed to grant you x of all three attributes for 12 sec.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -968,7 +968,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_blue.jpg",
                 Mastery = 1370,
                 EquipmentEffect = "Equip: Your damaging spells have a chance to increase your Intellect by x for 12 sec.\n\nNorgannon's Command\nWhen empowered by the Pantheon, you gain 6 charges of Norgannon's Command for 15 sec. Your damaging spells expend a charge to inflict an additional x damage to the target, from a random school of magic.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -990,7 +990,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_ritualofsacrifice.jpg",
                 MainStat = 3608,
                 EquipmentEffect = "Equip: Your damaging spells have a chance to conjure x Shadow Blades. After 2 sec, the swords begin launching foward, each dealing x Shadow damage to the first enemy in their path and increasing damage taken from your subsequent Shadow Blades by x% for 3 sec, up to x%.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1001,7 +1001,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_7_0raid_trinket_010d.jpg",
                 Mastery = 1477,
                 EquipmentEffect = "Use: Call a Legion ship to bombard the target's location for 9 sec, dealing x Fire damage to all targets within 12 yds, including the ship.",
-                RestrictedToStat = Intellect
+                RestrictedToStat = 1
             });
             ///////////////////Agility trinkets/////////////////
             context.Equipments.Add(new Equipment()
@@ -1013,7 +1013,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_orgrimmarraid_trinket_04_green.jpg",
                 Mastery = 1477,
                 EquipmentEffect = "Equip: Your melee and ranged attacks have a chance to plant Fire Mines at the enemy's feet. Fire Mines detonate after 15 sec, inflicting x Fire damage to all enemies within 12 yds",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1024,7 +1024,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_grey.jpg",
                 MainStat = 2994,
                 EquipmentEffect = "Equip: Your damaging abilities have a chance to create a Ravaging Storm at your target's location, inflicting x Nature damage split among all enemies within 6 yds over 6 sec.\n\nGolganneth's Thunderous Wrath\nWhen empowered by the Pantheon, your autoattacks cause an explosion of lightning dealing 12 Nature damage to all enemies within 8 yds of the target. Lasts 15 sec.",
-                RestrictedToStat = Agility
+                RestrictedToStat = 2
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1035,7 +1035,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_sword_1h_firelandsraid_d_01.jpg",
                 Haste = 1477,
                 EquipmentEffect = "Equip: Your melee attacks have a chance to grant an Echo of Gorshalach. On reaching 15 applications, you lash out with a devastating combination of attacks, critically striking enemies in a 15 yd cone in front of you for x Fire damage.",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1046,7 +1046,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_03.jpg",
                 Versatility = 1477,
                 EquipmentEffect = "Equip: Your melee attacks have a chance to deal x Shadow damage to the target. If there are no other enemies within x yds of them, this deals an additional x damage.",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1056,7 +1056,7 @@ namespace BlizzStatistics.DataAccess
                 Name = "Shadow-Singed Fang",
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_blacksaberonfang.jpg",
                 EquipmentEffect = "Equip: Your melee and ranged abilities have a chance to increase your Strength or Agility by x for 12 sec.\n\n\n Equip: Your autoattacks have a chance to increase your Critical Strike by x for 12 sec.",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             ///////////////Strength dps trinket///////////////////
             context.Equipments.Add(new Equipment()
@@ -1068,7 +1068,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_red.jpg",
                 MainStat = 2994,
                 EquipmentEffect = "Equip: Your damaging attacks have a chance to make your weapon glow hot with the fire of Khaz'goroth's forge, causing your autoattacks to do x additional Fire damage for 12 sec.\n\n\n\nKhaz'goroth's Shaping\n\nWhen empowered by the Pantheon, your Critical Strike, Haste, Mastery, or Versatility is increased by x for 15 sec. Khaz'goroth always empowers your highest stat.",
-                RestrictedToStat = Strength
+                RestrictedToStat = 3
             });
             ///////////////Tank Trinkets////////////////
             context.Equipments.Add(new Equipment()
@@ -1080,7 +1080,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_antorus_orange.jpg",
                 MainStat = 2994,
                 EquipmentEffect = "Equip: Taking damage has a chance to increase your Versatility by x for 14 sec.\n\nAggramar's Fortitude\nWhen empowered by the Pantheon, your maximum health is increased by x for 15 sec, and you are healed to full health.",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1091,7 +1091,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_11.jpg",
                 Haste = 1477,
                 EquipmentEffect = "Use: Reduce the damage of the next 10 melee attacks against you by up to x each. Lasts up to 20 sec.\n\nSuffering melee attacks reduces the cooldown of this ability by 1 sec.",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1102,7 +1102,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_glacialtrap.jpg",
                 MainStat = 3608,
                 EquipmentEffect = "Use: Increase your Armor by x for 12 sec, and inflict x Frost damage to enemies within 12 yds and reduce their movement speed by x for 12 sec",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1114,7 +1114,7 @@ namespace BlizzStatistics.DataAccess
                 MainStat = 3608,
                 Armor = 1131,
                 EquipmentEffect = "Equip: Grants x additional Versatility to a nearby tank-specialized ally bearing the Eye of Shatug\n\n\n Use: Transform to Eye of Shatug",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1126,7 +1126,7 @@ namespace BlizzStatistics.DataAccess
                 Stamina = 5412,
                 Versatility = 1477,
                 EquipmentEffect = "Equip: Grants x additional Armor to a nearby tank-specialized ally bearing the Eye of F'harg\n\n\n Use: Transform to Eye of F'harg",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1137,7 +1137,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_offhand_pvp330_d_02.jpg",
                 Crit = 1477,
                 EquipmentEffect = "Equip: Taking damage has a chance to open a portal to another world, either healing you, providing an absorption shield, or empowering you with shadowflame magic",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             context.Equipments.Add(new Equipment()
             {
@@ -1148,7 +1148,7 @@ namespace BlizzStatistics.DataAccess
                 Icon = "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_shieldmastery.jpg",
                 Mastery = 1477,
                 EquipmentEffect = "Use: Channel a Bulwark of Flame that absorbs x damage for 3 sec. When the Bulwark expires you unleash x Waves of Flame, dealing x Fire damage to all enemies in their path.\n\nYou cannot move or use abilities during Bulwark of Flame",
-                RestrictedToStat = StrengthAgility
+                RestrictedToStat = 4
             });
             base.Seed(context);
 
