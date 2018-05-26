@@ -280,14 +280,6 @@ namespace BlizzStatistics.DataAccess
                 Realm = "StormScale",
                 Level = 110
             });
-            context.SavedCharacters.Add(new SavedCharacter()
-            {
-                Id = 4,
-                Name = "RødtKjøtt",
-                ClassName = "Monk",
-                Realm = "StormScale",
-                Level = 110
-            });
             /////////////////////Equipment//////////////////////
 
             //mailhead//
@@ -1149,6 +1141,1484 @@ namespace BlizzStatistics.DataAccess
                 Mastery = 1477,
                 EquipmentEffect = "Use: Channel a Bulwark of Flame that absorbs x damage for 3 sec. When the Bulwark expires you unleash x Waves of Flame, dealing x Fire damage to all enemies in their path.\n\nYou cannot move or use abilities during Bulwark of Flame",
                 RestrictedToStat = 4
+            });
+            //////////////cloth Heads////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Crown of Relentless Annihilation",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_cloth_raidpriest_s_01.jpg",
+                Armor = 313,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1300,
+                Versatility = 738
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Gilded Seraph's Crown",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_cloth_raidpriest_s_01.jpg",
+                Armor = 313,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1300,
+                Mastery = 768,
+                RestrictedToClass = 5
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Soulhunter's Cowl",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_cloth_raidwarlock_s_01.jpg",
+                Armor = 313,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1182,
+                Mastery = 886
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Runebound Collar",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_cloth_raidmage_s_01.jpg",
+                Armor = 313,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 871,
+                Mastery = 1196,
+                RestrictedToClass = 8
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Grim Inquisitor's Death Mask",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_cloth_raidwarlock_s_01.jpg",
+                Armor = 313,
+                MainStat = 3795,
+                Stamina = 5693,
+                Versatility = 827,
+                Mastery = 1241,
+                RestrictedToClass = 9
+            });
+
+            ///////////////cloth shoulders//////////////////
+
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Fallen Avenger's Amice",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_cloth_raidpriest_s_01.jpg",
+                Armor = 289,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 609,
+                Haste = 1182
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Gilded Seraph's Amice",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_cloth_raidpriest_s_01.jpg",
+                Armor = 289,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 620,
+                Mastery = 930,
+                RestrictedToClass = 5
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Soul-Siphon Mantle",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_cloth_raidwarlock_s_01.jpg",
+                Armor = 289,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 631,
+                Mastery = 919
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Runebound Mantle",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulders_cloth_raidmage_s_01.jpg",
+                Armor = 289,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 997,
+                Mastery = 554,
+                RestrictedToClass = 8
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Grim Inquisitor's Shoulderguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_cloth_raidwarlock_s_01.jpg",
+                Armor = 289,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 953,
+                Mastery = 598,
+                RestrictedToClass = 9
+            });
+
+            ////////////////////Cloth Chests/////////////////////////
+
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Gilded Seraph's Robes",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_robe_cloth_raidpriest_s_01.jpg",
+                Armor = 385,
+                MainStat = 3975,
+                Stamina = 5693,
+                Crit = 842,
+                Versatility = 1226,
+                RestrictedToClass = 5
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Magma-Spattered Smock",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_cloth_raidwarlock_s_01.jpg",
+                Armor = 385,
+                MainStat = 3975,
+                Stamina = 5693,
+                Versatility = 798,
+                Mastery = 1270
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Vestments of Enflamed Blight",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_robe_cloth_raidpriest_s_01.jpg",
+                Armor = 385,
+                MainStat = 3975,
+                Stamina = 5693,
+                Crit = 1315,
+                Haste = 753
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 1,
+                Ilvl = 970,
+                Name = "Gambeson of Sargaras' Corruption",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_cloth_raidmage_s_01.jpg",
+                Armor = 399,
+                MainStat = 4166,
+                Stamina = 6250,
+                Haste = 1350,
+                Mastery = 797
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Runebound Tunic",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_cloth_raidmage_s_01.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1196,
+                Versatility = 871,
+                RestrictedToClass = 8
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Grim Inquisitor's Robes",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_cloth_raidwarlock_s_01.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 738,
+                Haste = 1330,
+                RestrictedToClass = 9
+            });
+            ////////////////////////// Cloth Wrist////////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Blood-Drenched Bindings",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_bracer_cloth_raidwarlock_s_01.jpg",
+                Armor = 169,
+                MainStat = 2135,
+                Stamina = 3203,
+                Crit = 731,
+                Mastery = 432
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Man'ari Pyromancer Cuffs",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_bracer_cloth_raidmage_s_01.jpg",
+                Armor = 169,
+                MainStat = 2135,
+                Stamina = 3203,
+                Versatility = 498,
+                Mastery = 665
+            });
+
+            //////////////////////Cloth hands/////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Aranasi Shadow-Weaver's Gloves",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_cloth_raidmage_s_01.jpg",
+                Armor = 241,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 897,
+                Mastery = 653
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Gilded Seraph's Handwraps",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_cloth_raidpriest_s_01.jpg",
+                Armor = 241,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 554,
+                Mastery = 997,
+                RestrictedToClass = 5
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 1,
+                Ilvl = 970,
+                Name = "Handwraps of Inevitable Doom",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_cloth_raidwarlock_s_01.jpg",
+                Armor = 250,
+                MainStat = 3124,
+                Stamina = 4687,
+                Crit = 667,
+                Mastery = 943
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Runebound Gloves",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_cloth_raidmage_s_01.jpg",
+                Armor = 241,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 953,
+                Haste = 598,
+                RestrictedToClass = 8
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Grim Inquisitor's Gloves",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_cloth_raidwarlock_s_01.jpg",
+                Armor = 241,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 886,
+                Versatility = 665,
+                RestrictedToClass = 9
+            });
+            /////////////////////cloth waist////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Cord of Blossoming Petals",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_cloth_raidpriest_s_01.jpg",
+                Armor = 217,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 886,
+                Versatility = 665
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Cord of Surging Hysteria",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_cloth_raidwarlock_s_01.jpg",
+                Armor = 217,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 942,
+                Mastery = 609
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Enhanced Worldscorcher Cinch",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_cloth_raidmage_s_01.jpg",
+                Armor = 217,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 587,
+                Mastery = 964
+            });
+            /////////////////////////////////// Cloth Legs //////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Fervent Twilight Legwraps",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_cloth_raidpriest_s_01.jpg",
+                Armor = 337,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1182,
+                Versatility = 886
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Gilded Seraph's Leggings",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_cloth_raidpriest_s_01.jpg",
+                Armor = 337,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 857,
+                Haste = 1211,
+                RestrictedToClass = 5
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Legwraps of the Seasoned Exterminator",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_cloth_raidwarlock_s_01.jpg",
+                Armor = 337,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 945,
+                Mastery = 1122
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Runebound Leggings",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_cloth_raidmage_s_01.jpg",
+                Armor = 337,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1285,
+                Versatility = 783,
+                RestrictedToClass = 8
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Grim Inquisitor's Leggings",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_cloth_raidwarlock_s_01.jpg",
+                Armor = 337,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1211,
+                Mastery = 857,
+                RestrictedToClass = 9
+            });
+            ////////////////////Cloth feet////////////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Lady Dacidion's Silk Slippers",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_cloth_raidwarlock_s_01.jpg",
+                Armor = 265,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 631,
+                Haste = 919
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Sandals of the Reborn Colossus",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_cloth_raidpriest_s_01.jpg",
+                Armor = 265,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 598,
+                Mastery = 953
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 1,
+                Ilvl = 960,
+                Name = "Wisperstep Runners",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_cloth_raidmage_s_01.jpg",
+                Armor = 265,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 908,
+                Mastery = 642
+            });
+            ///////////////////Leather Head/////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "General Erodus' Tricorne",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_helm.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Versatility = 916,
+                Mastery = 1152
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Headdress of Living Brambles",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_leather_raiddruid_s_01.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 738,
+                Haste = 1330
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Cavalier Hat of the Dashing Scoundrel",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_helm.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1093,
+                Mastery = 975,
+                RestrictedToClass = 4
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Douli of Chi'ji",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_inv_leather_raidmonk_s_01.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1300,
+                Versatility = 768,
+                RestrictedToClass = 10
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Bearmantle Headdress",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_leather_raiddruid_s_01.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 798,
+                Mastery = 1270,
+                RestrictedToClass = 11
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Felreaper Hood",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01helm.jpg",
+                Armor = 385,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1063,
+                Mastery = 1004,
+                RestrictedToClass = 12
+            });
+            ////////////////////////////Leather shoulders///////////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Shoulderpads of the Demonic Blitz",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_shoulder.jpg",
+                Armor = 356,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 942,
+                Mastery = 609
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Spaulders of the Relentless Tracker",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_leather_raiddruid_s_01.jpg",
+                Armor = 356,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 665,
+                Mastery = 886
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Shoulderpads of the Dashing Scoundrel",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_shoulder.jpg",
+                Armor = 356,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 842,
+                Versatility = 709,
+                RestrictedToClass = 4
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Meditation Spheres of Chi'Ji",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_inv_leather_raidmonk_s_01.jpg",
+                Armor = 356,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 997,
+                Mastery = 554,
+                RestrictedToClass = 10
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Bearmantle Shoulders",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_leather_raiddruid_s_01.jpg",
+                Armor = 356,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 875,
+                Mastery = 676,
+                RestrictedToClass = 11
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Felreaper Spaulders",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01shoulders.jpg",
+                Armor = 356,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 975,
+                Versatility = 576,
+                RestrictedToClass = 12
+            });
+            //////////////////////////////////////Leather Chest/////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Harness of Oppressing Dark",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_leather_raiddruid_s_01.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1255,
+                Haste = 812
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Vest of the Dashing Scoundrel",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_chest.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Versatility = 768,
+                Mastery = 1300,
+                RestrictedToClass = 4
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Vest of Unfathomable Anguish",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01chest.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1226,
+                Mastery = 842
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Vest of Waning Life",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_inv_leather_raidmonk_s_01.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1165,
+                Versatility = 981
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Tunic of Chi'Ji",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_inv_leather_raidmonk_s_01.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 945,
+                Mastery = 1122,
+                RestrictedToClass = 10
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Bearmantle Harness",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_leather_raiddruid_s_01.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1182,
+                Versatility = 886,
+                RestrictedToClass = 11
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Felreaper Vest",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01chest.jpg",
+                Armor = 474,
+                MainStat = 3795,
+                Stamina = 5693,
+                Versatility = 1285,
+                Mastery = 783,
+                RestrictedToClass = 12
+            });
+            /////////////////////////////Leather wrist////////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Bracers of Wanton Morality",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_bracer.jpg",
+                Armor = 208,
+                MainStat = 2135,
+                Stamina = 3203,
+                Haste = 731,
+                Versatility = 432
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Fiendish Logistican's Wristwraps",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01bracer.jpg",
+                Armor = 208,
+                MainStat = 2135,
+                Stamina = 3203,
+                Crit = 623,
+                Haste = 540
+            });
+            /////////////////////////////////////Leather Gloves//////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Gloves of the Dashing Scoundrel",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_glove.jpg",
+                Armor = 296,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 576,
+                Mastery = 975,
+                RestrictedToClass = 4
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Grips of Hungering Shadows",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_glove.jpg",
+                Armor = 296,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 642,
+                Versatility = 908
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Lurid Grips of the Obscene",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_inv_leather_raidmonk_s_01.jpg",
+                Armor = 296,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 731,
+                Mastery = 820
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Grips of Chi'Ji",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_inv_leather_raidmonk_s_01.jpg",
+                Armor = 296,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 831,
+                Versatility = 720,
+                RestrictedToClass = 10
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Bearmantle Paws",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_leather_raiddruid_s_01.jpg",
+                Armor = 296,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 576,
+                Mastery = 976,
+                RestrictedToClass = 11
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Felreaper Gloves",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01glove.jpg",
+                Armor = 296,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 842,
+                Haste = 709,
+                RestrictedToClass = 12
+            });
+
+            ///////////////////////Leather belt/////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Belt of Fractured Sanity",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_inv_leather_raidmonk_s_01.jpg",
+                Armor = 267,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 908,
+                Versatility = 642
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 2,
+                Ilvl = 970,
+                Name = "Death-Enveloping Cincture",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01buckle.jpg",
+                Armor = 276,
+                MainStat = 3124,
+                Stamina = 4687,
+                Haste = 920,
+                Mastery = 690
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Portal Keeper's Cincture",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_belt.jpg",
+                Armor = 267,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 731,
+                Mastery = 820
+            });
+
+            ///////////////////////Leather Legs/////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Breach-Blocker Legguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_leather_raiddruid_s_01.jpg",
+                Armor = 415,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1211,
+                Versatility = 857
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Caustic Titanspite Legguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01pants.jpg",
+                Armor = 415,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1122,
+                Mastery = 945
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Felreaper Leggings",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01pants.jpg",
+                Armor = 415,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1167,
+                Versatility = 901,
+                RestrictedToClass = 12
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Bearmantle Legguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_leather_raiddruid_s_01.jpg",
+                Armor = 415,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1211,
+                Haste = 857,
+                RestrictedToClass = 11
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Leggings of Chi'Ji",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_inv_leather_raidmonk_s_01.jpg",
+                Armor = 415,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 798,
+                Mastery = 1270,
+                RestrictedToClass = 10
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Pants of the Dashing Scoundrel",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raidrogue_s_01_pant.jpg",
+                Armor = 415,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1330,
+                Versatility = 738,
+                RestrictedToClass = 4
+            });
+
+            /////////////////////Leather Feet///////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Depraved Machinist's Footpads",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_leather_raiddemonhunter_q_01boots.jpg",
+                Armor = 326,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 609,
+                Haste = 942
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Life-Bearing Footpads",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_inv_leather_raidmonk_s_01.jpg",
+                Armor = 326,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 842,
+                Mastery = 709
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 2,
+                Ilvl = 960,
+                Name = "Vicious Flamepaws",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_leather_raiddruid_s_01.jpg",
+                Armor = 326,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 665,
+                Mastery = 886
+            });
+            ////////////Plate Head/////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Helmet of the Hidden Sanctuary",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01helm.jpg",
+                Armor = 707,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 975,
+                Mastery = 1093
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Juggernaut Helm",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01helm.jpg",
+                Armor = 707,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 886,
+                Versatility = 1182,
+                RestrictedToClass = 1
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Titan-Subjugator's Visage",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_plate_raiddeathknight_s_01.jpg",
+                Armor = 707,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1241,
+                Versatility = 827
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Light's Vanguard Helm",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_plate_raidpaladin_s_01.jpg",
+                Armor = 707,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1270,
+                Mastery = 798,
+                RestrictedToClass = 2
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 1,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Dreadwake Helm",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_helm_plate_raiddeathknight_s_01.jpg",
+                Armor = 707,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 738,
+                Mastery = 1330,
+                RestrictedToClass = 6
+            });
+
+            //////////////////////Plate Shoulders/////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Juggernaut Pauldrons",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01shoulder.jpg",
+                Armor = 653,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 631,
+                Mastery = 919,
+                RestrictedToClass = 1
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Pauldrons of the Eternal Offensive",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_plate_raidpaladin_s_01.jpg",
+                Armor = 653,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 554,
+                Haste = 997
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Shoulderguards of the Indomitable Purpose",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01shoulder.jpg",
+                Armor = 653,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 631,  
+                Mastery = 919
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Light's Vanguard Shoulderplates",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_plate_raidpaladin_s_01.jpg",
+                Armor = 653,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 665,
+                Versatility = 886,
+                RestrictedToClass = 2
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 3,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Dreadwake Pauldrons",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_plate_raiddeathknight_s_01.jpg",
+                Armor = 653,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 908,
+                Versatility = 642,
+                RestrictedToClass = 6
+            });
+
+            /////////////////////////////Plate Chest////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Breastplate of Molten Rebirth",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01chest.jpg",
+                Armor = 870,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1270,
+                Haste = 798
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Dreadwake Bonecage",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_plate_raiddeathknight_s_01.jpg",
+                Armor = 870,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 871,
+                Versatility = 1196,
+                RestrictedToClass = 6
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Soul-Tempered Chestplate",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_plate_raiddeathknight_s_01.jpg",
+                Armor = 870,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1167,
+                Mastery = 901
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Light's Vanguard Breastplate",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_chest_plate_raidpaladin_s_01.jpg",
+                Armor = 870,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 798,
+                Haste = 1270,
+                RestrictedToClass = 2
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 5,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Juggernaut Breastplate",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01chest.jpg",
+                Armor = 870,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 827,
+                Mastery = 1241,
+                RestrictedToClass = 1
+            });
+            /////////////////Plate wrist////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Vambracers of Life's Assurance",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_bracer_plate_raidpaladin_s_01.jpg",
+                Armor = 381,
+                MainStat = 2135,
+                Stamina = 3203,
+                Haste = 665,
+                Mastery = 498
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 9,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Varimathras' Shattered Manacles",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01bracer.jpg",
+                Armor = 381,
+                MainStat = 2135,
+                Stamina = 3203,
+                Crit = 656,
+                Haste = 506
+            });
+
+            ///////////////////////Plate hands/////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Imonar's Demi-Gauntles",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01gloves.jpg",
+                Armor = 544,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 698,
+                Versatility = 853
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Juggernaut Gauntles",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01gloves.jpg",
+                Armor = 544,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 864,
+                Mastery = 687,
+                RestrictedToClass = 1
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Molten Bite Handguards",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_plate_raidpaladin_s_01.jpg",
+                Armor = 544,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 653,
+                Haste = 897
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 4,
+                Ilvl = 970,
+                Name = "Nascent Deathbringer's Clutches",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_plate_raiddeathknight_s_01.jpg",
+                Armor = 556,
+                MainStat = 3124,
+                Stamina = 4687,
+                Crit = 955,
+                Mastery = 655
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Light's Vanguard Gauntlets",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_plate_raidpaladin_s_01.jpg",
+                Armor = 544,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 676,
+                Mastery = 875,
+                RestrictedToClass = 2
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 10,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Dreadwake Gauntlets",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_glove_plate_raiddeathknight_s_01.jpg",
+                Armor = 544,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 908,
+                Mastery = 642,
+                RestrictedToClass = 6
+            });
+            //////////////////////Plate belt////////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Flamelicked Girdle",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_plate_raiddeathknight_s_01.jpg",
+                Armor = 490,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 653,
+                Versatility = 897
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Grond-Father Girdle",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01buckle.jpg",
+                Armor = 490,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 908,
+                Mastery = 642
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 6,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Nathrezim Battle Girdle",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_belt_plate_raidpaladin_s_01.jpg",
+                Armor = 490,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 665,
+                Mastery = 886
+            });
+
+            ///////////////////////////////Plate Legs////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 4,
+                Ilvl = 970,
+                Name = "Cosmos-Culling Legplates",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_plate_raidpaladin_s_01.jpg",
+                Armor = 779,
+                MainStat = 4166,
+                Stamina = 6250,
+                Haste = 1227,
+                Mastery = 920
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Dreadwake Legplates",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_plate_raiddeathknight_s_01.jpg",
+                Armor = 762,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 1152,
+                Versatility = 916,
+                RestrictedToClass = 6
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Greaves of Mercurial Allegiance",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_plate_raiddeathknight_s_01.jpg",
+                Armor = 762,
+                MainStat = 3795,
+                Stamina = 5693,
+                Versatility = 812,
+                Mastery = 1255
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Light's Vanguard Legplates",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_pant_plate_raidpaladin_s_01.jpg",
+                Armor = 762,
+                MainStat = 3795,
+                Stamina = 5693,
+                Haste = 842,
+                Mastery = 1226,
+                RestrictedToClass = 2
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 7,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Juggernaut Legplates",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01pants.jpg",
+                Armor = 762,
+                MainStat = 3795,
+                Stamina = 5693,
+                Crit = 1093,
+                Versatility = 975,
+                RestrictedToClass = 1
+            });
+
+            /////////////////////////Plate Feet////////////////////
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Burning Coven Sabatons",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_plate_raidwarrior_s_01boots.jpg",
+                Armor = 598,
+                MainStat = 2847,
+                Stamina = 4270,
+                Haste = 930,
+                Mastery = 620
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Doomwalker Warboots",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_plate_raiddeathknight_s_01.jpg",
+                Armor = 598,
+                MainStat = 2847,
+                Stamina = 4270,
+                Crit = 942,
+                Haste = 609
+            });
+            context.Equipments.Add(new Equipment()
+            {
+                Slot = 8,
+                ArmorType = 4,
+                Ilvl = 960,
+                Name = "Eredar Warcouncil Sabatons",
+                Icon = "https://wow.zamimg.com/images/wow/icons/large/inv_boot_plate_raidpaladin_s_01.jpg",
+                Armor = 598,
+                MainStat = 2847,
+                Stamina = 4270,
+                Versatility = 576,
+                Mastery = 975
             });
             base.Seed(context);
 

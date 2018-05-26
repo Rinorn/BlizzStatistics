@@ -52,7 +52,7 @@ namespace BlizzStatistics.Data.Api.Controllers
         /// <param name="id">The identifier.</param>
         /// <param name="savedCharacter">The saved character.</param>
         /// <returns></returns>
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(SavedCharacter))]
         public async Task<IHttpActionResult> PutSavedCharacter(int id, SavedCharacter savedCharacter)
         {
             if (!ModelState.IsValid)

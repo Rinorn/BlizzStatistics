@@ -44,7 +44,7 @@ namespace BlizzStatistics.App.Views
         private int _orgHasteValue;
         private int _orgCritValue;
         private int _orgVersatilityValue;
-
+        private int _saveToDbIndex;
 
 
         private readonly string[] _classes = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
@@ -797,7 +797,6 @@ namespace BlizzStatistics.App.Views
                 Console.WriteLine(exception);
                 throw;
             }
-            
         }
 
         private async void BtnShowItemList(object sender, RoutedEventArgs e)
@@ -807,7 +806,6 @@ namespace BlizzStatistics.App.Views
             DefineArmorType();
             FillOptItemList(SelectedCharacterArmorType);
             var itemWindow = await ItemContentDialog.ShowAsync();
-            
         }
 
         private async void FillOptItemList(int armorType)
@@ -821,9 +819,7 @@ namespace BlizzStatistics.App.Views
                     if (a.Slot == _itemSlot)
                     {
                         view.Equipments.Add(a);
-                       
                     }
-
                 }
                 else if (a.ArmorType == 0 && a.Slot == _itemSlot && a.RestrictedToStat == 0|| a.ArmorType == 1 && a.Slot == _itemSlot)
                 {
@@ -836,87 +832,27 @@ namespace BlizzStatistics.App.Views
                     {
                         view.Equipments.Add(a);
                     }
-                }
-                
-                
+                }  
             }
             ItemList.ItemsSource = view.Equipments;
-           
         }
 
         private void DefineItemSlots(Button clickedBtn)
         {
-            if (clickedBtn == BtnHeadSlot){_itemSlot = 1;
-                _clickedImage = OptHeadSlotImg;
-                _clickedImgGrid = OptTtHeadSlotGrid;
-                _selectedItemStats = _selectedChar.Items.head.stats;
-
-            }
-            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2;
-                _clickedImage = OptNeckSlotImg;
-                _clickedImgGrid = OptTtNeckSlotGrid;
-                _selectedItemStats = _selectedChar.Items.neck.stats;
-            }
-            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3;
-                _clickedImage = OptShoulderSlotImg;
-                _clickedImgGrid = OptTtShoulderSlotGrid;
-                _selectedItemStats = _selectedChar.Items.shoulder.stats;
-            }
-            else if (clickedBtn == BtnBackSlot){_itemSlot = 16;
-                _clickedImage = OptBackSlotImg;
-                _clickedImgGrid = OptTtBackSlotGrid;
-                _selectedItemStats = _selectedChar.Items.back.stats;
-            }
-            else if (clickedBtn == BtnChestSlot){_itemSlot = 5;
-                _clickedImage = OptChestSlotImg;
-                _clickedImgGrid = OptTtChestSlotGrid;
-                _selectedItemStats = _selectedChar.Items.chest.stats;
-            }
-            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6;
-                _clickedImage = OptBeltSlotImg;
-                _clickedImgGrid = OptTtBeltSlotGrid;
-                _selectedItemStats = _selectedChar.Items.waist.stats;
-            }
-            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7;
-                _clickedImage = OptLegsSlotImg;
-                _clickedImgGrid = OptTtLegsSlotGrid;
-                _selectedItemStats = _selectedChar.Items.legs.stats;
-            }
-            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8;
-                _clickedImage = OptFeetSlotImg;
-                _clickedImgGrid = OptTtFeetSlotGrid;
-                _selectedItemStats = _selectedChar.Items.feet.stats;
-            }
-            else if (clickedBtn == BtnWristSlot){_itemSlot = 9;
-                _clickedImage = OptWristSlotImg;
-                _clickedImgGrid = OptTtWristSlotGrid;
-                _selectedItemStats = _selectedChar.Items.wrist.stats;
-            }
-            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10;
-                _clickedImage = OptGlovesSlotImg;
-                _clickedImgGrid = OptTtGlovesSlotGrid;
-                _selectedItemStats = _selectedChar.Items.hands.stats;
-            }
-            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11;
-                _clickedImage = OptRing1SlotImg;
-                _clickedImgGrid = OptTtRing1SlotGrid;
-                _selectedItemStats = _selectedChar.Items.finger1.stats;
-            }
-            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11;
-                _clickedImage = OptRing2SlotImg;
-                _clickedImgGrid = OptTtRing2SlotGrid;
-                _selectedItemStats = _selectedChar.Items.finger2.stats;
-            }
-            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12;
-                _clickedImage = OptTrinket1SlotImg;
-                _clickedImgGrid = OptTtTrinket1SlotGrid;
-                _selectedItemStats = _selectedChar.Items.trinket1.stats;
-            }
-            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12;
-                _clickedImage = OptTrinket2SlotImg;
-                _clickedImgGrid = OptTtTrinket2SlotGrid;
-                _selectedItemStats = _selectedChar.Items.trinket2.stats;
-            }
+            if (clickedBtn == BtnHeadSlot){_itemSlot = 1; _saveToDbIndex = 1; _clickedImage = OptHeadSlotImg; _clickedImgGrid = OptTtHeadSlotGrid; _selectedItemStats = _selectedChar.Items.head.stats;}
+            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2; _saveToDbIndex = 2; _clickedImage = OptNeckSlotImg; _clickedImgGrid = OptTtNeckSlotGrid; _selectedItemStats = _selectedChar.Items.neck.stats;}
+            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3; _saveToDbIndex = 3; _clickedImage = OptShoulderSlotImg; _clickedImgGrid = OptTtShoulderSlotGrid; _selectedItemStats = _selectedChar.Items.shoulder.stats;}
+            else if (clickedBtn == BtnBackSlot){_itemSlot = 16; _saveToDbIndex = 4; _clickedImage = OptBackSlotImg; _clickedImgGrid = OptTtBackSlotGrid; _selectedItemStats = _selectedChar.Items.back.stats;}
+            else if (clickedBtn == BtnChestSlot){_itemSlot = 5; _saveToDbIndex = 5; _clickedImage = OptChestSlotImg; _clickedImgGrid = OptTtChestSlotGrid; _selectedItemStats = _selectedChar.Items.chest.stats;}
+            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6; _saveToDbIndex = 6; _clickedImage = OptBeltSlotImg; _clickedImgGrid = OptTtBeltSlotGrid; _selectedItemStats = _selectedChar.Items.waist.stats;}
+            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7; _saveToDbIndex = 7; _clickedImage = OptLegsSlotImg; _clickedImgGrid = OptTtLegsSlotGrid; _selectedItemStats = _selectedChar.Items.legs.stats;}
+            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8; _saveToDbIndex = 8; _clickedImage = OptFeetSlotImg; _clickedImgGrid = OptTtFeetSlotGrid; _selectedItemStats = _selectedChar.Items.feet.stats;}
+            else if (clickedBtn == BtnWristSlot){_itemSlot = 9; _saveToDbIndex = 9; _clickedImage = OptWristSlotImg; _clickedImgGrid = OptTtWristSlotGrid; _selectedItemStats = _selectedChar.Items.wrist.stats;}
+            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10; _saveToDbIndex = 10; _clickedImage = OptGlovesSlotImg; _clickedImgGrid = OptTtGlovesSlotGrid; _selectedItemStats = _selectedChar.Items.hands.stats;}
+            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11; _saveToDbIndex = 11; _clickedImage = OptRing1SlotImg; _clickedImgGrid = OptTtRing1SlotGrid; _selectedItemStats = _selectedChar.Items.finger1.stats;}
+            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11; _saveToDbIndex = 12; _clickedImage = OptRing2SlotImg; _clickedImgGrid = OptTtRing2SlotGrid; _selectedItemStats = _selectedChar.Items.finger2.stats;}
+            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.trinket1.stats;}
+            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.trinket2.stats;}
         }
         private void DefineArmorType()
         {
@@ -962,17 +898,11 @@ namespace BlizzStatistics.App.Views
         {
             
                 OptimizedMainStatBox.Text = (int.Parse(OptimizedMainStatBox.Text) + (_selectedEquipment.MainStat - _orgMainStatValue)).ToString();
-          
                 OptimizedStaminaBox.Text = (int.Parse(OptimizedStaminaBox.Text) + (_selectedEquipment.Stamina - _orgStaminaValue)).ToString();
                 OptimizedHpBox.Text = (int.Parse(OptimizedStaminaBox.Text) * 60).ToString();
-           
                 OptimizedMasteryBox.Text = (int.Parse(OptimizedMasteryBox.Text) + (_selectedEquipment.Mastery - _orgMasteryValue)).ToString();
-           
                 OptimizedCritBox.Text = (int.Parse(OptimizedCritBox.Text) + (_selectedEquipment.Crit - _orgCritValue)).ToString();
-            
-           
                 OptimizedHasteBox.Text = (int.Parse(OptimizedHasteBox.Text) + (_selectedEquipment.Haste - _orgHasteValue)).ToString();
-         
                 OptimizedVersatilityBox.Text = (int.Parse(OptimizedVersatilityBox.Text) + (_selectedEquipment.Versatility - _orgVersatilityValue)).ToString();
             CheckIfChangeIsPositive();
         }
@@ -1009,13 +939,33 @@ namespace BlizzStatistics.App.Views
             _orgCritValue = 0;
             _orgHasteValue = 0;
             _orgVersatilityValue = 0;
+            AddItemToSelectedCharacter();
+        }
+        //adds the item id of the selected item, to the selected character(SavedCharacter, so that the saved character can be updatet with the Item id.)
+        private void AddItemToSelectedCharacter()
+        {
+            /*switch (_itemSlot)
+            {
+                case 1: Character.HeadSlot = _selectedEquipment.Id; break;
+                case 2: Character.NeckSlot = _selectedEquipment.Id; break;
+                case 3: Character.ShoulderSlot = _selectedEquipment.Id; break;
+                case 4: Character.BackSlot = _selectedEquipment.Id; break;
+                case 5: Character.ChestSlot = _selectedEquipment.Id; break;
+                case 6: Character.BeltSlot = _selectedEquipment.Id; break;
+                case 7: Character.LegsSlot = _selectedEquipment.Id; break;
+                case 8: Character.FeetSlot = _selectedEquipment.Id; break;
+                case 9: Character.WristSlot = _selectedEquipment.Id; break;
+                case 10: Character.GlovesSlot = _selectedEquipment.Id; break;
+                case 11: Character.Ring1Slot = _selectedEquipment.Id; break;
+                case 12: Character.Ring2Slot = _selectedEquipment.Id; break;
+                case 13: Character.Trinket1Slot = _selectedEquipment.Id; break;
+                case 14: Character.Trinket2Slot = _selectedEquipment.Id; break;
+            }*/
         }
         private void GetOrgSlotStats()
         {
-            
             foreach (var a in _selectedItemStats)
             {
-                
                 switch (a.stat)
                 {
                     case 74:
@@ -1042,12 +992,8 @@ namespace BlizzStatistics.App.Views
                         _orgHasteValue = a.amount;
                         break;
                 }
-                
             }
         }
-        
-        
-
         private void DefineToolTip(Equipment equipment)
         {
             var rowOffsett = 0;
@@ -1079,10 +1025,9 @@ namespace BlizzStatistics.App.Views
         public async void UpdateCharacterToDb(object sender, RoutedEventArgs e)
         {
             var view = await UpdateCharacterContentDialog.ShowAsync();
-            if (view == ContentDialogResult.Primary)
-            {
-
-            }
+            if (view != ContentDialogResult.Primary) return;
+                Character.SavedAs = NewCharacterNameBox.Text;
+            await DataSource.SavedCharacters.Instance.PutSavedCharacter(Character);
         }
         public async void AddNewCharacterToDb(object sender, RoutedEventArgs e)
         {   

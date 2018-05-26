@@ -61,6 +61,14 @@ namespace BlizzStatistics.App.DataSource
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> PutSavedCharacter(SavedCharacter character)
+        {
+            var postBody = JsonConvert.SerializeObject(character);
+            var respons = await _client.PutAsync($"SavedCharacters/{character.Id}",
+                new StringContent(postBody, Encoding.UTF8, "application/json")).ConfigureAwait(false);
+            return respons.IsSuccessStatusCode;
+
+        }
         public async Task<bool> DeleteSavedCharacter(SavedCharacter character)
         {
             var response = await _client.DeleteAsync($"SavedCharacters/{character.Id}").ConfigureAwait(false);

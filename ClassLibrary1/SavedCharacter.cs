@@ -64,12 +64,11 @@ namespace ClassLibrary1
         [Required]
         public int Level { get; set; }
 
-        public string CharacterInfo
-        {
-            get => $"{Name}" + Environment.NewLine + $"{ Level}  { ClassName}";
-        }
-        
-        public int HeadSlot { get; set; }
+        public string SavedAs { get; set; }
+
+        public string CharacterInfo => $"{Name} {SavedAs}" + Environment.NewLine + $"{ Level}  { ClassName}";
+
+        /*public int HeadSlot { get; set; }
         
         public int NeckSlot { get; set; }
         
@@ -99,7 +98,8 @@ namespace ClassLibrary1
         
         public int MainHandSlot { get; set; }
         
-        public int OffhandSlot { get; set; }
+        public int OffhandSlot { get; set; }*/
+        public virtual List<Equipment> Equipments { get; set; }
         
         /// <summary>
         /// Occurs when a property value changes.
