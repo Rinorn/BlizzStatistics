@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography.Core;
 using Windows.UI;
@@ -799,18 +801,19 @@ namespace BlizzStatistics.App.Views
             }
         }
 
-        private async void BtnShowItemList(object sender, RoutedEventArgs e)
+        private  void BtnShowItemList(object sender, RoutedEventArgs e)
         {
             var clickedBtn = sender as Button;
             DefineItemSlots(clickedBtn);
             DefineArmorType();
             FillOptItemList(SelectedCharacterArmorType);
-            var itemWindow = await ItemContentDialog.ShowAsync();
+            var itemWindow =  ItemContentDialog.ShowAsync();
         }
 
         private async void FillOptItemList(int armorType)
         {
-            if (Equipment == null){Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment());}
+            if (Equipment == null){Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment()); }
+            
             var view = new OptimizationViewModel {Equipments = new ObservableCollection<Equipment>()};
             foreach (var a in Equipment)
             {
@@ -944,7 +947,7 @@ namespace BlizzStatistics.App.Views
         //adds the item id of the selected item, to the selected character(SavedCharacter, so that the saved character can be updatet with the Item id.)
         private void AddItemToSelectedCharacter()
         {
-            /*switch (_itemSlot)
+            switch (_itemSlot)
             {
                 case 1: Character.HeadSlot = _selectedEquipment.Id; break;
                 case 2: Character.NeckSlot = _selectedEquipment.Id; break;
@@ -960,7 +963,7 @@ namespace BlizzStatistics.App.Views
                 case 12: Character.Ring2Slot = _selectedEquipment.Id; break;
                 case 13: Character.Trinket1Slot = _selectedEquipment.Id; break;
                 case 14: Character.Trinket2Slot = _selectedEquipment.Id; break;
-            }*/
+            }
         }
         private void GetOrgSlotStats()
         {

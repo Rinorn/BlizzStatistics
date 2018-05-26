@@ -68,7 +68,7 @@ namespace ClassLibrary1
 
         public string CharacterInfo => $"{Name} {SavedAs}" + Environment.NewLine + $"{ Level}  { ClassName}";
 
-        /*public int HeadSlot { get; set; }
+        public int HeadSlot { get; set; }
         
         public int NeckSlot { get; set; }
         
@@ -98,8 +98,7 @@ namespace ClassLibrary1
         
         public int MainHandSlot { get; set; }
         
-        public int OffhandSlot { get; set; }*/
-        public virtual List<Equipment> Equipments { get; set; }
+        public int OffhandSlot { get; set; }
         
         /// <summary>
         /// Occurs when a property value changes.

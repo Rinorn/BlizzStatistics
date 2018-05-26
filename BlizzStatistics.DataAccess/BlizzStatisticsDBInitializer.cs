@@ -262,7 +262,9 @@ namespace BlizzStatistics.DataAccess
                 Name = "PestErBest",
                 ClassName = "Priest",
                 Realm = "StormScale",
-                Level = 110
+                Level = 110,
+                Class = 5
+                
             });
             context.SavedCharacters.Add(new SavedCharacter()
             {
@@ -270,7 +272,8 @@ namespace BlizzStatistics.DataAccess
                 Name = "SuperSteinar",
                 ClassName = "Warrior",
                 Realm = "StormScale",
-                Level = 110
+                Level = 110,
+                Class = 1
             });
             context.SavedCharacters.Add(new SavedCharacter()
             {
@@ -278,7 +281,9 @@ namespace BlizzStatistics.DataAccess
                 Name = "HelligDykker",
                 ClassName = "Paladin",
                 Realm = "StormScale",
-                Level = 110
+                Level = 110,
+                Class = 2
+
             });
             /////////////////////Equipment//////////////////////
 
