@@ -75,10 +75,10 @@
                         <x:String>Top 200</x:String>
                     </ComboBox>
                     <TextBlock Text="Sort by:" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
-                    <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center"/>
-                    <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center"/>
-                    <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center"/>
-                    <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center"/>
+                    <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center" IsEnabled="False"/>
+                    <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center" IsEnabled="False" IsChecked="True"/>
+                    <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center" IsEnabled="False"/>
+                    <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center" IsEnabled="False"/>
                     <!-- Row 2-->
                     <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
                         <TextBlock Text="Rank"  VerticalAlignment="Center" HorizontalAlignment="Center" />

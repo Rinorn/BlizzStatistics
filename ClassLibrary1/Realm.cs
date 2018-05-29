@@ -9,22 +9,36 @@ using System.Threading.Tasks;
 namespace ClassLibrary1
 {
     public class Realm
-    {   
+    {
+        [Key]
         [Required]
-        public int Id { get; set; }
+        public int DbId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public int id { get; set; }
+        [Required]
+        public string name { get; set; }
 
     }
-
-
-    public class RealmRootobject 
+    public class RealmRootobject
     {
         public Realm[] realms { get; set; }
-       
+
     }
 
+
+
+
+
+  
+
     
+
+  
+
+
+
+
+
 
 }
 

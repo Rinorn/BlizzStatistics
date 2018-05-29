@@ -82,7 +82,7 @@
                 </Border>
                 <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
                     <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col1}" VerticalAlignment="Top" >
-                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col1}" FontSize="15"  Text="On the Pvp page, you will be able to find the current top rated pvp players for 3v3 arena, 2v2 arena and Rated Battlegrounds. You will be able to filter according to class and faction, and you will be able to select to show top 10, 25, 50 and 100. There will at a later date be implemented sorting fuctions where you should be able to sort by player name, rank, total wins and total loss." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col1}" FontSize="15"  Text="On the Pvp page, you will be able to find the current top rated pvp players for 3v3 arena, 2v2 arena and Rated Battlegrounds. You will be able to filter according to class, player faction and how many players you want to view at once. There will at a later date be implemented sorting fuctions where you should be able to sort by player name, rank, total wins and total loss." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
 
@@ -93,7 +93,7 @@
                 </Border>
                 <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
                     <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col2}" VerticalAlignment="Top">
-                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col2}" FontSize="15" Text="O=n th eMythic tab, you will find the current top rated Mythic+ teams. The key level, rank, completion time/date as well as party composition. youwill be able to select server, and the dungeon you would want to see the ranking for. there will also be a display of the weekly mods." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col2}" FontSize="15" Text="On the Mythic tab, you will find the current top rated Mythic+ team's key level, rank, completion time/date as well as party composition. You will be able to select server, and the dungeon you would want to see the ranking for. There will also be a display of the weekly mods." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
 
@@ -104,7 +104,7 @@
                 </Border>
                 <Border Grid.Column="2" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
                     <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col3}" VerticalAlignment="Top">
-                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col3}" FontSize="15" Text="on the class and race tab, you will find some basic information about the race/class, such as a class/race description, what facton they belong to an so on. There is also an ingame model of every race and every class." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col3}" FontSize="15" Text="On the class and race tab, you will find some basic information about the race/class, such as a class/race description, what faction they belong to an so on. There is also an ingame model of every race and every class." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
 
@@ -115,7 +115,7 @@
                 </Border>
                 <Border Grid.Column="3" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
                     <Viewbox Width="{Binding ActualWidth, ElementName=Col4}" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock  MaxWidth="{Binding ActualWidth, ElementName=Col4}" FontSize="12" Text="Here you will be able to search for your wow characters and add them  to your app. You will then be able to select this character, and all your character stats and gear will be loaded. you wil then be able to optimize your gear  by selecting gear from a gear list. This gear will have other stats than you current gear and this will be reflected under your optimized character statistics. you will in this way, be able to optimize your character stats in the most efficient way, to see what gearpiece you should have in each slot." Foreground="Black" TextWrapping="WrapWholeWords" ></TextBlock>
+                        <TextBlock  MaxWidth="{Binding ActualWidth, ElementName=Col4}" FontSize="12" Text="Here you will be able to search for your wow characters and add them to your app. You will then be able to select this character, and all your character stats and gear will be loaded. You will then be able to optimize your gear by selecting gear from a gear list. This gear will have other stats than you current gear and this will be reflected under your optimized character statistics. You will in this way, be able to optimize your character stats in the most efficient way, to see what gearpiece you should have in each slot." Foreground="Black" TextWrapping="WrapWholeWords" ></TextBlock>
                     </Viewbox>
                 </Border>
             </Grid>

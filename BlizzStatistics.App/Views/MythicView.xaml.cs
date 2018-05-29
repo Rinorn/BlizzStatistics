@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using System.Net.Http;
 using Windows.UI;
 using Windows.UI.Text;
@@ -23,15 +21,16 @@ namespace BlizzStatistics.App.Views
         /// <summary>
         /// The connection
         /// </summary>
-        private string _connection = "https://eu.api.battle.net/data/wow/connected-realm/509/mythic-leaderboard/197/period/645?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+        private string _connection;
         /// <summary>
         /// The realm index
         /// </summary>
-        private string _realmIndex = "509";
+        private int _realmIndex = 509;
+        private int _preRealmIndex = 509;
         /// <summary>
         /// The dungeon index
         /// </summary>
-        private string _dungeonIndex = "199";
+        private int _dungeonIndex = 197;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MythicView"/> class.
@@ -49,6 +48,7 @@ namespace BlizzStatistics.App.Views
         {
             try
             {
+                _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/645?namespace=dynamic-eu&locale=en_GB&access_token=fb5hv9pjubvebavu85qxstjz";
                 var ur = new Uri(_connection);
                 var client = new HttpClient();
                 var response = await client.GetStringAsync(ur);
@@ -61,7 +61,9 @@ namespace BlizzStatistics.App.Views
             }
             catch (Exception e)
             {
+                ////ADD windu med feilmelding ang roleback
                 Console.WriteLine(e);
+                _realmIndex = _preRealmIndex;
                 GetData();
             }
         }
@@ -93,7 +95,7 @@ namespace BlizzStatistics.App.Views
             tb.TextAlignment = TextAlignment.Center;
             tb.VerticalAlignment = VerticalAlignment.Center;
             tb.FontSize = 15;
-            tb.Foreground = new SolidColorBrush(Colors.White);
+            tb.Foreground = new SolidColorBrush(Colors.Black);
             tb.FontStretch = FontStretch.ExtraCondensed;
         }
 
@@ -108,7 +110,7 @@ namespace BlizzStatistics.App.Views
             RelativePanel.SetAlignLeftWithPanel(MainMythicPanel, true);
             RelativePanel.SetAlignRightWithPanel(MainMythicPanel, true);
            
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < CheckNumberOfLeadingGroups(data); i++)
             {
                 for (var a = 0; a < 9; a++)
                 {
@@ -123,7 +125,7 @@ namespace BlizzStatistics.App.Views
                             tb.Text = data.leading_groups[i].keystone_level.ToString();                        
                             break;
                         case 2:
-                            ConvertTimeStampToTime(data.leading_groups[i].Duration, tb); ;                           
+                            ConvertTimeStampToTime(data.leading_groups[i].Duration, tb);                            
                             break;
                         case 3:
                             AddGroupMember(data, mainGrid, a, i);
@@ -140,6 +142,11 @@ namespace BlizzStatistics.App.Views
             }
         }
 
+        private static int CheckNumberOfLeadingGroups(MythicRootobject data)
+        {
+            
+           return data.leading_groups.Length > 100 ? 100 : data.leading_groups.Length-1;
+        }
         /// <summary>
         /// Addtoes the grid.
         /// </summary>
@@ -149,31 +156,27 @@ namespace BlizzStatistics.App.Views
         /// <param name="a">a.</param>
         /// <param name="i">The i.</param>
         private static void AddtoGrid(Grid g, Grid mainGrid, UIElement tb, int a, int i)
-        {   
-            Viewbox view = new Viewbox();
-            view.Height = 40;
-            view.Child = tb;
-            
+        {
+            var view = new Viewbox{ Height = 40, Child = tb};
             g.Children.Add(view);
             // Here you set the Grid properties, such as border and alignment
-            g.BorderThickness = new Thickness(1, 2, 1, 2);
-            g.BorderBrush = new SolidColorBrush(Colors.Wheat);
+            g.BorderThickness = new Thickness(0, 2, 0, 2);
+            g.BorderBrush = new SolidColorBrush(Colors.Black);
             g.HorizontalAlignment = HorizontalAlignment.Stretch;
             g.VerticalAlignment = VerticalAlignment.Stretch;
-
+            CheckColor(g,i);
             // Add the newly created Grid to the outer Grid
-            var rowHeight = new RowDefinition
-            {
-                Height = new GridLength(0.1,GridUnitType.Auto)
-                
-            };
-            
+            var rowHeight = new RowDefinition{ Height = new GridLength(0.1,GridUnitType.Auto) };
             mainGrid.RowDefinitions.Add(rowHeight);
             Grid.SetRow(g, i+2);
             Grid.SetColumn(g, a);
             mainGrid.Children.Add(g);
         }
 
+        private static void CheckColor(Grid g, int i)
+        {
+            g.Background = i % 2 != 0 ? new SolidColorBrush(Colors.SaddleBrown) : new SolidColorBrush(Colors.SandyBrown);
+        }
         /// <summary>
         /// Adds the group member.
         /// </summary>
@@ -184,12 +187,12 @@ namespace BlizzStatistics.App.Views
         private static void AddGroupMember(MythicRootobject data, Grid mainGrid, int a, int i)
         {
             var columnCount = a;
-            for (var c = 0; c < 5; c++)
+            foreach (var t in data.leading_groups[i].Members)
             {
                 var g = new Grid();
                 var tb = new TextBlock();
                 DefineText(tb);
-                tb.Text = data.leading_groups[i].Members[c].Profile.Name;
+                tb.Text = t.Profile.Name;
                 AddtoGrid(g, mainGrid, tb, columnCount, i);
                 columnCount++;
             }
@@ -200,21 +203,11 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
-        private void cbServer_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {    
-            switch (CbServer.SelectedItem)
-            {
-                case "Garona":
-                    _realmIndex = "509";
-                    break;
-                case "Vol'jin":
-                    _realmIndex = "510";
-                    break;
-                case "Sunstrider":
-                    _realmIndex = "511";
-                    break;
-            }
-            _connection = "https://eu.api.battle.net/data/wow/connected-realm/"+_realmIndex+"/mythic-leaderboard/"+_dungeonIndex+ "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
+        private void CbServer_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var realm = CbServer.SelectedItem as Realm;
+            _preRealmIndex = _realmIndex;
+            if (realm != null) _realmIndex = realm.id;
             DestroyGrid();
         }
 
@@ -223,21 +216,50 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
-        private void cbDungeon_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbDungeon_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (CbDungeon.SelectedItem)
             {
                 case "Black Rook Hold":
-                    _dungeonIndex = "199";
+                    _dungeonIndex = 199;
                     break;
                 case "Darkheart Thicket":
-                    _dungeonIndex = "198";
+                    _dungeonIndex = 198;
                     break;
                 case "Eye of Azshara":
-                    _dungeonIndex = "197";
+                    _dungeonIndex = 197;
+                    break;
+                case "Halls of Valor":
+                    _dungeonIndex = 200;
+                    break;
+                case "Neltharion's Lair":
+                    _dungeonIndex = 206;
+                    break;
+                case "Vault of the Wardens":
+                    _dungeonIndex = 207;
+                    break;
+                case "Maw of Souls":
+                    _dungeonIndex = 208;
+                    break;
+                case "The Arcway":
+                    _dungeonIndex = 209;
+                    break;
+                case "Court of Stars":
+                    _dungeonIndex = 210;
+                    break;
+                case "Lower Karazhan":
+                    _dungeonIndex = 227;
+                    break;
+                case "Upper Karazhan":
+                    _dungeonIndex = 234;
+                    break;
+                case "Cathedral of Eternal Night":
+                    _dungeonIndex = 233;
+                    break;
+                case "Seat of the Triumvirate":
+                    _dungeonIndex = 239;
                     break;
             }
-            _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/641?namespace=dynamic-eu&locale=en_GB&access_token=ugnefz3dkked237rzcd5nnav";
             DestroyGrid();
         }
         /// <summary>
@@ -245,7 +267,7 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         private void DestroyGrid()
         {
-            for (var i = _childGrid.Children.Count-13; i > 12; i--)
+            for (var i = _childGrid.Children.Count-1; i > 12; i--)
             {
                 _childGrid.Children.RemoveAt(i);
             }

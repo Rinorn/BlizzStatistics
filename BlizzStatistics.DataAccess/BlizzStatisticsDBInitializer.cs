@@ -11,6 +11,7 @@ namespace BlizzStatistics.DataAccess
     public class BlizzStatisticsDbInitializer : DropCreateDatabaseIfModelChanges<BlizzStatisticsContext>
     {
         public string[] RealmName = new string[267];
+        public int[] RealmId = new int[267];
         public bool DataReady = false;
         public string[] StrengthAgility = {"Strength", "Agility"};
         public string[] Strength = {"Strength"};
@@ -2625,11 +2626,40 @@ namespace BlizzStatistics.DataAccess
                 Versatility = 576,
                 Mastery = 975
             });
+            Connection();
+            for (int i = 0; i < RealmId.Length; i++)
+            {
+                context.Realms.Add(new Realm()
+                {
+                    id = RealmId[i],
+                    name = RealmName[i]
+                });
+            }
+                
+            
             base.Seed(context);
 
         }
-        
+        public void Connection()
+        {
+            var ur = new Uri("https://eu.api.battle.net/data/wow/realm/?namespace=dynamic-eu&locale=en_GB&access_token=fb5hv9pjubvebavu85qxstjz");
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(ur).Result;
+                if (!response.IsSuccessStatusCode) return;
+                var responseContent = response.Content;
+                var responseString = responseContent.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<RealmRootobject>(responseString);
+                for (var i = 0; i < data.realms.Length; i++)
+                {
 
-       
+                    RealmName[i] = data.realms[i].name;
+                    RealmId[i] = data.realms[i].id;
+
+                }
+            }
+        }
+
+
     }
 }

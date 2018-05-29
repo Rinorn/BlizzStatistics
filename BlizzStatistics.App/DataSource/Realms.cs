@@ -40,7 +40,7 @@ namespace BlizzStatistics.App.DataSource
         /// <returns></returns>
         public async Task<Realm[]> GetRealm()
         {
-            var json = await _client.GetStringAsync("realm").ConfigureAwait(false);
+            var json = await _client.GetStringAsync("realms").ConfigureAwait(false);
             var realms = JsonConvert.DeserializeObject<Realm[]>(json);
             return realms;
         }

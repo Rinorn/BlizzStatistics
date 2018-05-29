@@ -192,7 +192,7 @@ namespace BlizzStatistics.App.Views
             g.Children.Add(tb);
             var color = GetSolidColorBrush(_classColor).Color;
             var brush = new SolidColorBrush(color);
-            g.BorderThickness = new Thickness(1, 2, 1, 2);
+            g.BorderThickness = new Thickness(0, 2, 0, 2);
             g.BorderBrush = new SolidColorBrush(Colors.Black);
             g.HorizontalAlignment = HorizontalAlignment.Stretch;
             g.VerticalAlignment = VerticalAlignment.Stretch;

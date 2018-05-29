@@ -613,15 +613,6 @@
                         <TextBlock x:Name="OriginalStamina"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>
                 </Border>
-                
-                
-                <Border BorderThickness="0,0,0,0" Grid.Column="4"  Grid.Row="20"  Grid.ColumnSpan="4" BorderBrush="Black" >
-                    
-                        <Button HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="LightGray" Click="BtnDelete">
-                            <TextBlock Text="Delete"  HorizontalAlignment="Stretch"  Foreground="Black" VerticalAlignment="Stretch" ></TextBlock>
-                        </Button>
-                    
-                </Border>
             </Grid>
             <ContentDialog x:Name="ItemContentDialog">
                 <ContentDialog.TitleTemplate>

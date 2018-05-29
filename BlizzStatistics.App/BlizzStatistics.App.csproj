@@ -113,6 +113,7 @@
     <Compile Include="ViewModels\OptimizationViewModel.cs" />
     <Compile Include="ViewModels\PvpPageViewModel.cs" />
     <Compile Include="ViewModels\RacePageViewModel.cs" />
+    <Compile Include="ViewModels\RealmViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\WoWPageViewModel.cs" />
     <Compile Include="Views\Busy.xaml.cs">
@@ -123,9 +124,6 @@
     </Compile>
     <Compile Include="Views\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MythicView.xaml.cs">
       <DependentUpon>MythicView.xaml</DependentUpon>
@@ -197,10 +195,6 @@
     <Page Include="Views\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MythicView.xaml">
       <SubType>Designer</SubType>

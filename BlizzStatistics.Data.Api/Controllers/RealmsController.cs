@@ -46,7 +46,7 @@ namespace BlizzStatistics.Data.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != realm.Id)
+            if (id != realm.DbId)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace BlizzStatistics.Data.Api.Controllers
             db.Realms.Add(realm);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = realm.Id }, realm);
+            return CreatedAtRoute("DefaultApi", new { id = realm.DbId }, realm);
         }
 
         // DELETE: api/Realms/5
@@ -114,7 +114,7 @@ namespace BlizzStatistics.Data.Api.Controllers
 
         private bool RealmExists(int id)
         {
-            return db.Realms.Count(e => e.Id == id) > 0;
+            return db.Realms.Count(e => e.DbId == id) > 0;
         }
     }
 }
