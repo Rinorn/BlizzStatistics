@@ -47,7 +47,9 @@ namespace BlizzStatistics.App.Views
         private int _orgCritValue;
         private int _orgVersatilityValue;
         private int _saveToDbIndex;
-
+        private readonly BitmapImage _defaultImg = new BitmapImage(new Uri("http://localhost:60158/api/images/add.jpg/"));
+        private int[] _slotArray;
+        private int _gearSlotOffset = 0;
 
         private readonly string[] _classes = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
         
@@ -66,7 +68,8 @@ namespace BlizzStatistics.App.Views
 
         private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Character = null;
+            _slotArray = new int[14];
             Character = (SavedCharacter) CharacterListView.SelectedItem;
             if (Character != null) CharacterName = Character.Name;
             if (Character != null) CharacterServer = Character.Realm;
@@ -75,7 +78,8 @@ namespace BlizzStatistics.App.Views
             {
                 await GetCharacterStats(CharacterName, CharacterServer);
                 await GetCharacter(CharacterName, CharacterServer);
-              
+                
+
             }
             catch (Exception exception)
             {
@@ -111,6 +115,7 @@ namespace BlizzStatistics.App.Views
                 DefineMainhandSlot(data);
                 DefineOffhandSlot(data);
                 _selectedChar = data;
+                await CheckForSavedGear();
                 return data;
             }
             catch (Exception e)
@@ -787,7 +792,7 @@ namespace BlizzStatistics.App.Views
             TtHeadSlotGrid.RowDefinitions.Clear();
         }
 
-        private async void BtnDelete(object sender, RoutedEventArgs e)
+        /*private async void BtnDelete(object sender, RoutedEventArgs e)
         {
             SavedCharacter character = (SavedCharacter) CharacterListView.SelectedItem;
             try
@@ -799,7 +804,7 @@ namespace BlizzStatistics.App.Views
                 Console.WriteLine(exception);
                 throw;
             }
-        }
+        }*/
 
         private  void BtnShowItemList(object sender, RoutedEventArgs e)
         {
@@ -813,7 +818,6 @@ namespace BlizzStatistics.App.Views
         private async void FillOptItemList(int armorType)
         {
             if (Equipment == null){Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment()); }
-            
             var view = new OptimizationViewModel {Equipments = new ObservableCollection<Equipment>()};
             foreach (var a in Equipment)
             {
@@ -824,9 +828,16 @@ namespace BlizzStatistics.App.Views
                         view.Equipments.Add(a);
                     }
                 }
-                else if (a.ArmorType == 0 && a.Slot == _itemSlot && a.RestrictedToStat == 0|| a.ArmorType == 1 && a.Slot == _itemSlot)
+                else if (a.ArmorType == 0 && a.Slot == _itemSlot && a.RestrictedToStat == 0)
                 {
                     view.Equipments.Add(a);
+                }
+                else if (a.ArmorType == 1 && a.Slot == _itemSlot)
+                {
+                    if (_itemSlot == 16)
+                    {
+                        view.Equipments.Add(a);
+                    }
                 }
                 else if (a.ArmorType == 0 && a.Slot == _itemSlot && a.RestrictedToStat != 0)
                 {
@@ -842,20 +853,20 @@ namespace BlizzStatistics.App.Views
 
         private void DefineItemSlots(Button clickedBtn)
         {
-            if (clickedBtn == BtnHeadSlot){_itemSlot = 1; _saveToDbIndex = 1; _clickedImage = OptHeadSlotImg; _clickedImgGrid = OptTtHeadSlotGrid; _selectedItemStats = _selectedChar.Items.head.stats;}
-            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2; _saveToDbIndex = 2; _clickedImage = OptNeckSlotImg; _clickedImgGrid = OptTtNeckSlotGrid; _selectedItemStats = _selectedChar.Items.neck.stats;}
-            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3; _saveToDbIndex = 3; _clickedImage = OptShoulderSlotImg; _clickedImgGrid = OptTtShoulderSlotGrid; _selectedItemStats = _selectedChar.Items.shoulder.stats;}
-            else if (clickedBtn == BtnBackSlot){_itemSlot = 16; _saveToDbIndex = 4; _clickedImage = OptBackSlotImg; _clickedImgGrid = OptTtBackSlotGrid; _selectedItemStats = _selectedChar.Items.back.stats;}
-            else if (clickedBtn == BtnChestSlot){_itemSlot = 5; _saveToDbIndex = 5; _clickedImage = OptChestSlotImg; _clickedImgGrid = OptTtChestSlotGrid; _selectedItemStats = _selectedChar.Items.chest.stats;}
-            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6; _saveToDbIndex = 6; _clickedImage = OptBeltSlotImg; _clickedImgGrid = OptTtBeltSlotGrid; _selectedItemStats = _selectedChar.Items.waist.stats;}
-            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7; _saveToDbIndex = 7; _clickedImage = OptLegsSlotImg; _clickedImgGrid = OptTtLegsSlotGrid; _selectedItemStats = _selectedChar.Items.legs.stats;}
-            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8; _saveToDbIndex = 8; _clickedImage = OptFeetSlotImg; _clickedImgGrid = OptTtFeetSlotGrid; _selectedItemStats = _selectedChar.Items.feet.stats;}
-            else if (clickedBtn == BtnWristSlot){_itemSlot = 9; _saveToDbIndex = 9; _clickedImage = OptWristSlotImg; _clickedImgGrid = OptTtWristSlotGrid; _selectedItemStats = _selectedChar.Items.wrist.stats;}
-            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10; _saveToDbIndex = 10; _clickedImage = OptGlovesSlotImg; _clickedImgGrid = OptTtGlovesSlotGrid; _selectedItemStats = _selectedChar.Items.hands.stats;}
-            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11; _saveToDbIndex = 11; _clickedImage = OptRing1SlotImg; _clickedImgGrid = OptTtRing1SlotGrid; _selectedItemStats = _selectedChar.Items.finger1.stats;}
-            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11; _saveToDbIndex = 12; _clickedImage = OptRing2SlotImg; _clickedImgGrid = OptTtRing2SlotGrid; _selectedItemStats = _selectedChar.Items.finger2.stats;}
-            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.trinket1.stats;}
-            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.trinket2.stats;}
+            if (clickedBtn == BtnHeadSlot){_itemSlot = 1; _gearSlotOffset = 0; _saveToDbIndex = 1; _clickedImage = OptHeadSlotImg; _clickedImgGrid = OptTtHeadSlotGrid; _selectedItemStats = _selectedChar.Items.head.stats;}
+            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2; _gearSlotOffset = 0; _saveToDbIndex = 2; _clickedImage = OptNeckSlotImg; _clickedImgGrid = OptTtNeckSlotGrid; _selectedItemStats = _selectedChar.Items.neck.stats;}
+            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3; _gearSlotOffset = 0; _saveToDbIndex = 3; _clickedImage = OptShoulderSlotImg; _clickedImgGrid = OptTtShoulderSlotGrid; _selectedItemStats = _selectedChar.Items.shoulder.stats;}
+            else if (clickedBtn == BtnBackSlot){_itemSlot = 16; _gearSlotOffset = 0; _saveToDbIndex = 4; _clickedImage = OptBackSlotImg; _clickedImgGrid = OptTtBackSlotGrid; _selectedItemStats = _selectedChar.Items.back.stats;}
+            else if (clickedBtn == BtnChestSlot){_itemSlot = 5; _gearSlotOffset = 0; _saveToDbIndex = 5; _clickedImage = OptChestSlotImg; _clickedImgGrid = OptTtChestSlotGrid; _selectedItemStats = _selectedChar.Items.chest.stats;}
+            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6; _gearSlotOffset = 0; _saveToDbIndex = 6; _clickedImage = OptBeltSlotImg; _clickedImgGrid = OptTtBeltSlotGrid; _selectedItemStats = _selectedChar.Items.waist.stats;}
+            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7; _gearSlotOffset = 0; _saveToDbIndex = 7; _clickedImage = OptLegsSlotImg; _clickedImgGrid = OptTtLegsSlotGrid; _selectedItemStats = _selectedChar.Items.legs.stats;}
+            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8; _gearSlotOffset = 0; _saveToDbIndex = 8; _clickedImage = OptFeetSlotImg; _clickedImgGrid = OptTtFeetSlotGrid; _selectedItemStats = _selectedChar.Items.feet.stats;}
+            else if (clickedBtn == BtnWristSlot){_itemSlot = 9; _gearSlotOffset = 0; _saveToDbIndex = 9; _clickedImage = OptWristSlotImg; _clickedImgGrid = OptTtWristSlotGrid; _selectedItemStats = _selectedChar.Items.wrist.stats;}
+            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10; _gearSlotOffset = 0; _saveToDbIndex = 10; _clickedImage = OptGlovesSlotImg; _clickedImgGrid = OptTtGlovesSlotGrid; _selectedItemStats = _selectedChar.Items.hands.stats;}
+            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11; _gearSlotOffset = 0; _saveToDbIndex = 11; _clickedImage = OptRing1SlotImg; _clickedImgGrid = OptTtRing1SlotGrid; _selectedItemStats = _selectedChar.Items.finger1.stats;}
+            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11; _gearSlotOffset = 3; _saveToDbIndex = 12; _clickedImage = OptRing2SlotImg; _clickedImgGrid = OptTtRing2SlotGrid; _selectedItemStats = _selectedChar.Items.finger2.stats;}
+            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _gearSlotOffset = 0; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.trinket1.stats;}
+            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _gearSlotOffset = 1;  _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.trinket2.stats;}
         }
         private void DefineArmorType()
         {
@@ -886,51 +897,144 @@ namespace BlizzStatistics.App.Views
         private void ItemList_SelectedItem(object sender, SelectionChangedEventArgs e)
         {
             ItemContentDialog.Hide();
-            _clickedImgGrid.Children.Clear();
-            _clickedImgGrid.RowDefinitions.Clear();
+            ClearImgGrid(_clickedImgGrid);
             var a = (Equipment) ItemList.SelectedItem;
             if (a == null) return;
-            _selectedEquipment = a;
+            DefineChangeInGearAndStats(a);
+            AddItemToSelectedCharacter();
+            _slotArray[_saveToDbIndex - 1] = a.Id;
+        }
+
+        private static void ClearImgGrid(Grid imgGrid)
+        {
+            imgGrid.Children.Clear();
+            imgGrid.RowDefinitions.Clear();
+        }
+        private void DefineChangeInGearAndStats(Equipment a)
+        {
+            ClearImgGrid(_clickedImgGrid);
             _clickedImage.Source = new BitmapImage(new Uri(a.Icon));
+            _selectedEquipment = a;
             DefineToolTip(a);
             GetOrgSlotStats();
             RedefineOptStats();
         }
 
-        private void RedefineOptStats()
-        {
-            
-                OptimizedMainStatBox.Text = (int.Parse(OptimizedMainStatBox.Text) + (_selectedEquipment.MainStat - _orgMainStatValue)).ToString();
-                OptimizedStaminaBox.Text = (int.Parse(OptimizedStaminaBox.Text) + (_selectedEquipment.Stamina - _orgStaminaValue)).ToString();
-                OptimizedHpBox.Text = (int.Parse(OptimizedStaminaBox.Text) * 60).ToString();
-                OptimizedMasteryBox.Text = (int.Parse(OptimizedMasteryBox.Text) + (_selectedEquipment.Mastery - _orgMasteryValue)).ToString();
-                OptimizedCritBox.Text = (int.Parse(OptimizedCritBox.Text) + (_selectedEquipment.Crit - _orgCritValue)).ToString();
-                OptimizedHasteBox.Text = (int.Parse(OptimizedHasteBox.Text) + (_selectedEquipment.Haste - _orgHasteValue)).ToString();
-                OptimizedVersatilityBox.Text = (int.Parse(OptimizedVersatilityBox.Text) + (_selectedEquipment.Versatility - _orgVersatilityValue)).ToString();
-            CheckIfChangeIsPositive();
+        private void SetStatIfNoGearEquipt()
+        {   
+            _selectedEquipment.MainStat = _orgMainStatValue ;
+            _selectedEquipment.Stamina = _orgStaminaValue;
+            _selectedEquipment.Mastery = _orgMasteryValue;
+            _selectedEquipment.Crit = _orgCritValue;
+            _selectedEquipment.Haste = _orgHasteValue;
+            _selectedEquipment.Versatility = _orgVersatilityValue;
+            RedefineOptStats();
         }
 
+        private void DoIfNotOptGearEquipt(Image img, Grid grd, Stat[] stat)
+        {
+            img.Source = _defaultImg;
+            ClearImgGrid(grd);
+            _selectedItemStats = stat;
+            GetOrgSlotStats();
+            SetStatIfNoGearEquipt();
+        }
+
+        
+        private async Task CheckForSavedGear()
+        {     
+            if (Character.HeadSlot != 0){  DefineItemSlots(BtnHeadSlot); await GetSavedEquipment(Character.HeadSlot); _slotArray[0] = Character.HeadSlot; } else { DoIfNotOptGearEquipt(OptHeadSlotImg, OptTtHeadSlotGrid, _selectedChar.Items.head.stats); }
+
+            if (Character.NeckSlot != 0){  DefineItemSlots(BtnNeckSlot); await GetSavedEquipment(Character.NeckSlot); _slotArray[1] = Character.NeckSlot; } else { DoIfNotOptGearEquipt(OptNeckSlotImg, OptTtNeckSlotGrid, _selectedChar.Items.neck.stats); }
+
+            if (Character.ShoulderSlot != 0){ DefineItemSlots(BtnShoulderSlot); await GetSavedEquipment(Character.ShoulderSlot); _slotArray[2] = Character.ShoulderSlot; } else { DoIfNotOptGearEquipt(OptShoulderSlotImg, OptTtShoulderSlotGrid, _selectedChar.Items.shoulder.stats); }
+
+            if (Character.BackSlot != 0){  DefineItemSlots(BtnBackSlot); await GetSavedEquipment(Character.BackSlot); _slotArray[3] = Character.BackSlot; } else { DoIfNotOptGearEquipt(OptBackSlotImg, OptTtBackSlotGrid, _selectedChar.Items.back.stats); }
+
+            if (Character.ChestSlot != 0){ DefineItemSlots(BtnChestSlot); await GetSavedEquipment(Character.ChestSlot); _slotArray[4] = Character.ChestSlot; } else { DoIfNotOptGearEquipt(OptChestSlotImg, OptTtChestSlotGrid, _selectedChar.Items.chest.stats); }
+
+            if (Character.WristSlot != 0){ DefineItemSlots(BtnWristSlot); await GetSavedEquipment(Character.WristSlot); _slotArray[8] = Character.WristSlot; } else { DoIfNotOptGearEquipt(OptWristSlotImg, OptTtWristSlotGrid, _selectedChar.Items.wrist.stats); }
+
+            if (Character.Ring1Slot != 0){ DefineItemSlots(BtnRing1Slot); await GetSavedEquipment(Character.Ring1Slot); _slotArray[10] = Character.Ring1Slot; } else { DoIfNotOptGearEquipt(OptRing1SlotImg, OptTtRing1SlotGrid, _selectedChar.Items.finger1.stats); }
+
+            if (Character.Trinket1Slot != 0){ DefineItemSlots(BtnTrinket1Slot); await GetSavedEquipment(Character.Trinket1Slot); _slotArray[12] = Character.Trinket1Slot; } else { DoIfNotOptGearEquipt(OptTrinket1SlotImg, OptTtTrinket1SlotGrid, _selectedChar.Items.trinket1.stats); }
+
+            if (Character.GlovesSlot != 0){  DefineItemSlots(BtnGlovesSlot); await GetSavedEquipment(Character.GlovesSlot); _slotArray[9] = Character.GlovesSlot; } else { DoIfNotOptGearEquipt(OptGlovesSlotImg, OptTtGlovesSlotGrid, _selectedChar.Items.hands.stats); }
+
+            if (Character.BeltSlot != 0){  DefineItemSlots(BtnBeltSlot); await GetSavedEquipment(Character.BeltSlot); _slotArray[5] = Character.BeltSlot; } else { DoIfNotOptGearEquipt(OptBeltSlotImg, OptTtBeltSlotGrid, _selectedChar.Items.waist.stats); }
+
+            if (Character.LegsSlot != 0){ DefineItemSlots(BtnLegsSlot); await GetSavedEquipment(Character.LegsSlot); _slotArray[6] = Character.LegsSlot; } else { DoIfNotOptGearEquipt(OptLegsSlotImg, OptTtLegsSlotGrid, _selectedChar.Items.legs.stats); }
+
+            if (Character.FeetSlot != 0){ DefineItemSlots(BtnFeetSlot); await GetSavedEquipment(Character.FeetSlot); _slotArray[7] = Character.FeetSlot; } else { DoIfNotOptGearEquipt(OptFeetSlotImg, OptTtFeetSlotGrid, _selectedChar.Items.feet.stats); }
+
+            if (Character.Ring2Slot != 0){  DefineItemSlots(BtnRing2Slot); await GetSavedEquipment(Character.Ring2Slot); _slotArray[11] = Character.Ring2Slot; } else { DoIfNotOptGearEquipt(OptRing2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.finger2.stats); }
+
+            if (Character.Trinket2Slot != 0){  DefineItemSlots(BtnTrinketSlot); await GetSavedEquipment(Character.Trinket2Slot); _slotArray[13] = Character.Trinket2Slot; } else { DoIfNotOptGearEquipt(OptTrinket2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.trinket2.stats); }
+        }
+
+        private async Task GetSavedEquipment(int id)
+        {
+            Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment());
+            foreach (var c in Equipment)
+            {
+                if (c.Id == id)
+                {
+                    DefineChangeInGearAndStats(c);
+                }
+            }
+        }
+        private void RedefineOptStats()
+        {
+            if (IsEquipt(_selectedEquipment.Id)) return;
+            OptimizedMainStatBox.Text = (int.Parse(OptimizedMainStatBox.Text) + (_selectedEquipment.MainStat - _orgMainStatValue)).ToString();
+            OptimizedStaminaBox.Text = (int.Parse(OptimizedStaminaBox.Text) + (_selectedEquipment.Stamina - _orgStaminaValue)).ToString();
+            OptimizedHpBox.Text = (int.Parse(OptimizedStaminaBox.Text) * 60).ToString();
+            OptimizedMasteryBox.Text = (int.Parse(OptimizedMasteryBox.Text) + (_selectedEquipment.Mastery - _orgMasteryValue)).ToString();
+            OptimizedCritBox.Text = (int.Parse(OptimizedCritBox.Text) + (_selectedEquipment.Crit - _orgCritValue)).ToString();
+            OptimizedHasteBox.Text = (int.Parse(OptimizedHasteBox.Text) + (_selectedEquipment.Haste - _orgHasteValue)).ToString();
+            OptimizedVersatilityBox.Text = (int.Parse(OptimizedVersatilityBox.Text) + (_selectedEquipment.Versatility - _orgVersatilityValue)).ToString();
+            CheckIfChangeIsPositive();
+
+        }
+
+        private bool IsEquipt(int id)
+        {
+            foreach (var t in _slotArray)
+            {
+                if (id == t)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         private void CheckIfChangeIsPositive()
         {
-
-            if (int.Parse(OptimizedMainStatBox.Text) > int.Parse(OriginalMainStat.Text)){OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Green);}
-            else if (int.Parse(OptimizedMainStatBox.Text) < int.Parse(OriginalMainStat.Text)) {OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Red);}
-
+            //Mainstat
+            if(int.Parse(OptimizedMainStatBox.Text) > int.Parse(OriginalMainStat.Text)){OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Green);}
+            else if(int.Parse(OptimizedMainStatBox.Text) < int.Parse(OriginalMainStat.Text)) {OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Red);}
+            else if(int.Parse(OptimizedMainStatBox.Text) == int.Parse(OriginalMainStat.Text)){ OptimizedMainStatBox.Foreground = new SolidColorBrush(Colors.Black);}
+            //Stamina and Healthpoints
             if (int.Parse(OptimizedStaminaBox.Text) > int.Parse(OriginalStamina.Text)){ OptimizedStaminaBox.Foreground = new SolidColorBrush(Colors.Green); OptimizedHpBox.Foreground = new SolidColorBrush(Colors.Green);}
             else if(int.Parse(OptimizedStaminaBox.Text) < int.Parse(OriginalStamina.Text)){ OptimizedStaminaBox.Foreground = new SolidColorBrush(Colors.Red); OptimizedHpBox.Foreground = new SolidColorBrush(Colors.Red);}
-
+            else if (int.Parse(OptimizedStaminaBox.Text) == int.Parse(OriginalStamina.Text)){ OptimizedStaminaBox.Foreground = new SolidColorBrush(Colors.Black); OptimizedHpBox.Foreground = new SolidColorBrush(Colors.Black); }
+            //Mastery
             if (int.Parse(OptimizedMasteryBox.Text) > int.Parse(OriginalMastery.Text)){ OptimizedMasteryBox.Foreground = new SolidColorBrush(Colors.Green);}
             else if (int.Parse(OptimizedMasteryBox.Text) < int.Parse(OriginalMastery.Text)){ OptimizedMasteryBox.Foreground = new SolidColorBrush(Colors.Red);}
-
+            else if (int.Parse(OptimizedMasteryBox.Text) == int.Parse(OriginalMastery.Text)){OptimizedMasteryBox.Foreground = new SolidColorBrush(Colors.Black);}
+            //Critical Strike
             if (int.Parse(OptimizedCritBox.Text) > int.Parse(OriginalCrit.Text)) { OptimizedCritBox.Foreground = new SolidColorBrush(Colors.Green);}
             else if (int.Parse(OptimizedCritBox.Text) > int.Parse(OriginalCrit.Text)) { OptimizedCritBox.Foreground = new SolidColorBrush(Colors.Red);}
-
+            else if (int.Parse(OptimizedCritBox.Text) == int.Parse(OriginalCrit.Text)) { OptimizedCritBox.Foreground = new SolidColorBrush(Colors.Black); }
+            //Haste
             if (int.Parse(OptimizedHasteBox.Text) > int.Parse(OriginalHaste.Text)) { OptimizedHasteBox.Foreground = new SolidColorBrush(Colors.Green); }
             else if (int.Parse(OptimizedHasteBox.Text) > int.Parse(OriginalHaste.Text)) { OptimizedHasteBox.Foreground = new SolidColorBrush(Colors.Red); }
-
+            else if (int.Parse(OptimizedHasteBox.Text) == int.Parse(OriginalHaste.Text)) { OptimizedHasteBox.Foreground = new SolidColorBrush(Colors.Black); }
+            //Versatility
             if (int.Parse(OptimizedVersatilityBox.Text) > int.Parse(OriginalVersatility.Text)) { OptimizedVersatilityBox.Foreground = new SolidColorBrush(Colors.Green); }
             else if (int.Parse(OptimizedVersatilityBox.Text) > int.Parse(OriginalVersatility.Text)) { OptimizedVersatilityBox.Foreground = new SolidColorBrush(Colors.Red); }
-
+            else if (int.Parse(OptimizedVersatilityBox.Text) == int.Parse(OriginalVersatility.Text)) { OptimizedVersatilityBox.Foreground = new SolidColorBrush(Colors.Black); }
             ClearStats();
         }
 
@@ -942,17 +1046,18 @@ namespace BlizzStatistics.App.Views
             _orgCritValue = 0;
             _orgHasteValue = 0;
             _orgVersatilityValue = 0;
-            AddItemToSelectedCharacter();
+            
         }
         //adds the item id of the selected item, to the selected character(SavedCharacter, so that the saved character can be updatet with the Item id.)
         private void AddItemToSelectedCharacter()
-        {
-            switch (_itemSlot)
+        {   
+
+            switch (_itemSlot+ _gearSlotOffset)
             {
                 case 1: Character.HeadSlot = _selectedEquipment.Id; break;
                 case 2: Character.NeckSlot = _selectedEquipment.Id; break;
                 case 3: Character.ShoulderSlot = _selectedEquipment.Id; break;
-                case 4: Character.BackSlot = _selectedEquipment.Id; break;
+                case 16: Character.BackSlot = _selectedEquipment.Id; break;
                 case 5: Character.ChestSlot = _selectedEquipment.Id; break;
                 case 6: Character.BeltSlot = _selectedEquipment.Id; break;
                 case 7: Character.LegsSlot = _selectedEquipment.Id; break;
@@ -960,11 +1065,13 @@ namespace BlizzStatistics.App.Views
                 case 9: Character.WristSlot = _selectedEquipment.Id; break;
                 case 10: Character.GlovesSlot = _selectedEquipment.Id; break;
                 case 11: Character.Ring1Slot = _selectedEquipment.Id; break;
-                case 12: Character.Ring2Slot = _selectedEquipment.Id; break;
-                case 13: Character.Trinket1Slot = _selectedEquipment.Id; break;
-                case 14: Character.Trinket2Slot = _selectedEquipment.Id; break;
+                case 14: Character.Ring2Slot = _selectedEquipment.Id; break;
+                case 12: Character.Trinket1Slot = _selectedEquipment.Id; break;
+                case 13: Character.Trinket2Slot = _selectedEquipment.Id; break;
             }
         }
+
+        
         private void GetOrgSlotStats()
         {
             foreach (var a in _selectedItemStats)
@@ -1023,6 +1130,7 @@ namespace BlizzStatistics.App.Views
                 }
                 AddToGrid(g, tb, _clickedImgGrid, i-rowOffsett, rowHeight);
             }
+            
         }
        
         public async void UpdateCharacterToDb(object sender, RoutedEventArgs e)
