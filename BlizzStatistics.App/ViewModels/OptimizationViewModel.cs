@@ -20,8 +20,10 @@ namespace BlizzStatistics.App.ViewModels
         {
             _viewModel = viewModel;
         }
-
+        //This need be here, or else  the ICommand would not be implementet
+#pragma warning disable CS0067 // The event 'DeleteSavedCharacterCommand.CanExecuteChanged' is never used
         public event EventHandler CanExecuteChanged;
+#pragma warning restore CS0067 // The event 'DeleteSavedCharacterCommand.CanExecuteChanged' is never used
 
         public bool CanExecute(object parameter) => parameter != null;
 

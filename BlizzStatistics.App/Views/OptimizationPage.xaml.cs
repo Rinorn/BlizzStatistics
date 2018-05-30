@@ -285,7 +285,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineHeadSlot(GameCharacter data)
         {
-            ItemThumbnail= data.Items.head.icon;
+            ItemThumbnail= data.Items.Head.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             HeadSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -297,19 +297,19 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.head.name;
+                        tbName.Text = data.Items.Head.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.head.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Head.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.head.armor;
+                        tbName.Text = "Armor " + data.Items.Head.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
 
-            var item = data.Items.head.stats;
+            var item = data.Items.Head.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -318,7 +318,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineNeckSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.neck.icon;
+            ItemThumbnail = data.Items.Neck.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             NeckSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 2;
@@ -330,15 +330,15 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.neck.name;
+                        tbName.Text = data.Items.Neck.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.neck.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Neck.ItemLevel;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.neck.stats;
+            var item = data.Items.Neck.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -347,7 +347,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineShoulderSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.shoulder.icon;
+            ItemThumbnail = data.Items.Shoulder.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             ShoulderSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -359,18 +359,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.shoulder.name;
+                        tbName.Text = data.Items.Shoulder.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.shoulder.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Shoulder.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.shoulder.armor;
+                        tbName.Text = "Armor " + data.Items.Shoulder.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.shoulder.stats;
+            var item = data.Items.Shoulder.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -379,7 +379,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineBackSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.back.icon;
+            ItemThumbnail = data.Items.Back.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             BackSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -391,18 +391,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.back.name;
+                        tbName.Text = data.Items.Back.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.back.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Back.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.back.armor;
+                        tbName.Text = "Armor " + data.Items.Back.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.back.stats;
+            var item = data.Items.Back.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -411,7 +411,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineChestSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.chest.icon;
+            ItemThumbnail = data.Items.Chest.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             ChestSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -423,18 +423,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.chest.name;
+                        tbName.Text = data.Items.Chest.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.chest.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Chest.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.chest.armor;
+                        tbName.Text = "Armor " + data.Items.Chest.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.chest.stats;
+            var item = data.Items.Chest.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -443,7 +443,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineBracerSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.wrist.icon;
+            ItemThumbnail = data.Items.Wrist.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             BracerSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 2;
@@ -455,16 +455,16 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.wrist.name;
+                        tbName.Text = data.Items.Wrist.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.wrist.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Wrist.ItemLevel;
                         break;
                     
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.wrist.stats;
+            var item = data.Items.Wrist.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -473,7 +473,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineTrinket1Slot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.trinket1.icon;
+            ItemThumbnail = data.Items.Trinket1.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             Trinket1Slot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -485,15 +485,15 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.trinket1.name;
+                        tbName.Text = data.Items.Trinket1.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.trinket1.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Trinket1.ItemLevel;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.trinket1.stats;
+            var item = data.Items.Trinket1.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -502,7 +502,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineGlovesSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.hands.icon;
+            ItemThumbnail = data.Items.Hands.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             GlovesSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -514,18 +514,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.hands.name;
+                        tbName.Text = data.Items.Hands.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.hands.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Hands.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.hands.armor;
+                        tbName.Text = "Armor " + data.Items.Hands.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.hands.stats;
+            var item = data.Items.Hands.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -534,7 +534,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineBeltSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.waist.icon;
+            ItemThumbnail = data.Items.Waist.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             BeltSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -546,18 +546,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.waist.name;
+                        tbName.Text = data.Items.Waist.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.waist.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Waist.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.waist.armor;
+                        tbName.Text = "Armor " + data.Items.Waist.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.waist.stats;
+            var item = data.Items.Waist.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -566,7 +566,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineLegsSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.legs.icon;
+            ItemThumbnail = data.Items.Legs.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             LegsSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -578,18 +578,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.legs.name;
+                        tbName.Text = data.Items.Legs.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.legs.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Legs.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.legs.armor;
+                        tbName.Text = "Armor " + data.Items.Legs.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.legs.stats;
+            var item = data.Items.Legs.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -598,7 +598,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineFeetSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.feet.icon;
+            ItemThumbnail = data.Items.Feet.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             FeetSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -610,18 +610,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.feet.name;
+                        tbName.Text = data.Items.Feet.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.feet.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Feet.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.feet.armor;
+                        tbName.Text = "Armor " + data.Items.Feet.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.feet.stats;
+            var item = data.Items.Feet.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -630,7 +630,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineRing1Slot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.finger1.icon;
+            ItemThumbnail = data.Items.Finger1.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             Ring1Slot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -642,18 +642,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.finger1.name;
+                        tbName.Text = data.Items.Finger1.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.finger1.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Finger1.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.finger1.armor;
+                        tbName.Text = "Armor " + data.Items.Finger1.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.finger1.stats;
+            var item = data.Items.Finger1.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -662,7 +662,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineRing2Slot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.finger2.icon;
+            ItemThumbnail = data.Items.Finger2.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             Ring2Slot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -674,18 +674,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.finger2.name;
+                        tbName.Text = data.Items.Finger2.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.finger2.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Finger2.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.finger2.armor;
+                        tbName.Text = "Armor " + data.Items.Finger2.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i,15);
             }
-            var item = data.Items.finger2.stats;
+            var item = data.Items.Finger2.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -694,7 +694,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineTrinket2Slot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.trinket2.icon;
+            ItemThumbnail = data.Items.Trinket2.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             Trinket2Slot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 3;
@@ -706,18 +706,18 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.trinket2.name;
+                        tbName.Text = data.Items.Trinket2.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.trinket2.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.Trinket2.ItemLevel;
                         break;
                     default:
-                        tbName.Text = "Armor " + data.Items.trinket2.armor;
+                        tbName.Text = "Armor " + data.Items.Trinket2.Armor;
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.trinket2.stats;
+            var item = data.Items.Trinket2.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -726,7 +726,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineMainhandSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.mainHand.icon;
+            ItemThumbnail = data.Items.MainHand.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             MainhandSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 4;
@@ -738,22 +738,22 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.mainHand.name;
+                        tbName.Text = data.Items.MainHand.Name;
                         break;
                     case 1:
-                        tbName.Text = "Item Level " + data.Items.mainHand.itemLevel;
+                        tbName.Text = "Item Level " + data.Items.MainHand.ItemLevel;
                         break;
                     case 2:
-                        tbName.Text = data.Items.mainHand.weaponInfo.damage.min + " - " +
-                                      data.Items.mainHand.weaponInfo.damage.max + " Damage            Speed " + data.Items.mainHand.weaponInfo.weaponSpeed;
+                        tbName.Text = data.Items.MainHand.WeaponInfo.Damage.Min + " - " +
+                                      data.Items.MainHand.WeaponInfo.Damage.Max + " Damage            Speed " + data.Items.MainHand.WeaponInfo.WeaponSpeed;
                         break;
                     case 3:
-                        tbName.Text = data.Items.mainHand.weaponInfo.dps + " Damage per second";
+                        tbName.Text = data.Items.MainHand.WeaponInfo.Dps + " Damage per second";
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-            var item = data.Items.mainHand.stats;
+            var item = data.Items.MainHand.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
         /// <summary>
@@ -762,7 +762,7 @@ namespace BlizzStatistics.App.Views
         /// <param name="data">The data.</param>
         public void DefineOffhandSlot(GameCharacter data)
         {
-            ItemThumbnail = data.Items.offHand == null ? data.Items.mainHand.icon : data.Items.offHand.icon;
+            ItemThumbnail = data.Items.OffHand == null ? data.Items.MainHand.Icon : data.Items.OffHand.Icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
             OffhandSlot.Source = new BitmapImage(new Uri(CombinedUrl));
             var rowCount = 4;
@@ -775,25 +775,25 @@ namespace BlizzStatistics.App.Views
                 switch (i)
                 {
                     case 0:
-                        tbName.Text = data.Items.offHand == null ? data.Items.mainHand.name : data.Items.offHand.name;
+                        tbName.Text = data.Items.OffHand == null ? data.Items.MainHand.Name : data.Items.OffHand.Name;
                         break;
                     case 1:
-                        tbName.Text = data.Items.offHand == null ? "Item Level " +  data.Items.mainHand.itemLevel : "Item Level " + data.Items.offHand.itemLevel;
+                        tbName.Text = data.Items.OffHand == null ? "Item Level " +  data.Items.MainHand.ItemLevel : "Item Level " + data.Items.OffHand.ItemLevel;
                         break;
                     case 2:
-                        if (data.Items.offHand == null)
+                        if (data.Items.OffHand == null)
                         {
-                            tbName.Text = data.Items.mainHand.weaponInfo.damage.min + " - " +
-                                          data.Items.mainHand.weaponInfo.damage.max + " Damage            Speed " +
-                                          data.Items.mainHand.weaponInfo.weaponSpeed;
+                            tbName.Text = data.Items.MainHand.WeaponInfo.Damage.Min + " - " +
+                                          data.Items.MainHand.WeaponInfo.Damage.Max + " Damage            Speed " +
+                                          data.Items.MainHand.WeaponInfo.WeaponSpeed;
                         }
                         else
                         {
-                            if (data.Items.offHand.weaponInfo != null)
+                            if (data.Items.OffHand.WeaponInfo != null)
                             {
-                                tbName.Text = data.Items.offHand.weaponInfo.damage.min + " - " +
-                                              data.Items.offHand.weaponInfo.damage.max + " Damage            Speed " +
-                                              data.Items.offHand.weaponInfo.weaponSpeed;
+                                tbName.Text = data.Items.OffHand.WeaponInfo.Damage.Min + " - " +
+                                              data.Items.OffHand.WeaponInfo.Damage.Max + " Damage            Speed " +
+                                              data.Items.OffHand.WeaponInfo.WeaponSpeed;
                             }
                             else
                             {
@@ -803,26 +803,26 @@ namespace BlizzStatistics.App.Views
                         }     
                         break;
                     case 3:
-                        if (data.Items.offHand == null)
+                        if (data.Items.OffHand == null)
                         {
-                            tbName.Text = data.Items.mainHand.weaponInfo.dps + " Damage per second";
+                            tbName.Text = data.Items.MainHand.WeaponInfo.Dps + " Damage per second";
                         }
                         else
                         {
-                            if (data.Items.offHand.weaponInfo != null)
+                            if (data.Items.OffHand.WeaponInfo != null)
                             {
-                                tbName.Text = data.Items.offHand.weaponInfo.dps + " Damage per second";
+                                tbName.Text = data.Items.OffHand.WeaponInfo.Dps + " Damage per second";
                             }
                             else
                             {
-                                tbName.Text = "Armor " + data.Items.offHand.armor;
+                                tbName.Text = "Armor " + data.Items.OffHand.Armor;
                             }
                         } 
                         break;
                 }
                 AddToGrid(b, tbName, mainGrid, i-rowOffsett, 15);
             }
-            var item = data.Items.offHand == null ? data.Items.mainHand.stats : data.Items.offHand.stats;
+            var item = data.Items.OffHand == null ? data.Items.MainHand.Stats : data.Items.OffHand.Stats;
             DefineStats(mainGrid, rowCount-rowOffsett, item);
         }
 
@@ -846,31 +846,31 @@ namespace BlizzStatistics.App.Views
                     case 3:
                     case 4:
                     case 5:
-                        tb.Text = " + " + a.amount + " " + MainStatName;
+                        tb.Text = " + " + a.Amount + " " + MainStatName;
                         break;
                     case 40:
-                        tb.Text = " + " + a.amount + " Versatility";
+                        tb.Text = " + " + a.Amount + " Versatility";
                         break;
                     case 49:
-                        tb.Text = " + " + a.amount + " Mastery";
+                        tb.Text = " + " + a.Amount + " Mastery";
                         break;
                     case 62:
-                        tb.Text = " + " + a.amount + " Leech";
+                        tb.Text = " + " + a.Amount + " Leech";
                         break;
                     case 7:
-                        tb.Text = " + " + a.amount + " Stamina";
+                        tb.Text = " + " + a.Amount + " Stamina";
                         break;
                     case 32:
-                        tb.Text = " + " + a.amount + " Critical Strike";
+                        tb.Text = " + " + a.Amount + " Critical Strike";
                         break;
                     case 36:
-                        tb.Text = " + " + a.amount + " Haste";
+                        tb.Text = " + " + a.Amount + " Haste";
                         break;
                     case 61:
-                        tb.Text = " + " + a.amount + " Speed";
+                        tb.Text = " + " + a.Amount + " Speed";
                         break;
                     case 63:
-                        tb.Text = " + " + a.amount + " Avoidance";
+                        tb.Text = " + " + a.Amount + " Avoidance";
                         break;
                     case 64:
                         tb.Text = "Indestructible";
@@ -1018,20 +1018,20 @@ namespace BlizzStatistics.App.Views
         /// <param name="clickedBtn">The clicked BTN.</param>
         private void DefineItemSlots(Button clickedBtn)
         {
-            if (clickedBtn == BtnHeadSlot){_itemSlot = 1; _gearSlotOffset = 0; _saveToDbIndex = 1; _clickedImage = OptHeadSlotImg; _clickedImgGrid = OptTtHeadSlotGrid; _selectedItemStats = _selectedChar.Items.head.stats;}
-            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2; _gearSlotOffset = 0; _saveToDbIndex = 2; _clickedImage = OptNeckSlotImg; _clickedImgGrid = OptTtNeckSlotGrid; _selectedItemStats = _selectedChar.Items.neck.stats;}
-            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3; _gearSlotOffset = 0; _saveToDbIndex = 3; _clickedImage = OptShoulderSlotImg; _clickedImgGrid = OptTtShoulderSlotGrid; _selectedItemStats = _selectedChar.Items.shoulder.stats;}
-            else if (clickedBtn == BtnBackSlot){_itemSlot = 16; _gearSlotOffset = 0; _saveToDbIndex = 4; _clickedImage = OptBackSlotImg; _clickedImgGrid = OptTtBackSlotGrid; _selectedItemStats = _selectedChar.Items.back.stats;}
-            else if (clickedBtn == BtnChestSlot){_itemSlot = 5; _gearSlotOffset = 0; _saveToDbIndex = 5; _clickedImage = OptChestSlotImg; _clickedImgGrid = OptTtChestSlotGrid; _selectedItemStats = _selectedChar.Items.chest.stats;}
-            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6; _gearSlotOffset = 0; _saveToDbIndex = 6; _clickedImage = OptBeltSlotImg; _clickedImgGrid = OptTtBeltSlotGrid; _selectedItemStats = _selectedChar.Items.waist.stats;}
-            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7; _gearSlotOffset = 0; _saveToDbIndex = 7; _clickedImage = OptLegsSlotImg; _clickedImgGrid = OptTtLegsSlotGrid; _selectedItemStats = _selectedChar.Items.legs.stats;}
-            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8; _gearSlotOffset = 0; _saveToDbIndex = 8; _clickedImage = OptFeetSlotImg; _clickedImgGrid = OptTtFeetSlotGrid; _selectedItemStats = _selectedChar.Items.feet.stats;}
-            else if (clickedBtn == BtnWristSlot){_itemSlot = 9; _gearSlotOffset = 0; _saveToDbIndex = 9; _clickedImage = OptWristSlotImg; _clickedImgGrid = OptTtWristSlotGrid; _selectedItemStats = _selectedChar.Items.wrist.stats;}
-            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10; _gearSlotOffset = 0; _saveToDbIndex = 10; _clickedImage = OptGlovesSlotImg; _clickedImgGrid = OptTtGlovesSlotGrid; _selectedItemStats = _selectedChar.Items.hands.stats;}
-            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11; _gearSlotOffset = 0; _saveToDbIndex = 11; _clickedImage = OptRing1SlotImg; _clickedImgGrid = OptTtRing1SlotGrid; _selectedItemStats = _selectedChar.Items.finger1.stats;}
-            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11; _gearSlotOffset = 3; _saveToDbIndex = 12; _clickedImage = OptRing2SlotImg; _clickedImgGrid = OptTtRing2SlotGrid; _selectedItemStats = _selectedChar.Items.finger2.stats;}
-            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _gearSlotOffset = 0; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.trinket1.stats;}
-            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _gearSlotOffset = 1;  _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.trinket2.stats;}
+            if (clickedBtn == BtnHeadSlot){_itemSlot = 1; _gearSlotOffset = 0; _saveToDbIndex = 1; _clickedImage = OptHeadSlotImg; _clickedImgGrid = OptTtHeadSlotGrid; _selectedItemStats = _selectedChar.Items.Head.Stats;}
+            else if (clickedBtn == BtnNeckSlot){_itemSlot = 2; _gearSlotOffset = 0; _saveToDbIndex = 2; _clickedImage = OptNeckSlotImg; _clickedImgGrid = OptTtNeckSlotGrid; _selectedItemStats = _selectedChar.Items.Neck.Stats;}
+            else if (clickedBtn == BtnShoulderSlot){_itemSlot = 3; _gearSlotOffset = 0; _saveToDbIndex = 3; _clickedImage = OptShoulderSlotImg; _clickedImgGrid = OptTtShoulderSlotGrid; _selectedItemStats = _selectedChar.Items.Shoulder.Stats;}
+            else if (clickedBtn == BtnBackSlot){_itemSlot = 16; _gearSlotOffset = 0; _saveToDbIndex = 4; _clickedImage = OptBackSlotImg; _clickedImgGrid = OptTtBackSlotGrid; _selectedItemStats = _selectedChar.Items.Back.Stats;}
+            else if (clickedBtn == BtnChestSlot){_itemSlot = 5; _gearSlotOffset = 0; _saveToDbIndex = 5; _clickedImage = OptChestSlotImg; _clickedImgGrid = OptTtChestSlotGrid; _selectedItemStats = _selectedChar.Items.Chest.Stats;}
+            else if (clickedBtn == BtnBeltSlot){_itemSlot = 6; _gearSlotOffset = 0; _saveToDbIndex = 6; _clickedImage = OptBeltSlotImg; _clickedImgGrid = OptTtBeltSlotGrid; _selectedItemStats = _selectedChar.Items.Waist.Stats;}
+            else if (clickedBtn == BtnLegsSlot){_itemSlot = 7; _gearSlotOffset = 0; _saveToDbIndex = 7; _clickedImage = OptLegsSlotImg; _clickedImgGrid = OptTtLegsSlotGrid; _selectedItemStats = _selectedChar.Items.Legs.Stats;}
+            else if (clickedBtn == BtnFeetSlot){_itemSlot = 8; _gearSlotOffset = 0; _saveToDbIndex = 8; _clickedImage = OptFeetSlotImg; _clickedImgGrid = OptTtFeetSlotGrid; _selectedItemStats = _selectedChar.Items.Feet.Stats;}
+            else if (clickedBtn == BtnWristSlot){_itemSlot = 9; _gearSlotOffset = 0; _saveToDbIndex = 9; _clickedImage = OptWristSlotImg; _clickedImgGrid = OptTtWristSlotGrid; _selectedItemStats = _selectedChar.Items.Wrist.Stats;}
+            else if (clickedBtn == BtnGlovesSlot){_itemSlot = 10; _gearSlotOffset = 0; _saveToDbIndex = 10; _clickedImage = OptGlovesSlotImg; _clickedImgGrid = OptTtGlovesSlotGrid; _selectedItemStats = _selectedChar.Items.Hands.Stats;}
+            else if (clickedBtn == BtnRing1Slot){_itemSlot = 11; _gearSlotOffset = 0; _saveToDbIndex = 11; _clickedImage = OptRing1SlotImg; _clickedImgGrid = OptTtRing1SlotGrid; _selectedItemStats = _selectedChar.Items.Finger1.Stats;}
+            else if (clickedBtn == BtnRing2Slot){_itemSlot = 11; _gearSlotOffset = 3; _saveToDbIndex = 12; _clickedImage = OptRing2SlotImg; _clickedImgGrid = OptTtRing2SlotGrid; _selectedItemStats = _selectedChar.Items.Finger2.Stats;}
+            else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _gearSlotOffset = 0; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.Trinket1.Stats;}
+            else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _gearSlotOffset = 1;  _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.Trinket2.Stats;}
         }
         /// <summary>
         /// Defines what kind of armor the selected character uses.
@@ -1135,7 +1135,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingHeadSlot()
         {
             if (Character.HeadSlot != 0) { DefineItemSlots(BtnHeadSlot); await GetSavedEquipment(Character.HeadSlot); _slotArray[0] = Character.HeadSlot; }
-            else { DoIfNotOptGearEquipt(OptHeadSlotImg, OptTtHeadSlotGrid, _selectedChar.Items.head.stats); }
+            else { DoIfNotOptGearEquipt(OptHeadSlotImg, OptTtHeadSlotGrid, _selectedChar.Items.Head.Stats); }
         }
 
         /// <summary>
@@ -1145,7 +1145,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingNeckSlot()
         {
             if (Character.NeckSlot != 0) { DefineItemSlots(BtnNeckSlot); await GetSavedEquipment(Character.NeckSlot); _slotArray[1] = Character.NeckSlot; }
-            else { DoIfNotOptGearEquipt(OptNeckSlotImg, OptTtNeckSlotGrid, _selectedChar.Items.neck.stats); }
+            else { DoIfNotOptGearEquipt(OptNeckSlotImg, OptTtNeckSlotGrid, _selectedChar.Items.Neck.Stats); }
         }
 
         /// <summary>
@@ -1155,7 +1155,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingShoulderSlot()
         {
             if (Character.ShoulderSlot != 0) { DefineItemSlots(BtnShoulderSlot); await GetSavedEquipment(Character.ShoulderSlot); _slotArray[2] = Character.ShoulderSlot; }
-            else { DoIfNotOptGearEquipt(OptShoulderSlotImg, OptTtShoulderSlotGrid, _selectedChar.Items.shoulder.stats); }
+            else { DoIfNotOptGearEquipt(OptShoulderSlotImg, OptTtShoulderSlotGrid, _selectedChar.Items.Shoulder.Stats); }
         }
 
         /// <summary>
@@ -1165,7 +1165,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingBackSlot()
         {
             if (Character.BackSlot != 0) { DefineItemSlots(BtnBackSlot); await GetSavedEquipment(Character.BackSlot); _slotArray[3] = Character.BackSlot; }
-            else { DoIfNotOptGearEquipt(OptBackSlotImg, OptTtBackSlotGrid, _selectedChar.Items.back.stats); }
+            else { DoIfNotOptGearEquipt(OptBackSlotImg, OptTtBackSlotGrid, _selectedChar.Items.Back.Stats); }
         }
 
         /// <summary>
@@ -1175,7 +1175,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingChestSlot()
         {
             if (Character.ChestSlot != 0) { DefineItemSlots(BtnChestSlot); await GetSavedEquipment(Character.ChestSlot); _slotArray[4] = Character.ChestSlot; }
-            else { DoIfNotOptGearEquipt(OptChestSlotImg, OptTtChestSlotGrid, _selectedChar.Items.chest.stats); }
+            else { DoIfNotOptGearEquipt(OptChestSlotImg, OptTtChestSlotGrid, _selectedChar.Items.Chest.Stats); }
         }
 
         /// <summary>
@@ -1185,7 +1185,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingWristSlot()
         {
             if (Character.WristSlot != 0) { DefineItemSlots(BtnWristSlot); await GetSavedEquipment(Character.WristSlot); _slotArray[8] = Character.WristSlot; }
-            else { DoIfNotOptGearEquipt(OptWristSlotImg, OptTtWristSlotGrid, _selectedChar.Items.wrist.stats); }
+            else { DoIfNotOptGearEquipt(OptWristSlotImg, OptTtWristSlotGrid, _selectedChar.Items.Wrist.Stats); }
         }
 
         /// <summary>
@@ -1195,7 +1195,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingRing1Slot()
         {
             if (Character.Ring1Slot != 0) { DefineItemSlots(BtnRing1Slot); await GetSavedEquipment(Character.Ring1Slot); _slotArray[10] = Character.Ring1Slot; }
-            else { DoIfNotOptGearEquipt(OptRing1SlotImg, OptTtRing1SlotGrid, _selectedChar.Items.finger1.stats); }
+            else { DoIfNotOptGearEquipt(OptRing1SlotImg, OptTtRing1SlotGrid, _selectedChar.Items.Finger1.Stats); }
         }
 
         /// <summary>
@@ -1205,7 +1205,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingTrinket1Slot()
         {
             if (Character.Trinket1Slot != 0) { DefineItemSlots(BtnTrinket1Slot); await GetSavedEquipment(Character.Trinket1Slot); _slotArray[12] = Character.Trinket1Slot; }
-            else { DoIfNotOptGearEquipt(OptTrinket1SlotImg, OptTtTrinket1SlotGrid, _selectedChar.Items.trinket1.stats); }
+            else { DoIfNotOptGearEquipt(OptTrinket1SlotImg, OptTtTrinket1SlotGrid, _selectedChar.Items.Trinket1.Stats); }
         }
 
         /// <summary>
@@ -1215,7 +1215,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingGloveSlot()
         {
             if (Character.GlovesSlot != 0) { DefineItemSlots(BtnGlovesSlot); await GetSavedEquipment(Character.GlovesSlot); _slotArray[9] = Character.GlovesSlot; }
-            else { DoIfNotOptGearEquipt(OptGlovesSlotImg, OptTtGlovesSlotGrid, _selectedChar.Items.hands.stats); }
+            else { DoIfNotOptGearEquipt(OptGlovesSlotImg, OptTtGlovesSlotGrid, _selectedChar.Items.Hands.Stats); }
         }
 
         /// <summary>
@@ -1225,7 +1225,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingBeltSlot()
         {
             if (Character.BeltSlot != 0) { DefineItemSlots(BtnBeltSlot); await GetSavedEquipment(Character.BeltSlot); _slotArray[5] = Character.BeltSlot; }
-            else { DoIfNotOptGearEquipt(OptBeltSlotImg, OptTtBeltSlotGrid, _selectedChar.Items.waist.stats); }
+            else { DoIfNotOptGearEquipt(OptBeltSlotImg, OptTtBeltSlotGrid, _selectedChar.Items.Waist.Stats); }
         }
 
         /// <summary>
@@ -1235,7 +1235,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingLegsSlot()
         {
             if (Character.LegsSlot != 0) { DefineItemSlots(BtnLegsSlot); await GetSavedEquipment(Character.LegsSlot); _slotArray[6] = Character.LegsSlot; }
-            else { DoIfNotOptGearEquipt(OptLegsSlotImg, OptTtLegsSlotGrid, _selectedChar.Items.legs.stats); }
+            else { DoIfNotOptGearEquipt(OptLegsSlotImg, OptTtLegsSlotGrid, _selectedChar.Items.Legs.Stats); }
         }
 
         /// <summary>
@@ -1245,7 +1245,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingFeetSlot()
         {
             if (Character.FeetSlot != 0) { DefineItemSlots(BtnFeetSlot); await GetSavedEquipment(Character.FeetSlot); _slotArray[7] = Character.FeetSlot; }
-            else { DoIfNotOptGearEquipt(OptFeetSlotImg, OptTtFeetSlotGrid, _selectedChar.Items.feet.stats); }
+            else { DoIfNotOptGearEquipt(OptFeetSlotImg, OptTtFeetSlotGrid, _selectedChar.Items.Feet.Stats); }
         }
 
         /// <summary>
@@ -1255,7 +1255,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingRing2Slot()
         {
             if (Character.Ring2Slot != 0) { DefineItemSlots(BtnRing2Slot); await GetSavedEquipment(Character.Ring2Slot); _slotArray[11] = Character.Ring2Slot; }
-            else { DoIfNotOptGearEquipt(OptRing2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.finger2.stats); }
+            else { DoIfNotOptGearEquipt(OptRing2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.Finger2.Stats); }
         }
 
         /// <summary>
@@ -1265,7 +1265,7 @@ namespace BlizzStatistics.App.Views
         private async Task CheckForExistingTrinket2Slot()
         {
             if (Character.Trinket2Slot != 0) { DefineItemSlots(BtnTrinketSlot); await GetSavedEquipment(Character.Trinket2Slot); _slotArray[13] = Character.Trinket2Slot; }
-            else { DoIfNotOptGearEquipt(OptTrinket2SlotImg, OptTtTrinket2SlotGrid, _selectedChar.Items.trinket2.stats); }
+            else { DoIfNotOptGearEquipt(OptTrinket2SlotImg, OptTtTrinket2SlotGrid, _selectedChar.Items.Trinket2.Stats); }
         }
 
 
@@ -1427,22 +1427,22 @@ namespace BlizzStatistics.App.Views
                     case 3:
                     case 4:
                     case 5:
-                        _orgMainStatValue = a.amount;
+                        _orgMainStatValue = a.Amount;
                         break;
                     case 40:
-                        _orgVersatilityValue = a.amount;
+                        _orgVersatilityValue = a.Amount;
                         break;
                     case 49:
-                        _orgMasteryValue = a.amount;
+                        _orgMasteryValue = a.Amount;
                         break;
                     case 7:
-                        _orgStaminaValue = a.amount;
+                        _orgStaminaValue = a.Amount;
                         break;
                     case 32:
-                        _orgCritValue = a.amount;
+                        _orgCritValue = a.Amount;
                         break;
                     case 36:
-                        _orgHasteValue = a.amount;
+                        _orgHasteValue = a.Amount;
                         break;
                 }
             }

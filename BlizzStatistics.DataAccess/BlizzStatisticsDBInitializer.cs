@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
