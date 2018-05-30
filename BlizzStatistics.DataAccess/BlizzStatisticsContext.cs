@@ -36,7 +36,7 @@ namespace BlizzStatistics.DataAccess
         /// <summary>
         /// Initializes a new instance of the <see cref="BlizzStatisticsContext"/> class.
         /// </summary>
-        public BlizzStatisticsContext()
+        public BlizzStatisticsContext() : base("BlizzStatistics.Data.Api.Properties.Settings.ConnectionString")
         {
             Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new BlizzStatisticsDbInitializer());
