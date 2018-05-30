@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -27,7 +28,7 @@ namespace BlizzStatistics.App.Views
         private int _sortClassIndex = 13;
         private string _playerRace = "Error";
         private int _selectedLadder = 1;
-        private string _ladderToGet;
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PvpPage"/> class.
@@ -46,28 +47,28 @@ namespace BlizzStatistics.App.Views
             switch (_selectedLadder)
             {
                 case 3:
-                    _ladderToGet = "rbg";
-                    GetLadder(_ladderToGet);
+                    
+                    GetLadder("rbg");
                     break;
                 case 2:
-                    _ladderToGet = "3v3";
-                    GetLadder(_ladderToGet);
+                    
+                    GetLadder("3v3");
                     break;
                 default:
-                    _ladderToGet = "2v2";
-                    GetLadder(_ladderToGet);
+                    
+                    GetLadder("2v2");
                     break;
             }
-
-            
         }
 
+        
         /// <summary>
         /// Gets the data from the selected ladder.
         /// </summary>
         /// <param name="ladder">The ladder.</param>
         private async void GetLadder(string ladder)
-        {
+        {   
+            SetOverlayStatus(true);
             try
             {
                 var url = "https://eu.api.battle.net/wow/leaderboard/"+ ladder + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
@@ -78,11 +79,25 @@ namespace BlizzStatistics.App.Views
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                GetData();
+                MessageDialog msg = new MessageDialog(e.Message + "\nThe selected Ladder could not be found. Please Select another ladder");
+                await msg.ShowAsync();
+                await LogToDbAsync(e);
+                
             }
+            SetOverlayStatus(false);
         }
 
+        private async System.Threading.Tasks.Task LogToDbAsync(Exception e)
+        {
+            var exception = new ExceptionHandler()
+            {
+                Message = e.Message,
+                StackTrace = e.StackTrace,
+                ExceptionSource = e.Source,
+                Logdate = DateTime.UtcNow
+            };
+            await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
+        }
         /// <summary>
         /// Creates the grid.
         /// </summary>
@@ -350,6 +365,21 @@ namespace BlizzStatistics.App.Views
                 _childGrid.Children.RemoveAt(i);
             }
             GetData();
+        }
+        private void SetOverlayStatus(bool active)
+        {
+            if (active == false)
+            {
+                Overlay.Visibility = Visibility.Collapsed;
+                ProgressRing.IsActive = false;
+                ProgressRing.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Overlay.Visibility = Visibility.Visible;
+                ProgressRing.IsActive = true;
+                ProgressRing.Visibility = Visibility.Visible;
+            }
         }
     }
 }

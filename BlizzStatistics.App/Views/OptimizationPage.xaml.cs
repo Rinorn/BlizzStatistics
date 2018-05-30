@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography.Core;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
@@ -49,7 +50,8 @@ namespace BlizzStatistics.App.Views
         private int _saveToDbIndex;
         private readonly BitmapImage _defaultImg = new BitmapImage(new Uri("http://localhost:60158/api/images/add.jpg/"));
         private int[] _slotArray;
-        private int _gearSlotOffset = 0;
+        private int _gearSlotOffset;
+       
 
         private readonly string[] _classes = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
         
@@ -59,18 +61,17 @@ namespace BlizzStatistics.App.Views
             Plate=4, Mail = 3, Leather = 2, Cloth = 1, Misc = 0
         }
 
-
         public OptimizationPage()
         {
             InitializeComponent();
-            
         }
 
         private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Character = null;
+            SetOverlayStatus(true);
             _slotArray = new int[14];
-            Character = (SavedCharacter) CharacterListView.SelectedItem;
+            if (CharacterListView.SelectedItem == null){ CharacterListView.SelectedIndex = 0;}
+            Character = (SavedCharacter)CharacterListView.SelectedItem;
             if (Character != null) CharacterName = Character.Name;
             if (Character != null) CharacterServer = Character.Realm;
             DestroyChildren();
@@ -78,63 +79,90 @@ namespace BlizzStatistics.App.Views
             {
                 await GetCharacterStats(CharacterName, CharacterServer);
                 await GetCharacter(CharacterName, CharacterServer);
-                
-
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception);
-                throw;
+                var msg = new MessageDialog(ex.Message + "\nSomething went wrong when retrieving the selected character. Please try again later");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
             }
-            
+            SetOverlayStatus(false);
         }
-        public  async Task<GameCharacter> GetCharacter(string name, string server)
+
+        private static async Task LogToDbAsync(Exception e)
+        {
+            var exception = new ExceptionHandler()
+            {
+                Message = e.Message,
+                StackTrace = e.StackTrace,
+                ExceptionSource = e.Source,
+                Logdate = DateTime.UtcNow
+            };
+            await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
+        }
+
+        public async  Task<GameCharacter> GetCharacter(string name, string server)
         {
             try
             {
                 var http = new HttpClient();
-
-            var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
-            var result = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<GameCharacter>(result);
-                
-                DefineHeadSlot(data);
-                DefineNeckSlot(data);
-                DefineShoulderSlot(data);
-                DefineBackSlot(data);
-                DefineChestSlot(data);
-                DefineBracerSlot(data);
-                DefineTrinket1Slot(data);
-                DefineGlovesSlot(data);
-                DefineBeltSlot(data);
-                DefineLegsSlot(data);
-                DefineFeetSlot(data);
-                DefineRing1Slot(data);
-                DefineRing2Slot(data);
-                DefineTrinket2Slot(data);
-                DefineMainhandSlot(data);
-                DefineOffhandSlot(data);
-                _selectedChar = data;
-                await CheckForSavedGear();
+                var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
+                var result = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<GameCharacter>(result);
+                await DefineItemSlotsAsync(data);
                 return data;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
-                throw;
+                var msg = new MessageDialog(ex.Message + "\nUnable to establish connection to Blizzard Entertainment's database. Please try again later");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
             }
+            return null;
+        }
+
+        private async Task DefineItemSlotsAsync(GameCharacter data)
+        {
+            DefineHeadSlot(data);
+            DefineNeckSlot(data);
+            DefineShoulderSlot(data);
+            DefineBackSlot(data);
+            DefineChestSlot(data);
+            DefineBracerSlot(data);
+            DefineTrinket1Slot(data);
+            DefineGlovesSlot(data);
+            DefineBeltSlot(data);
+            DefineLegsSlot(data);
+            DefineFeetSlot(data);
+            DefineRing1Slot(data);
+            DefineRing2Slot(data);
+            DefineTrinket2Slot(data);
+            DefineMainhandSlot(data);
+            DefineOffhandSlot(data);
+            _selectedChar = data;
+            await CheckForSavedGear();
         }
         public async Task<OriginalCharacterStats> GetCharacterStats(string name, string server)
         {
-            var http = new HttpClient();
-            var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=stats&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
-            var result = await response.Content.ReadAsStringAsync();
-            var charStatData = JsonConvert.DeserializeObject<OriginalCharacterStats>(result);
-            CheckMainStat(charStatData);
-            SetOriginalStats(charStatData);
-            CheckOptimizedMainStats(charStatData);
-            SetOptimizedStats(charStatData);
-            return charStatData;
+            try
+            {
+                var http = new HttpClient();
+                var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=stats&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
+                var result = await response.Content.ReadAsStringAsync();
+                var charStatData = JsonConvert.DeserializeObject<OriginalCharacterStats>(result);
+                CheckMainStat(charStatData);
+                SetOriginalStats(charStatData);
+                CheckOptimizedMainStats(charStatData);
+                SetOptimizedStats(charStatData);
+                return charStatData;
+            }
+            catch (Exception ex)
+            {
+                var msg = new MessageDialog(ex.Message + "\nUnable to establish connection to Blizzard Entertainment's database. Please try again later");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
+            }
+            return null;
         }
 
         public void CheckOptimizedMainStats(OriginalCharacterStats data)
@@ -165,7 +193,6 @@ namespace BlizzStatistics.App.Views
             OptimizedMasteryBox.Text = charStatData.Stats.MasteryRating.ToString();
             OptimizedStaminaBox.Text = charStatData.Stats.Sta.ToString();
             OptimizedVersatilityBox.Text = charStatData.Stats.Versatility.ToString();
-
         }
 
         public void SetOriginalStats(OriginalCharacterStats charStatData)
@@ -792,27 +819,22 @@ namespace BlizzStatistics.App.Views
             TtHeadSlotGrid.RowDefinitions.Clear();
         }
 
-        /*private async void BtnDelete(object sender, RoutedEventArgs e)
+        private async void BtnShowItemList(object sender, RoutedEventArgs e)
         {
-            SavedCharacter character = (SavedCharacter) CharacterListView.SelectedItem;
             try
             {
-                await DataSource.SavedCharacters.Instance.DeleteSavedCharacter(character);
+                var clickedBtn = sender as Button;
+                DefineItemSlots(clickedBtn);
+                DefineArmorType();
+                FillOptItemList(SelectedCharacterArmorType);
+                var itemWindow = ItemContentDialog.ShowAsync();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception);
-                throw;
+                var msg = new MessageDialog(ex.Message + "\nSomething went wrong during the loading of the item list for the selected itemslot.");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
             }
-        }*/
-
-        private  void BtnShowItemList(object sender, RoutedEventArgs e)
-        {
-            var clickedBtn = sender as Button;
-            DefineItemSlots(clickedBtn);
-            DefineArmorType();
-            FillOptItemList(SelectedCharacterArmorType);
-            var itemWindow =  ItemContentDialog.ShowAsync();
         }
 
         private async void FillOptItemList(int armorType)
@@ -894,15 +916,25 @@ namespace BlizzStatistics.App.Views
                     break;
             }
         }
-        private void ItemList_SelectedItem(object sender, SelectionChangedEventArgs e)
+        private async void ItemList_SelectedItem(object sender, SelectionChangedEventArgs e)
         {
-            ItemContentDialog.Hide();
-            ClearImgGrid(_clickedImgGrid);
-            var a = (Equipment) ItemList.SelectedItem;
-            if (a == null) return;
-            DefineChangeInGearAndStats(a);
-            AddItemToSelectedCharacter();
-            _slotArray[_saveToDbIndex - 1] = a.Id;
+            try
+            {
+                ItemContentDialog.Hide();
+                ClearImgGrid(_clickedImgGrid);
+                var a = (Equipment)ItemList.SelectedItem;
+                if (a == null) return;
+                DefineChangeInGearAndStats(a);
+                AddItemToSelectedCharacter();
+                _slotArray[_saveToDbIndex - 1] = a.Id;
+            }
+            catch (Exception ex)
+            {
+                var msg = new MessageDialog(ex.Message + "\nThe app was unable to load the selected item. Please try selecting the item again, or try to select a different item.");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
+            }
+            
         }
 
         private static void ClearImgGrid(Grid imgGrid)
@@ -920,7 +952,7 @@ namespace BlizzStatistics.App.Views
             RedefineOptStats();
         }
 
-        private void SetStatIfNoGearEquipt()
+       /* private void SetStatIfNoGearEquipt()
         {   
             _selectedEquipment.MainStat = _orgMainStatValue ;
             _selectedEquipment.Stamina = _orgStaminaValue;
@@ -929,7 +961,7 @@ namespace BlizzStatistics.App.Views
             _selectedEquipment.Haste = _orgHasteValue;
             _selectedEquipment.Versatility = _orgVersatilityValue;
             RedefineOptStats();
-        }
+        }*/
 
         private void DoIfNotOptGearEquipt(Image img, Grid grd, Stat[] stat)
         {
@@ -937,7 +969,8 @@ namespace BlizzStatistics.App.Views
             ClearImgGrid(grd);
             _selectedItemStats = stat;
             GetOrgSlotStats();
-            SetStatIfNoGearEquipt();
+            CheckIfChangeIsPositive();
+            //SetStatIfNoGearEquipt();
         }
 
         
@@ -1135,10 +1168,20 @@ namespace BlizzStatistics.App.Views
        
         public async void UpdateCharacterToDb(object sender, RoutedEventArgs e)
         {
-            var view = await UpdateCharacterContentDialog.ShowAsync();
-            if (view != ContentDialogResult.Primary) return;
+            try
+            {
+                var view = await UpdateCharacterContentDialog.ShowAsync();
+                if (view != ContentDialogResult.Primary) return;
                 Character.SavedAs = NewCharacterNameBox.Text;
-            await DataSource.SavedCharacters.Instance.PutSavedCharacter(Character);
+                await DataSource.SavedCharacters.Instance.PutSavedCharacter(Character);
+            }
+            catch (Exception ex)
+            {
+                var msg = new MessageDialog(ex.Message + "\nAttention!\nThe program was unable to save the selected changes.\nClose the program will lead to a loss of all unsaved changes.\nPlease try to save the character a second time.\nYoo can safely select another character without losing your current data");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
+            }
+            
         }
         public async void AddNewCharacterToDb(object sender, RoutedEventArgs e)
         {   
@@ -1166,12 +1209,28 @@ namespace BlizzStatistics.App.Views
                 await DataSource.SavedCharacters.Instance.AddSavedCharacter(character);
                 ViewModel.SavedCharacters.Add(character);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception);
-                throw;
+                var msg = new MessageDialog(ex.Message + "Attention!\nThe character you entered was not added to the program.\nPlease make sure the server and character name is spelled correctly, and that the character exists on the selected server.");
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
             }
+        }
 
+        private void SetOverlayStatus(bool active)
+        {   
+            if (active == false)
+            {   
+                Overlay.Visibility = Visibility.Collapsed;
+                ProgressRing.IsActive = false;
+                ProgressRing.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Overlay.Visibility = Visibility.Visible;
+                ProgressRing.IsActive = true;
+                ProgressRing.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -42,6 +42,7 @@
     <Compile Include="CharacterClass.cs" />
     <Compile Include="CharacterRace.cs" />
     <Compile Include="Equipment.cs" />
+    <Compile Include="ExceptionHandler.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MythicHandler.cs" />

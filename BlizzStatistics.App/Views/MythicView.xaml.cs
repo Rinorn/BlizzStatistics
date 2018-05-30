@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
+using System.Reflection;
 using Windows.UI;
+using Windows.UI.Composition.Interactions;
+using Windows.UI.Popups;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -32,6 +37,8 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         private int _dungeonIndex = 197;
 
+        private int _reconnectAttempt = 0;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MythicView"/> class.
         /// </summary>
@@ -46,6 +53,7 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         private async void GetData()
         {
+            SetOverlayStatus(true);
             try
             {
                 _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/645?namespace=dynamic-eu&locale=en_GB&access_token=fb5hv9pjubvebavu85qxstjz";
@@ -58,16 +66,34 @@ namespace BlizzStatistics.App.Views
                 TbAff1.Text = data.keystone_affixes[0].keystone_affix.Name;
                 TbAff2.Text = data.keystone_affixes[1].keystone_affix.Name;
                 TbAff3.Text = data.keystone_affixes[2].keystone_affix.Name;
+                _reconnectAttempt = 0;
             }
-            catch (Exception e)
-            {
-                ////ADD windu med feilmelding ang roleback
-                Console.WriteLine(e);
+            catch (Exception ex)
+            {   
+                MessageDialog msg =  new MessageDialog(ex.Message + "\nThe selected server or dungeon could not be found. You will now be taken back to your previous selections." );
+                await msg.ShowAsync();
+                await LogToDbAsync(ex);
                 _realmIndex = _preRealmIndex;
+                _reconnectAttempt++;
+                if (_reconnectAttempt == 3){throw;}
                 GetData();
             }
+            
         }
 
+        private async System.Threading.Tasks.Task LogToDbAsync(Exception e)
+        {
+            var exception = new ExceptionHandler()
+            {
+                Message = e.Message,
+                StackTrace = e.StackTrace,
+                ExceptionSource = e.Source,
+                Logdate = DateTime.UtcNow
+            };
+            await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
+        }
+
+        
         private void ConvertTimeStampToTime(long time, TextBlock tb)
         {
             time = time / 1000;
@@ -140,6 +166,7 @@ namespace BlizzStatistics.App.Views
                     AddtoGrid(g, mainGrid, tb, a, i);
                 }
             }
+            SetOverlayStatus(false);
         }
 
         private static int CheckNumberOfLeadingGroups(MythicRootobject data)
@@ -272,6 +299,21 @@ namespace BlizzStatistics.App.Views
                 _childGrid.Children.RemoveAt(i);
             }
             GetData();
+        }
+        private void SetOverlayStatus(bool active)
+        {
+            if (active == false)
+            {
+                Overlay.Visibility = Visibility.Collapsed;
+                ProgressRing.IsActive = false;
+                ProgressRing.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Overlay.Visibility = Visibility.Visible;
+                ProgressRing.IsActive = true;
+                ProgressRing.Visibility = Visibility.Visible;
+            }
         }
     }
     

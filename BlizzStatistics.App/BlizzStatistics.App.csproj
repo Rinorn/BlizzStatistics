@@ -101,6 +101,7 @@
     <Compile Include="DataSource\CharacterClasses.cs" />
     <Compile Include="DataSource\CharacterRaces.cs" />
     <Compile Include="DataSource\Equipments.cs" />
+    <Compile Include="DataSource\ExceptionHandlers.cs" />
     <Compile Include="DataSource\Realms.cs" />
     <Compile Include="DataSource\SavedCharacters.cs" />
     <Compile Include="DataSource\GameCharacters.cs" />
@@ -136,9 +137,6 @@
     </Compile>
     <Compile Include="Views\RacePage.xaml.cs">
       <DependentUpon>RacePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
@@ -209,10 +207,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RacePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

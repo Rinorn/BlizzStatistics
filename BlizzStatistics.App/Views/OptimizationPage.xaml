@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Template10.Controls"
     xmlns:classLibrary1="using:ClassLibrary1"
-    
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
 
     mc:Ignorable="d">
@@ -103,8 +102,10 @@
                 <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnHeadSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptHeadSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
-                            <ToolTipService.ToolTip >
+                            <ToolTipService.ToolTip>
+
                                 <Grid x:Name="OptTtHeadSlotGrid">
+                                    
                                 </Grid>
                             </ToolTipService.ToolTip>
                         </Image>
@@ -699,6 +700,12 @@
                     <TextBox x:Name="NewCharacterNameBox" PlaceholderText="Server where character exist" Grid.Column="1" Grid.Row="0"/>
                 </Grid>
             </ContentDialog>
+           
         </RelativePanel>
+        
+        
+        <Border x:Name="Overlay" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Background="Black" Opacity="0.8" Visibility="Collapsed">
+            <ProgressRing x:Name="ProgressRing" Width="150" Height="150" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White"></ProgressRing>
+        </Border>
     </RelativePanel>
 </Page>

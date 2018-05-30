@@ -16,8 +16,10 @@ namespace BlizzStatistics.App.Views
     public sealed partial class WoWPage
     {
         public WoWPage()
-        {
+        {   
+            
             InitializeComponent();
+            
         }
 
         private void BtnLoadPage(object sender, RoutedEventArgs e)

@@ -140,5 +140,8 @@
             </RelativePanel>-->
             
         </RelativePanel>
+        <Border x:Name="Overlay" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Background="Black" Opacity="0.8" Visibility="Collapsed">
+            <ProgressRing x:Name="ProgressRing" Width="150" Height="150" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White"></ProgressRing>
+        </Border>
     </RelativePanel>
 </Page>

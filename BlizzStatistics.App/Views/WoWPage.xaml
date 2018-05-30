@@ -63,7 +63,7 @@
         </FlipView>
 
 
-        <RelativePanel Name="InfoPanel" Background="Bisque" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="NewsCarosell" RelativePanel.AlignBottomWithPanel="True" Margin="50,50,50,50"> 
+        <RelativePanel Name="InfoPanel" Background="Bisque" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="NewsCarosell" RelativePanel.AlignBottomWithPanel="True" Margin="50,50,50,50">
             <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -120,8 +120,6 @@
                 </Border>
             </Grid>
         </RelativePanel>
-
-
     </RelativePanel>
 
 </Page>

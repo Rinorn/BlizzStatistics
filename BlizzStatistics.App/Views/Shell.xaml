@@ -13,11 +13,7 @@
       mc:Ignorable="d">
 
     <Controls:HamburgerMenu x:Name="MyHamburgerMenu">
-
         <Controls:HamburgerMenu.PrimaryButtons>
-            <!--  mainpage button  -->
-            
-
             <Controls:HamburgerButtonInfo PageType="views:WoWPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
@@ -25,11 +21,9 @@
                                 Symbol="Home" />
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
-                               Text="World of Warcraft" />
+                               Text="Home" />
                 </StackPanel>
-
             </Controls:HamburgerButtonInfo>
-
             <Controls:HamburgerButtonInfo PageType="views:PvpPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
@@ -39,9 +33,7 @@
                                VerticalAlignment="Center"
                                Text="pvp" />
                 </StackPanel>
-
             </Controls:HamburgerButtonInfo>
-
             <Controls:HamburgerButtonInfo PageType="views:MythicView">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
@@ -51,21 +43,17 @@
                                VerticalAlignment="Center"
                                Text="Mythic" />
                 </StackPanel>
-
             </Controls:HamburgerButtonInfo>
-
             <Controls:HamburgerButtonInfo PageType="views:OptimizationPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
-                                Symbol="Home" />
+                                Symbol="AddFriend" />
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Optimize character" />
                 </StackPanel>
-
             </Controls:HamburgerButtonInfo>
-
             <Controls:HamburgerButtonInfo PageType="views:ClassPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
@@ -75,9 +63,7 @@
                                VerticalAlignment="Center"
                                Text="Class" />
                 </StackPanel>
-
             </Controls:HamburgerButtonInfo>
-
             <Controls:HamburgerButtonInfo PageType="views:RacePage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
@@ -87,34 +73,8 @@
                                VerticalAlignment="Center"
                                Text="Race" />
                 </StackPanel>
-
             </Controls:HamburgerButtonInfo>
-
-            
-
         </Controls:HamburgerMenu.PrimaryButtons>
-
-        <Controls:HamburgerMenu.SecondaryButtons>
-            <!--  profile button  -->
-            
-            <!--  settingspage button  -->
-            <Controls:HamburgerButtonInfo x:Name="SettingsButton"
-                                          PageParameter="0"
-                                          PageType="views:SettingsPage">
-                <Controls:HamburgerButtonInfo.NavigationTransitionInfo>
-                    <SuppressNavigationTransitionInfo />
-                </Controls:HamburgerButtonInfo.NavigationTransitionInfo>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Width="48"
-                                Height="48"
-                                Symbol="Setting" />
-                    <TextBlock Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               Text="Settings" />
-                </StackPanel>
-            </Controls:HamburgerButtonInfo>
-        </Controls:HamburgerMenu.SecondaryButtons>
-
     </Controls:HamburgerMenu>
 
 </Page>
