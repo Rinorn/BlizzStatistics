@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
 using System.Net.Http;
-using System.Reflection;
 using Windows.UI;
-using Windows.UI.Composition.Interactions;
 using Windows.UI.Popups;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -19,29 +15,12 @@ namespace BlizzStatistics.App.Views
 {
     public sealed partial class MythicView
     {
-        /// <summary>
-        /// The child grid
-        /// </summary>
         private Grid _childGrid;
-        /// <summary>
-        /// The connection
-        /// </summary>
         private string _connection;
-        /// <summary>
-        /// The realm index
-        /// </summary>
         private int _realmIndex = 509;
         private int _preRealmIndex = 509;
-        /// <summary>
-        /// The dungeon index
-        /// </summary>
         private int _dungeonIndex = 197;
-
         private int _reconnectAttempt;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MythicView"/> class.
-        /// </summary>
         public MythicView()
         {
             InitializeComponent();
@@ -49,7 +28,7 @@ namespace BlizzStatistics.App.Views
         }
 
         /// <summary>
-        /// Gets the data.
+        /// Gets the Selected Leaderbord for the selected server
         /// </summary>
         private async void GetData()
         {
@@ -72,7 +51,7 @@ namespace BlizzStatistics.App.Views
             }
             catch (Exception ex)
             {   
-                MessageDialog msg =  new MessageDialog(ex.Message + "\nThe selected server or dungeon could not be found. You will now be taken back to your previous selections." );
+                MessageDialog msg =  new MessageDialog(ex.Message + "\nThe selected server or dungeon could not be found. You will now be taken back to the server Garona" );
                 await msg.ShowAsync();
                 await LogToDbAsync(ex);
                 _realmIndex = _preRealmIndex;
@@ -83,6 +62,11 @@ namespace BlizzStatistics.App.Views
             
         }
 
+        /// <summary>
+        /// Logs to database asynchronous.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        /// <returns></returns>
         private async System.Threading.Tasks.Task LogToDbAsync(Exception e)
         {
             var exception = new ExceptionHandler()
@@ -95,7 +79,12 @@ namespace BlizzStatistics.App.Views
             await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
         }
 
-        
+
+        /// <summary>
+        /// Converts the timestamp to time.
+        /// </summary>
+        /// <param name="time">The time.</param>
+        /// <param name="tb">The tb.</param>
         private void ConvertTimeStampToTime(long time, TextBlock tb)
         {
             time = time / 1000;
@@ -105,16 +94,19 @@ namespace BlizzStatistics.App.Views
             
             tb.Text = timeHour +":"+ timeMin + ":" + timeSec;
         }
+        /// <summary>
+        /// Converts the timestamp to date.
+        /// </summary>
+        /// <param name="time">The time.</param>
+        /// <param name="tb">The tb.</param>
         private void ConvertTimeStampToDate(long time, TextBlock tb)
         {
             var timeHour = DateTimeOffset.FromUnixTimeMilliseconds(time).Day + "/" +DateTimeOffset.FromUnixTimeMilliseconds(time).Month + "/" + DateTimeOffset.FromUnixTimeMilliseconds(time).Year;
-            
-
             tb.Text = timeHour;
         }
 
         /// <summary>
-        /// Defines the text.
+        /// Defines the Textblock.text.
         /// </summary>
         /// <param name="tb">The tb.</param>
         private static void DefineText(TextBlock tb)
@@ -128,7 +120,7 @@ namespace BlizzStatistics.App.Views
         }
 
         /// <summary>
-        /// Adds to columns.
+        /// Defines the content of the columns of a row in the main grid
         /// </summary>
         /// <param name="data">The data.</param>
         private void AddToColumns(MythicRootobject data)
@@ -170,14 +162,13 @@ namespace BlizzStatistics.App.Views
             }
             SetOverlayStatus(false);
         }
-
+        //Determins if there should be 100 rows or less based on the number of group in the selected Leaderboard
         private static int CheckNumberOfLeadingGroups(MythicRootobject data)
         {
-            
            return data.leading_groups.Length > 100 ? 100 : data.leading_groups.Length-1;
         }
         /// <summary>
-        /// Addtoes the grid.
+        /// adds a textblock to the grid g, then adds this grid to the maingrid.
         /// </summary>
         /// <param name="g">The g.</param>
         /// <param name="mainGrid">The main grid.</param>
@@ -201,13 +192,13 @@ namespace BlizzStatistics.App.Views
             Grid.SetColumn(g, a);
             mainGrid.Children.Add(g);
         }
-
+        // sets different colors for odd and even numbers
         private static void CheckColor(Grid g, int i)
         {
             g.Background = i % 2 != 0 ? new SolidColorBrush(Colors.LightSeaGreen) : new SolidColorBrush(Colors.CadetBlue);
         }
         /// <summary>
-        /// Adds the group member.
+        /// Adds the group member to a colum. then calls AddToGrid to add the colum to the maingrid
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="mainGrid">The main grid.</param>
@@ -302,6 +293,11 @@ namespace BlizzStatistics.App.Views
             }
             GetData();
         }
+
+        /// <summary>
+        /// Sets the overlay status.
+        /// </summary>
+        /// <param name="active">if set to <c>true</c> [active].</param>
         private void SetOverlayStatus(bool active)
         {
             if (active == false)

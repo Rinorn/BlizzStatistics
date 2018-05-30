@@ -46,22 +46,14 @@ namespace BlizzStatistics.App.Views
         {
             switch (_selectedLadder)
             {
-                case 3:
-                    
-                    GetLadder("rbg");
+                case 3: GetLadder("rbg");
                     break;
-                case 2:
-                    
-                    GetLadder("3v3");
+                case 2: GetLadder("3v3");
                     break;
-                default:
-                    
-                    GetLadder("2v2");
+                default: GetLadder("2v2");
                     break;
             }
         }
-
-        
         /// <summary>
         /// Gets the data from the selected ladder.
         /// </summary>
@@ -88,7 +80,7 @@ namespace BlizzStatistics.App.Views
             }
             SetOverlayStatus(false);
         }
-
+        // Medthod that logs an exceptions by createing an instance of the ExceptionHandler class and uploads the object to the database.
         private async System.Threading.Tasks.Task LogToDbAsync(Exception e)
         {
             var exception = new ExceptionHandler()
@@ -101,7 +93,7 @@ namespace BlizzStatistics.App.Views
             await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
         }
         /// <summary>
-        /// Creates the grid.
+        /// Selects the players from the RootObject that should be shown in the grid, filtered by rank, faction, class and how many players that should be shown at a given time. this is selected by the user, from the 2nd time it is run.
         /// </summary>
         /// <param name="data">The data.</param>
         private void CreateGrid(Rootobject data)
@@ -131,7 +123,7 @@ namespace BlizzStatistics.App.Views
         }
 
         /// <summary>
-        /// Defines the text.
+        /// Defines a Textblock
         /// </summary>
         /// <param name="tb">The tb.</param>
         private static void DefineText(TextBlock tb)
@@ -144,7 +136,7 @@ namespace BlizzStatistics.App.Views
         }
 
         /// <summary>
-        /// Adds to columns.
+        /// Creates a Textblock and Defines its values by calling the DefineText(). Sets the Textblock.Text and call AddToGrid for each column in 1 row(9). Also gets the class color of the selected Player(RootObject data). Also creates a new temprary Grid g.
         /// </summary>
         /// <param name="i">The i.</param>
         /// <param name="data">The data.</param>
@@ -168,7 +160,6 @@ namespace BlizzStatistics.App.Views
                         break;
                     case 2:
                         tb.Text = data.Rows[i].FactionId == 1 ? "Horde" : "Alliance";
-                        
                         break;
                     case 3:
                         CheckClass(data.Rows[i].ClassId);
@@ -196,7 +187,7 @@ namespace BlizzStatistics.App.Views
         }
 
         /// <summary>
-        /// Adds to the grid.
+        /// Adds the previous created Textblock tb to the grid g, Then creates colorbrush from the player class color. Defines size, alignment and border for g, and sets the g.backgroundcolor to the newly created brush. Defines a new rowdefinition and adds it to the maingrid. Adds the Grid g to the correct row and colum in maingrid. 
         /// </summary>
         /// <param name="g">The g.</param>
         /// <param name="mainGrid">The main grid.</param>
@@ -205,7 +196,6 @@ namespace BlizzStatistics.App.Views
         /// <param name="rowCount">The row count.</param>
         private void AddtoGrid(Grid g, Grid mainGrid, UIElement tb, int a, int rowCount)
         {
-            
             g.Children.Add(tb);
             var color = GetSolidColorBrush(_classColor).Color;
             var brush = new SolidColorBrush(color);
@@ -233,7 +223,7 @@ namespace BlizzStatistics.App.Views
         }
 
         /// <summary>
-        /// Gets(Converts) the solid color brush.
+        /// Gets(Converts) a Hex-string to a solidcolorbrush. 
         /// </summary>
         /// <param name="hex">The hexadecimal.</param>
         /// <returns></returns>
@@ -368,6 +358,7 @@ namespace BlizzStatistics.App.Views
             }
             GetData();
         }
+        //If active = true sets a gray rectangle with 0.8 opacity to be visible. this takes yp the whole screen. Also shows the progressring. this is my attempt at creating a Overlay.
         private void SetOverlayStatus(bool active)
         {
             if (active == false)

@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net.Http;
-using System.ServiceModel;
 using System.Threading.Tasks;
-using Windows.Security.Cryptography.Core;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using BlizzStatistics.App.ViewModels;
 using ClassLibrary1;
 using Newtonsoft.Json;
-using Template10.Utils;
 
 
 namespace BlizzStatistics.App.Views
 {
-    //This page is not finished, i am currently trying to work out how the optimizating part will work, therefore the page is not commented yet.
+    
     public sealed partial class OptimizationPage
     {
+        
         public SavedCharacter Character;
+       
         public string CharacterName;
+        
         public string CharacterServer;
+        
         public string ItemUrl1 = "https://wow.zamimg.com/images/wow/icons/large/";
+       
         public string ItemUrl2 = ".jpg";
         public string ItemThumbnail;
         public string CombinedUrl;
@@ -51,21 +51,26 @@ namespace BlizzStatistics.App.Views
         private readonly BitmapImage _defaultImg = new BitmapImage(new Uri("http://localhost:60158/api/images/add.jpg/"));
         private int[] _slotArray;
         private int _gearSlotOffset;
-       
 
+
+        /// <summary>
+        /// An Array Containing the Playable Classes
+        /// </summary>
         private readonly string[] _classes = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
-        
-        
-        enum ClassArmorType
-        {
-            Plate=4, Mail = 3, Leather = 2, Cloth = 1, Misc = 0
-        }
 
-        public OptimizationPage()
-        {
-            InitializeComponent();
-        }
 
+        /// <summary>
+        /// Enum used To get the playable classes armortype.
+        /// </summary>
+        enum ClassArmorType{ Plate = 4, Mail = 3, Leather = 2, Cloth = 1}
+
+        public OptimizationPage(){ InitializeComponent();}
+
+        /// <summary>
+        /// Handles the OnSelectionChanged event of the CharacterListView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private async void CharacterListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SetOverlayStatus(true);
@@ -89,6 +94,11 @@ namespace BlizzStatistics.App.Views
             SetOverlayStatus(false);
         }
 
+        /// <summary>
+        /// Logs to database asynchronous.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        /// <returns></returns>
         private static async Task LogToDbAsync(Exception e)
         {
             var exception = new ExceptionHandler()
@@ -101,6 +111,12 @@ namespace BlizzStatistics.App.Views
             await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
         }
 
+        /// <summary>
+        /// Gets all data about the selectet character from the blizzard api 
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="server">The server.</param>
+        /// <returns></returns>
         public async  Task<GameCharacter> GetCharacter(string name, string server)
         {
             try
@@ -123,6 +139,11 @@ namespace BlizzStatistics.App.Views
             return null;
         }
 
+        /// <summary>
+        /// Calles a define function for every gearslot a Character can have. also calls a function that checks if the character has any saved gear in the db.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         private async Task DefineItemSlotsAsync(GameCharacter data)
         {
             DefineHeadSlot(data);
@@ -144,6 +165,12 @@ namespace BlizzStatistics.App.Views
             _selectedChar = data;
             await CheckForSavedGear();
         }
+        /// <summary>
+        /// Gets a Original Character object from the Blizzard api that contains the statistics for the currently selected character. Then calls for functions to treat the data.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="server">The server.</param>
+        /// <returns></returns>
         public async Task<OriginalCharacterStats> GetCharacterStats(string name, string server)
         {
             try
@@ -169,6 +196,10 @@ namespace BlizzStatistics.App.Views
             return null;
         }
 
+        /// <summary>
+        /// Checks the OptimizedMainStatBlock.Text value and sets the OptimizedMainStatBlock.Text to be the characters mainstat
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void CheckOptimizedMainStats(OriginalCharacterStats data)
         {
             if (OptimizedMainStatBlock.Text.Equals("Intellect"))
@@ -186,7 +217,10 @@ namespace BlizzStatistics.App.Views
                 _mainStatIndex = 3;
             }
         }
-        //Placeholder values for the optimized stats. there will need to be some kind of calculation done here
+        /// <summary>
+        /// Sets the optimized stats to be equal to the Original stats. This is to have a Base to correctly calculate the Optimized stats later on. 
+        /// </summary>
+        /// <param name="charStatData">The character stat data.</param>
         public void SetOptimizedStats(OriginalCharacterStats charStatData)
         {
             OptimizedClassResourceBox.Text = charStatData.Stats.Power.ToString();
@@ -199,6 +233,10 @@ namespace BlizzStatistics.App.Views
             OptimizedVersatilityBox.Text = charStatData.Stats.Versatility.ToString();
         }
 
+        /// <summary>
+        /// Sets the original stats.
+        /// </summary>
+        /// <param name="charStatData">The character stat data.</param>
         public void SetOriginalStats(OriginalCharacterStats charStatData)
         {
             OriginalClassResource.Text = charStatData.Stats.Power.ToString();
@@ -211,6 +249,10 @@ namespace BlizzStatistics.App.Views
             OriginalVersatility.Text = charStatData.Stats.Versatility.ToString();
         }
 
+        /// <summary>
+        /// Checks the 3 "MainStats" a character has. (The Highest one will be the Character Mainstat thats worked with in this app.) This is to decide if the character is a Strengt, intellect or Agilitybased character.
+        /// </summary>
+        /// <param name="charStatData">The character stat data.</param>
         public void CheckMainStat(OriginalCharacterStats charStatData)
         {
             if (charStatData.Stats.Int > charStatData.Stats.Agi && charStatData.Stats.Int > charStatData.Stats.Str)
@@ -237,7 +279,11 @@ namespace BlizzStatistics.App.Views
             }
         }
 
-        public  void DefineHeadSlot(GameCharacter data)
+        /// <summary>
+        /// Sets the Original headslotBox image source to be the characters equipt helmet image. then it calls AddToGrid and DefineStats to add the gear statsand name to the grid inside the headslotBox's ToolTip
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public void DefineHeadSlot(GameCharacter data)
         {
             ItemThumbnail= data.Items.head.icon;
             CombinedUrl = ItemUrl1 + ItemThumbnail + ItemUrl2;
@@ -266,6 +312,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.head.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the neckslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineNeckSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.neck.icon;
@@ -291,6 +341,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.neck.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Shoulderslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineShoulderSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.shoulder.icon;
@@ -319,6 +373,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.shoulder.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Backslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineBackSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.back.icon;
@@ -347,6 +405,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.back.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Chestslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineChestSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.chest.icon;
@@ -375,6 +437,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.chest.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Bracerslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineBracerSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.wrist.icon;
@@ -401,6 +467,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.wrist.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Trinket1slotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineTrinket1Slot(GameCharacter data)
         {
             ItemThumbnail = data.Items.trinket1.icon;
@@ -426,6 +496,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.trinket1.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Glovesslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineGlovesSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.hands.icon;
@@ -454,6 +528,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.hands.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Beltslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineBeltSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.waist.icon;
@@ -482,6 +560,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.waist.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Legsslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineLegsSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.legs.icon;
@@ -510,6 +592,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.legs.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Feetslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineFeetSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.feet.icon;
@@ -538,6 +624,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.feet.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Ring1slotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineRing1Slot(GameCharacter data)
         {
             ItemThumbnail = data.Items.finger1.icon;
@@ -566,6 +656,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.finger1.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Ring2slotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineRing2Slot(GameCharacter data)
         {
             ItemThumbnail = data.Items.finger2.icon;
@@ -594,6 +688,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.finger2.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Trinket2slotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineTrinket2Slot(GameCharacter data)
         {
             ItemThumbnail = data.Items.trinket2.icon;
@@ -622,6 +720,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.trinket2.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Mainhandslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineMainhandSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.mainHand.icon;
@@ -654,6 +756,10 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.mainHand.stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        /// <summary>
+        /// Same as DefineHeadSlot, but for the Offhandslotbox.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void DefineOffhandSlot(GameCharacter data)
         {
             ItemThumbnail = data.Items.offHand == null ? data.Items.mainHand.icon : data.Items.offHand.icon;
@@ -720,6 +826,12 @@ namespace BlizzStatistics.App.Views
             DefineStats(mainGrid, rowCount-rowOffsett, item);
         }
 
+        /// <summary>
+        /// Defines the stats.The stats are saved with id and not the statName in the blizzard db. Therefor this function is needed to find out which statname the stat has, and to set the stat value and name to a temporary tb that then added to the tooltip grid for the selected itemslotBox.
+        /// </summary>
+        /// <param name="mainGrid">The main grid.</param>
+        /// <param name="rowCount">The row count.</param>
+        /// <param name="item">The item.</param>
         public void DefineStats(Grid mainGrid, int rowCount, Stat[] item) 
         {
             foreach (var a in item)
@@ -771,6 +883,14 @@ namespace BlizzStatistics.App.Views
                 rowCount++;
             }
         }
+        /// <summary>
+        /// Adds a textblock to a tooltip grid.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        /// <param name="tb">The tb.</param>
+        /// <param name="mainGrid">The main grid.</param>
+        /// <param name="rowCount">The row count.</param>
+        /// <param name="prefRowHeight">Height of the preference row.</param>
         public void AddToGrid(Grid g, TextBlock tb, Grid mainGrid, int rowCount, int prefRowHeight)
         {
             g.Children.Add(tb);
@@ -782,6 +902,9 @@ namespace BlizzStatistics.App.Views
             mainGrid.Children.Add(g);
 
         }
+        /// <summary>
+        /// Removes all elements from the  Original gearboxes. this is so that the ToolTips can be defined again in the same way
+        /// </summary>
         private void DestroyChildren()
         {
             TtMainhandSlotGrid.Children.Clear();
@@ -803,6 +926,9 @@ namespace BlizzStatistics.App.Views
             DestroyRowDef();
         }
 
+        /// <summary>
+        /// Destroys the row definitions from the Original gearbox's Tooltips.
+        /// </summary>
         private void DestroyRowDef()
         {
             TtMainhandSlotGrid.RowDefinitions.Clear();
@@ -823,6 +949,11 @@ namespace BlizzStatistics.App.Views
             TtHeadSlotGrid.RowDefinitions.Clear();
         }
 
+        /// <summary>
+        /// This is called when the user clicks one of the Optimize Gearbox's. calls 3 functions to define which box that was pressed, what armortype the selected character used and what items that should be shown in the ItemContentDialog.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void BtnShowItemList(object sender, RoutedEventArgs e)
         {
             try
@@ -831,7 +962,7 @@ namespace BlizzStatistics.App.Views
                 DefineItemSlots(clickedBtn);
                 DefineArmorType();
                 FillOptItemList(SelectedCharacterArmorType);
-                var itemWindow = ItemContentDialog.ShowAsync();
+                await ItemContentDialog.ShowAsync();
             }
             catch (Exception ex)
             {
@@ -841,6 +972,10 @@ namespace BlizzStatistics.App.Views
             }
         }
 
+        /// <summary>
+        /// Adds items to Itemlist based on the criteria from BtnShowItemList.
+        /// </summary>
+        /// <param name="armorType">Type of the armor.</param>
         private async void FillOptItemList(int armorType)
         {
             if (Equipment == null){Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment()); }
@@ -877,6 +1012,10 @@ namespace BlizzStatistics.App.Views
             ItemList.ItemsSource = view.Equipments;
         }
 
+        /// <summary>
+        /// Defines the item slots. sets the itemslot, what image the clicked button belongs to, what ToolTip grid that belongs to the image, and the current stats for the currently equipted item the of the Character.
+        /// </summary>
+        /// <param name="clickedBtn">The clicked BTN.</param>
         private void DefineItemSlots(Button clickedBtn)
         {
             if (clickedBtn == BtnHeadSlot){_itemSlot = 1; _gearSlotOffset = 0; _saveToDbIndex = 1; _clickedImage = OptHeadSlotImg; _clickedImgGrid = OptTtHeadSlotGrid; _selectedItemStats = _selectedChar.Items.head.stats;}
@@ -894,6 +1033,9 @@ namespace BlizzStatistics.App.Views
             else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _gearSlotOffset = 0; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.trinket1.stats;}
             else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _gearSlotOffset = 1;  _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.trinket2.stats;}
         }
+        /// <summary>
+        /// Defines what kind of armor the selected character uses.
+        /// </summary>
         private void DefineArmorType()
         {
             switch (_selectedChar.Class)
@@ -920,6 +1062,11 @@ namespace BlizzStatistics.App.Views
                     break;
             }
         }
+        /// <summary>
+        /// Handles the SelectedItem event of the ItemList control. called when an item is selected from the ItemList in the ItemContenDialog. it then saved the selected item as a Equipment object, calls a function to alter the Optimized stats, adds the itemid to the corresponding selectedcharacter itemslot, and adds the itemId to the _slotArray.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private async void ItemList_SelectedItem(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -941,11 +1088,19 @@ namespace BlizzStatistics.App.Views
             
         }
 
+        /// <summary>
+        /// Clears the img grid.
+        /// </summary>
+        /// <param name="imgGrid">The img grid.</param>
         private static void ClearImgGrid(Grid imgGrid)
         {
             imgGrid.Children.Clear();
             imgGrid.RowDefinitions.Clear();
         }
+        /// <summary>
+        /// Defines the change in gear and stats.
+        /// </summary>
+        /// <param name="a">a.</param>
         private void DefineChangeInGearAndStats(Equipment a)
         {
             ClearImgGrid(_clickedImgGrid);
@@ -956,97 +1111,157 @@ namespace BlizzStatistics.App.Views
             RedefineOptStats();
         }
 
+        /// <summary>
+        /// Only gets called in a selected character has no item selected in the OptimizedGearslot. sets the imgsource to default img. clears the tooltip and then adds a textblock to the ToolTip. the redefines the Optimized character stats.(this needs to happend if a new character is selectet after a previous character whit optimized gear equipt, to reset the Optimized stats so the dont show the previous characters OptimizedStats)
+        /// </summary>
+        /// <param name="img">The img.</param>
+        /// <param name="grd">The GRD.</param>
+        /// <param name="stat">The stat.</param>
         private void DoIfNotOptGearEquipt(Image img, Grid grd, Stat[] stat)
         {
             img.Source = _defaultImg;
             ClearImgGrid(grd);
-            TextBlock tb = new TextBlock();
-            tb.Text = "Click to add an item";
+            var tb = new TextBlock {Text = "Click to add an item"};
             grd.Children.Add(tb);
             _selectedItemStats = stat;
             GetOrgSlotStats();
             CheckIfChangeIsPositive();
-            //SetStatIfNoGearEquipt();
         }
 
+        /// <summary>
+        /// Checks for existing item equipt by the character. If it finds a item, the Optimized box img for that slot will be set to that items img, the tooltip will be redefined and the Optimized stats will change accordingly, else the DoIfNotOptGearEquipt will be called
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingHeadSlot()
         {
             if (Character.HeadSlot != 0) { DefineItemSlots(BtnHeadSlot); await GetSavedEquipment(Character.HeadSlot); _slotArray[0] = Character.HeadSlot; }
             else { DoIfNotOptGearEquipt(OptHeadSlotImg, OptTtHeadSlotGrid, _selectedChar.Items.head.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingNeckSlot()
         {
             if (Character.NeckSlot != 0) { DefineItemSlots(BtnNeckSlot); await GetSavedEquipment(Character.NeckSlot); _slotArray[1] = Character.NeckSlot; }
             else { DoIfNotOptGearEquipt(OptNeckSlotImg, OptTtNeckSlotGrid, _selectedChar.Items.neck.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingShoulderSlot()
         {
             if (Character.ShoulderSlot != 0) { DefineItemSlots(BtnShoulderSlot); await GetSavedEquipment(Character.ShoulderSlot); _slotArray[2] = Character.ShoulderSlot; }
             else { DoIfNotOptGearEquipt(OptShoulderSlotImg, OptTtShoulderSlotGrid, _selectedChar.Items.shoulder.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingBackSlot()
         {
             if (Character.BackSlot != 0) { DefineItemSlots(BtnBackSlot); await GetSavedEquipment(Character.BackSlot); _slotArray[3] = Character.BackSlot; }
             else { DoIfNotOptGearEquipt(OptBackSlotImg, OptTtBackSlotGrid, _selectedChar.Items.back.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingChestSlot()
         {
             if (Character.ChestSlot != 0) { DefineItemSlots(BtnChestSlot); await GetSavedEquipment(Character.ChestSlot); _slotArray[4] = Character.ChestSlot; }
             else { DoIfNotOptGearEquipt(OptChestSlotImg, OptTtChestSlotGrid, _selectedChar.Items.chest.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingWristSlot()
         {
             if (Character.WristSlot != 0) { DefineItemSlots(BtnWristSlot); await GetSavedEquipment(Character.WristSlot); _slotArray[8] = Character.WristSlot; }
             else { DoIfNotOptGearEquipt(OptWristSlotImg, OptTtWristSlotGrid, _selectedChar.Items.wrist.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot.
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingRing1Slot()
         {
             if (Character.Ring1Slot != 0) { DefineItemSlots(BtnRing1Slot); await GetSavedEquipment(Character.Ring1Slot); _slotArray[10] = Character.Ring1Slot; }
             else { DoIfNotOptGearEquipt(OptRing1SlotImg, OptTtRing1SlotGrid, _selectedChar.Items.finger1.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingTrinket1Slot()
         {
             if (Character.Trinket1Slot != 0) { DefineItemSlots(BtnTrinket1Slot); await GetSavedEquipment(Character.Trinket1Slot); _slotArray[12] = Character.Trinket1Slot; }
             else { DoIfNotOptGearEquipt(OptTrinket1SlotImg, OptTtTrinket1SlotGrid, _selectedChar.Items.trinket1.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingGloveSlot()
         {
             if (Character.GlovesSlot != 0) { DefineItemSlots(BtnGlovesSlot); await GetSavedEquipment(Character.GlovesSlot); _slotArray[9] = Character.GlovesSlot; }
             else { DoIfNotOptGearEquipt(OptGlovesSlotImg, OptTtGlovesSlotGrid, _selectedChar.Items.hands.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot.
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingBeltSlot()
         {
             if (Character.BeltSlot != 0) { DefineItemSlots(BtnBeltSlot); await GetSavedEquipment(Character.BeltSlot); _slotArray[5] = Character.BeltSlot; }
             else { DoIfNotOptGearEquipt(OptBeltSlotImg, OptTtBeltSlotGrid, _selectedChar.Items.waist.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingLegsSlot()
         {
             if (Character.LegsSlot != 0) { DefineItemSlots(BtnLegsSlot); await GetSavedEquipment(Character.LegsSlot); _slotArray[6] = Character.LegsSlot; }
             else { DoIfNotOptGearEquipt(OptLegsSlotImg, OptTtLegsSlotGrid, _selectedChar.Items.legs.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingFeetSlot()
         {
             if (Character.FeetSlot != 0) { DefineItemSlots(BtnFeetSlot); await GetSavedEquipment(Character.FeetSlot); _slotArray[7] = Character.FeetSlot; }
             else { DoIfNotOptGearEquipt(OptFeetSlotImg, OptTtFeetSlotGrid, _selectedChar.Items.feet.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingRing2Slot()
         {
             if (Character.Ring2Slot != 0) { DefineItemSlots(BtnRing2Slot); await GetSavedEquipment(Character.Ring2Slot); _slotArray[11] = Character.Ring2Slot; }
             else { DoIfNotOptGearEquipt(OptRing2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.finger2.stats); }
         }
 
+        /// <summary>
+        /// Same as CheckForExistHeadSlot
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForExistingTrinket2Slot()
         {
             if (Character.Trinket2Slot != 0) { DefineItemSlots(BtnTrinketSlot); await GetSavedEquipment(Character.Trinket2Slot); _slotArray[13] = Character.Trinket2Slot; }
@@ -1054,6 +1269,10 @@ namespace BlizzStatistics.App.Views
         }
 
 
+        /// <summary>
+        /// Calls the different CheckForExsistingGearSlot functions
+        /// </summary>
+        /// <returns></returns>
         private async Task CheckForSavedGear()
         {
             await CheckForExistingHeadSlot();
@@ -1072,6 +1291,11 @@ namespace BlizzStatistics.App.Views
             await CheckForExistingTrinket2Slot();
         }
 
+        /// <summary>
+        /// Gets the Equipment from the Db, if the Equipment id == the parameter id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private async Task GetSavedEquipment(int id)
         {
             Equipment = new List<Equipment>(await DataSource.Equipments.Instance.GetEquipment());
@@ -1083,6 +1307,9 @@ namespace BlizzStatistics.App.Views
                 }
             }
         }
+        /// <summary>
+        /// Redefines the opttimized stats.
+        /// </summary>
         private void RedefineOptStats()
         {
             if (IsEquipt(_selectedEquipment.Id)) return;
@@ -1097,6 +1324,13 @@ namespace BlizzStatistics.App.Views
 
         }
 
+        /// <summary>
+        /// Determines whether the specified Equipment Allready is Equipt.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified identifier is equipt; otherwise, <c>false</c>.
+        /// </returns>
         private bool IsEquipt(int id)
         {
             foreach (var t in _slotArray)
@@ -1106,9 +1340,11 @@ namespace BlizzStatistics.App.Views
                     return true;
                 }
             }
-
             return false;
         }
+        /// <summary>
+        /// Checks if change is positive. if it is the statValue turns green, if negative it turns red, if it is equal to the Original stat value it turns/stays black
+        /// </summary>
         private void CheckIfChangeIsPositive()
         {
             //Mainstat
@@ -1138,6 +1374,9 @@ namespace BlizzStatistics.App.Views
             ClearStats();
         }
 
+        /// <summary>
+        /// Clears the stats.
+        /// </summary>
         private void ClearStats()
         {
             _orgMainStatValue = 0;
@@ -1148,10 +1387,12 @@ namespace BlizzStatistics.App.Views
             _orgVersatilityValue = 0;
             
         }
-        //adds the item id of the selected item, to the selected character(SavedCharacter, so that the saved character can be updatet with the Item id.)
+    
+        /// <summary>
+        /// adds the item id of the selected item, to the selected character(SavedCharacter, so that the saved character can be updatet with the Item id.)
+        /// </summary>
         private void AddItemToSelectedCharacter()
         {   
-
             switch (_itemSlot+ _gearSlotOffset)
             {
                 case 1: Character.HeadSlot = _selectedEquipment.Id; break;
@@ -1171,7 +1412,9 @@ namespace BlizzStatistics.App.Views
             }
         }
 
-        
+        /// <summary>
+        /// Gets the originalslot stats.
+        /// </summary>
         private void GetOrgSlotStats()
         {
             foreach (var a in _selectedItemStats)
@@ -1204,6 +1447,10 @@ namespace BlizzStatistics.App.Views
                 }
             }
         }
+        /// <summary>
+        /// Defines the tooltip based on the equipments stats.
+        /// </summary>
+        /// <param name="equipment">The equipment.</param>
         private void DefineToolTip(Equipment equipment)
         {
             var rowOffsett = 0;
@@ -1232,7 +1479,12 @@ namespace BlizzStatistics.App.Views
             }
             
         }
-       
+
+        /// <summary>
+        /// Updates the character to database.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public async void UpdateCharacterToDb(object sender, RoutedEventArgs e)
         {
             try
@@ -1251,6 +1503,11 @@ namespace BlizzStatistics.App.Views
             }
             
         }
+        /// <summary>
+        /// Adds the new character to database.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public async void AddNewCharacterToDb(object sender, RoutedEventArgs e)
         {   
             var view = await AddNewCharacterContentDialog.ShowAsync();
@@ -1285,6 +1542,10 @@ namespace BlizzStatistics.App.Views
             }
         }
 
+        /// <summary>
+        /// Sets the overlay status.
+        /// </summary>
+        /// <param name="active">if set to <c>true</c> [active].</param>
         private void SetOverlayStatus(bool active)
         {   
             if (active == false)

@@ -35,11 +35,11 @@
         </controls:PageHeader>
 
         <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-            <ScrollViewer x:Name="ScrollViewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" VerticalScrollBarVisibility="Hidden">
+            <ScrollViewer  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" VerticalScrollBarVisibility="Hidden">
                 <Viewbox>
                 <Grid x:Name="MenuGrid" Style="{StaticResource BgStyle}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True">
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="Auto" x:Name="RowDef"/>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="0.8*" />
                     <ColumnDefinition Width="0.6*" />
                     <ColumnDefinition Width="0.5*" />
@@ -53,7 +53,7 @@
                     <RowDefinition Height="50" MinHeight="50" />
                     <RowDefinition Height="50" MinHeight="50"/>
                 </Grid.RowDefinitions>
-                    <ComboBox Background="Black" Foreground="White" Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbServer_OnSelectionChanged" Name="CbServer" PlaceholderText="Garona" SelectedItem="{Binding Path=Realms}"  ItemsSource="{Binding Realms, Mode=OneWay}" DisplayMemberPath="name">
+                    <ComboBox Background="Black" Foreground="White" Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbServer_OnSelectionChanged" x:Name="CbServer" PlaceholderText="Garona" SelectedItem="{Binding Path=Realms}"  ItemsSource="{Binding Realms, Mode=OneWay}" DisplayMemberPath="name">
                     
                 </ComboBox>
                 <ComboBox Background="Black" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" Foreground="White" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbDungeon_OnSelectionChanged" Name="CbDungeon" PlaceholderText="Black Rook Hold" >

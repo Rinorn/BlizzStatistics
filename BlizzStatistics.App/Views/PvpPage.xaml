@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <viewModels:PvpPageViewModel x:Name="ViewModel" />
+        <viewModels:PvpPageViewModel />
     </Page.DataContext>
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="TextStyle">
@@ -18,7 +18,7 @@
         </Style>
     </Page.Resources>
     
-    <RelativePanel x:Name="MainPanel" AlignRightWithPanel="True" AlignLeftWithPanel="True"  AlignTopWithPanel="True" AlignBottomWithPanel="True">
+    <RelativePanel  AlignRightWithPanel="True" AlignLeftWithPanel="True"  AlignTopWithPanel="True" AlignBottomWithPanel="True">
         
 
         <controls:PageHeader 
@@ -27,7 +27,7 @@
             RelativePanel.AlignTopWithPanel="True" Text="Player vs Player"  >
         </controls:PageHeader>
 
-        <ScrollViewer x:Name="ScrollViewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True">
+        <ScrollViewer  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True">
             <Viewbox  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" VerticalAlignment="Top" >
                 <Grid Background="Black" Name="MenuGrid" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="PageHeader">
 
