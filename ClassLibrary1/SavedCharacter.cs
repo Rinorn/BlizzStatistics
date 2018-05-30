@@ -64,7 +64,18 @@ namespace ClassLibrary1
         [Required]
         public int Level { get; set; }
 
-        public string SavedAs { get; set; }
+        public string Savedas;
+
+        public string SavedAs
+        {
+            get { return Savedas; }
+            set
+            {
+                if (!SetField(ref Savedas, value)) return;
+                OnPropertyChanged(nameof(CharacterInfo));
+                OnPropertyChanged(nameof(IsValid));
+            }
+        }
 
         public string CharacterInfo => $"{Name} {SavedAs}" + Environment.NewLine + $"{ Level}  { ClassName}";
 
@@ -115,5 +126,15 @@ namespace ClassLibrary1
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        protected bool SetField<T>(ref T field, T value,
+            [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+        public bool IsValid { get => !string.IsNullOrEmpty(SavedAs); }
     }
 }

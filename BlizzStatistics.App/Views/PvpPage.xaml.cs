@@ -71,11 +71,13 @@ namespace BlizzStatistics.App.Views
             SetOverlayStatus(true);
             try
             {
-                var url = "https://eu.api.battle.net/wow/leaderboard/"+ ladder + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
-                var client = new HttpClient();
-                var response = await client.GetStringAsync(url);
-                var data = JsonConvert.DeserializeObject<Rootobject>(response);
-                CreateGrid(data);
+                using (var client = new HttpClient())
+                {
+                    var url = "https://eu.api.battle.net/wow/leaderboard/" + ladder + "?locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye";
+                    var response = await client.GetStringAsync(url);
+                    var data = JsonConvert.DeserializeObject<Rootobject>(response);
+                    CreateGrid(data);
+                }
             }
             catch (Exception e)
             {

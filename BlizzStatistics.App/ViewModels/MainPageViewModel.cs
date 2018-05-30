@@ -43,8 +43,5 @@ namespace BlizzStatistics.App.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
-
-        public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), Value);
     }
 }

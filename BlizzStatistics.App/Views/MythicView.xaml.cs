@@ -37,7 +37,7 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         private int _dungeonIndex = 197;
 
-        private int _reconnectAttempt = 0;
+        private int _reconnectAttempt;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MythicView"/> class.
@@ -56,17 +56,19 @@ namespace BlizzStatistics.App.Views
             SetOverlayStatus(true);
             try
             {
-                _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/645?namespace=dynamic-eu&locale=en_GB&access_token=fb5hv9pjubvebavu85qxstjz";
-                var ur = new Uri(_connection);
-                var client = new HttpClient();
-                var response = await client.GetStringAsync(ur);
-                var data = JsonConvert.DeserializeObject<MythicRootobject>(response);
-                AddToColumns(data);
-                ConvertTimeStampToTime(data.leading_groups[0].Duration, TbBestTime);
-                TbAff1.Text = data.keystone_affixes[0].keystone_affix.Name;
-                TbAff2.Text = data.keystone_affixes[1].keystone_affix.Name;
-                TbAff3.Text = data.keystone_affixes[2].keystone_affix.Name;
-                _reconnectAttempt = 0;
+                using (var client = new HttpClient())
+                {
+                    _connection = "https://eu.api.battle.net/data/wow/connected-realm/" + _realmIndex + "/mythic-leaderboard/" + _dungeonIndex + "/period/645?namespace=dynamic-eu&locale=en_GB&access_token=fb5hv9pjubvebavu85qxstjz";
+                    var ur = new Uri(_connection);
+                    var response = await client.GetStringAsync(ur);
+                    var data = JsonConvert.DeserializeObject<MythicRootobject>(response);
+                    AddToColumns(data);
+                    ConvertTimeStampToTime(data.leading_groups[0].Duration, TbBestTime);
+                    TbAff1.Text = data.keystone_affixes[0].keystone_affix.Name;
+                    TbAff2.Text = data.keystone_affixes[1].keystone_affix.Name;
+                    TbAff3.Text = data.keystone_affixes[2].keystone_affix.Name;
+                    _reconnectAttempt = 0;
+                }
             }
             catch (Exception ex)
             {   
@@ -202,7 +204,7 @@ namespace BlizzStatistics.App.Views
 
         private static void CheckColor(Grid g, int i)
         {
-            g.Background = i % 2 != 0 ? new SolidColorBrush(Colors.SaddleBrown) : new SolidColorBrush(Colors.SandyBrown);
+            g.Background = i % 2 != 0 ? new SolidColorBrush(Colors.LightSeaGreen) : new SolidColorBrush(Colors.CadetBlue);
         }
         /// <summary>
         /// Adds the group member.

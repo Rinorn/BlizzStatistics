@@ -17,11 +17,9 @@ namespace BlizzStatistics.App.Views
     {
         public WoWPage()
         {   
-            
             InitializeComponent();
-            
         }
-
+        
         private void BtnLoadPage(object sender, RoutedEventArgs e)
         {
             var clickedBtn = sender as Button;
@@ -50,5 +48,6 @@ namespace BlizzStatistics.App.Views
                 Frame.Navigate(typeof(OptimizationPage));
             }
         }
+
     }
 }

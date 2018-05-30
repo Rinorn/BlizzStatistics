@@ -11,7 +11,12 @@
     <Page.DataContext>
         <viewModels:PvpPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-    
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="TextStyle">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+    </Page.Resources>
     
     <RelativePanel x:Name="MainPanel" AlignRightWithPanel="True" AlignLeftWithPanel="True"  AlignTopWithPanel="True" AlignBottomWithPanel="True">
         
@@ -74,38 +79,38 @@
                         <x:String>Top 150</x:String>
                         <x:String>Top 200</x:String>
                     </ComboBox>
-                    <TextBlock Text="Sort by:" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
-                    <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center" IsEnabled="False"/>
-                    <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center" IsEnabled="False" IsChecked="True"/>
-                    <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center" IsEnabled="False"/>
-                    <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center" IsEnabled="False"/>
+                    <TextBlock Text="Sort by:" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
+                    <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
+                    <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center" IsEnabled="False" IsChecked="True" Foreground="White"/>
+                    <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
+                    <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
                     <!-- Row 2-->
                     <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Rank"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Text="Rank"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Player Name"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Player Name"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="2" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Faction"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Faction"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="3" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Class"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Class"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="4" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Realm"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Realm"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="5" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Rating"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Rating"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="6" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Wins"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Wins"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="7" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Losses"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Losses"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                     <Border Grid.Column="8" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
-                        <TextBlock Text="Race"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Race"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>
                     </Border>
                 </Grid>
             </Viewbox>

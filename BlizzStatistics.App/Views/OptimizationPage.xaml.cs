@@ -105,12 +105,14 @@ namespace BlizzStatistics.App.Views
         {
             try
             {
-                var http = new HttpClient();
-                var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
-                var result = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<GameCharacter>(result);
-                await DefineItemSlotsAsync(data);
-                return data;
+                using (var http = new HttpClient())
+                {
+                    var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=items&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
+                    var result = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<GameCharacter>(result);
+                    await DefineItemSlotsAsync(data);
+                    return data;
+                }
             }
             catch (Exception ex)
             {
@@ -146,15 +148,17 @@ namespace BlizzStatistics.App.Views
         {
             try
             {
-                var http = new HttpClient();
-                var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=stats&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
-                var result = await response.Content.ReadAsStringAsync();
-                var charStatData = JsonConvert.DeserializeObject<OriginalCharacterStats>(result);
-                CheckMainStat(charStatData);
-                SetOriginalStats(charStatData);
-                CheckOptimizedMainStats(charStatData);
-                SetOptimizedStats(charStatData);
-                return charStatData;
+                using (var http = new HttpClient())
+                {
+                    var response = await http.GetAsync("https://eu.api.battle.net/wow/character/" + server + "/" + name + "?fields=stats&locale=en_GB&apikey=b4m972rd82u2pkrwyn3svmt2nngna7ye");
+                    var result = await response.Content.ReadAsStringAsync();
+                    var charStatData = JsonConvert.DeserializeObject<OriginalCharacterStats>(result);
+                    CheckMainStat(charStatData);
+                    SetOriginalStats(charStatData);
+                    CheckOptimizedMainStats(charStatData);
+                    SetOptimizedStats(charStatData);
+                    return charStatData;
+                }
             }
             catch (Exception ex)
             {
@@ -952,17 +956,6 @@ namespace BlizzStatistics.App.Views
             RedefineOptStats();
         }
 
-       /* private void SetStatIfNoGearEquipt()
-        {   
-            _selectedEquipment.MainStat = _orgMainStatValue ;
-            _selectedEquipment.Stamina = _orgStaminaValue;
-            _selectedEquipment.Mastery = _orgMasteryValue;
-            _selectedEquipment.Crit = _orgCritValue;
-            _selectedEquipment.Haste = _orgHasteValue;
-            _selectedEquipment.Versatility = _orgVersatilityValue;
-            RedefineOptStats();
-        }*/
-
         private void DoIfNotOptGearEquipt(Image img, Grid grd, Stat[] stat)
         {
             img.Source = _defaultImg;
@@ -1174,6 +1167,7 @@ namespace BlizzStatistics.App.Views
                 if (view != ContentDialogResult.Primary) return;
                 Character.SavedAs = NewCharacterNameBox.Text;
                 await DataSource.SavedCharacters.Instance.PutSavedCharacter(Character);
+                
             }
             catch (Exception ex)
             {

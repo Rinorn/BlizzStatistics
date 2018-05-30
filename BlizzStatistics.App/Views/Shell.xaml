@@ -9,10 +9,10 @@
       xmlns:local="using:BlizzStatistics.App.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:views="using:BlizzStatistics.App.Views"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      Background="Black"
       mc:Ignorable="d">
 
-    <Controls:HamburgerMenu x:Name="MyHamburgerMenu">
+    <Controls:HamburgerMenu x:Name="MyHamburgerMenu" Background="Black" Foreground="Black" >
         <Controls:HamburgerMenu.PrimaryButtons>
             <Controls:HamburgerButtonInfo PageType="views:WoWPage">
                 <StackPanel Orientation="Horizontal">
@@ -76,5 +76,4 @@
             </Controls:HamburgerButtonInfo>
         </Controls:HamburgerMenu.PrimaryButtons>
     </Controls:HamburgerMenu>
-
 </Page>
