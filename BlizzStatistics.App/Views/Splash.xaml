@@ -10,16 +10,14 @@
              mc:Ignorable="d">
 
     <Grid Background="{StaticResource ExtendedSplashBackground}">
-
+        
         <Canvas x:Name="rootCanvas"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch">
             <Canvas.Background>
-                <ImageBrush ImageSource="ms-appx:///Assets/SplashScreen.png" Stretch="Uniform" />
+                <ImageBrush ImageSource="http://localhost:60158/api/images/WowPageBg.jpg/" Stretch="Uniform" />
             </Canvas.Background>
-            <Viewbox x:Name="splashImage">
-                <Image Source="ms-appx:///Assets/SplashScreen.png" ImageOpened="Image_Loaded" />
-            </Viewbox>
+            
         </Canvas>
 
         <ProgressRing x:Name="progressRing"

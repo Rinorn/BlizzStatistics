@@ -28,7 +28,7 @@
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
-                                Symbol="Home" />
+                                Symbol="Emoji" />
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="pvp" />
@@ -38,7 +38,7 @@
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
-                                Symbol="Home" />
+                                Symbol="Emoji2"/>
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Mythic" />
@@ -58,7 +58,7 @@
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
-                                Symbol="Home" />
+                                Symbol="ContactInfo" />
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Class" />
@@ -68,7 +68,7 @@
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
-                                Symbol="Home" />
+                                Symbol="People" />
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Race" />

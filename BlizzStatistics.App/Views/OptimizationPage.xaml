@@ -23,6 +23,9 @@
             x:Name="EqipmentViewSource"
             Source="{x:Bind ViewModel.Equipments}">
         </CollectionViewSource>
+        <Style TargetType="Border" x:Key="BorderStyle">
+            <Setter Property="Background" Value="SkyBlue"></Setter>
+        </Style>
     </Page.Resources>
 
     <RelativePanel >
@@ -30,7 +33,7 @@
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True"
-            Text="BlizzardLogo" >
+            Text="Character Optimization" >
             <controls:PageHeader.PrimaryCommands>
             <AppBarButton Click="{x:Bind AddNewCharacterToDb}" Icon="AddFriend"  Label="Add new Character"></AppBarButton>
             <AppBarButton Click="{x:Bind UpdateCharacterToDb}"  Icon="MoveToFolder" Label="Save Character"></AppBarButton>
@@ -38,7 +41,7 @@
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
         <ListView x:Name="CharacterListView" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  
-                   Background="BlanchedAlmond"
+                   Background="SkyBlue"
                   ItemsSource="{Binding Source={StaticResource SavedCharactersViewSource}}"  SelectionChanged="CharacterListView_OnSelectionChanged">
             <ListView.ItemTemplate >
                 <DataTemplate x:DataType="classLibrary1:SavedCharacter" >
@@ -47,7 +50,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <RelativePanel RelativePanel.RightOf="CharacterListView"  RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" x:Name="OptimizePanel" >
-            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="SaddleBrown" >
+            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="DarkSlateGray" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -99,7 +102,7 @@
                 </Grid.RowDefinitions>
                 
                 <!--Large Boxes-->
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" Margin="5,5,0,-5" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnHeadSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptHeadSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip>
@@ -111,7 +114,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderBrush="Black" Margin="5,0,0,0" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnNeckSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptNeckSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip >
@@ -121,7 +124,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" BorderBrush="Black" Margin="5,0,0,0" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnShoulderSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptShoulderSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip >
@@ -131,7 +134,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" BorderBrush="Black" Margin="5,0,0,0" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnBackSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptBackSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip >
@@ -141,7 +144,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border  BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2" BorderBrush="Black" Margin="5,0,0,0" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnChestSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptChestSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip >
@@ -151,7 +154,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2" BorderBrush="Black" Margin="5,0,0,0" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnWristSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptWristSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip >
@@ -235,7 +238,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" CornerRadius="8,8,8,8">
+                <Border BorderThickness="1,1,1,1" Grid.Column="16" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" Margin="0,5,0,-5" CornerRadius="8,8,8,8">
                     <Button x:Name="BtnGlovesSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptGlovesSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip >
@@ -262,6 +265,7 @@
                     <Image x:Name="HeadSlot" Stretch="Fill">
                         <ToolTipService.ToolTip >
                             <Grid x:Name="TtHeadSlotGrid" >
+                                
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -403,87 +407,87 @@
 
 
                 <!--Optimized Character Stats-->
-                <Border BorderThickness="1,1,1,1" Grid.Column="6"  Grid.Row="1"  Grid.ColumnSpan="8" BorderBrush="Black" VerticalAlignment="Center">
+                <Border BorderThickness="1,1,1,1" Grid.Column="6"  Grid.Row="1"  Grid.ColumnSpan="8" BorderBrush="Black" Margin="0,10,0,0" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Optimized Character Statistics"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedMainStatBlock"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Healthpoints"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedClassResourceBlock"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Critical strike"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Haste"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Mastery"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Versatility"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="6"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Stamina"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedMainStatBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedHpBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedClassResourceBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedCritBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedHasteBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedMasteryBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedVersatilityBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="10"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OptimizedStaminaBox"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>
@@ -491,7 +495,7 @@
             </Grid>
         </RelativePanel>
         <RelativePanel RelativePanel.RightOf="OptimizePanel" RelativePanel.Below="PageHeader" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
-            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="Wheat">
+            <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="DarkSlateGray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -529,87 +533,87 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <!--Original Character stats -->
-                <Border BorderThickness="1,1,1,1" Grid.Column="2"  Grid.Row="1"  Grid.ColumnSpan="8" BorderBrush="Black" VerticalAlignment="Center">
+                <Border BorderThickness="1,1,1,1" Grid.Column="2"  Grid.Row="1"  Grid.ColumnSpan="8" BorderBrush="Black" Margin="0,10,0,0" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Original Character Statistics"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalMainStatBlock"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Healthpoints"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalClassResourceBlock"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Critical strike"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Haste"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Mastery"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Versatility"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="1,0,0,1" Grid.Column="2"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock Text="Stamina"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalMainStat"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalHitpoints"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalClassResource"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalCrit"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalHaste"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalMastery"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalVersatility"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center"></TextBlock>
                     </Viewbox>
                 </Border>
-                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" >
+                <Border BorderThickness="0,0,1,1" Grid.Column="6"  Grid.Row="16" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="Black" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
                         <TextBlock x:Name="OriginalStamina"  HorizontalAlignment="Center"  Foreground="Black" VerticalAlignment="Center" ></TextBlock>
                     </Viewbox>

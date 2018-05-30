@@ -2,11 +2,8 @@
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-using Windows.Networking.BackgroundTransfer;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Xaml.Interactions.Core;
 
 namespace BlizzStatistics.App.Views
 {
@@ -19,13 +16,13 @@ namespace BlizzStatistics.App.Views
         {   
             InitializeComponent();
         }
-        
+        // carusell burron handler
         private void BtnLoadPage(object sender, RoutedEventArgs e)
         {
             var clickedBtn = sender as Button;
             DetermineBtn(clickedBtn);
         }
-
+        // Determines which picture that was clicked and navigates to the refered page.
         private void DetermineBtn(Button btn)
         {
             if (btn == BtnLoadPagePvp)

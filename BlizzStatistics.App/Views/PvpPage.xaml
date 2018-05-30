@@ -79,11 +79,22 @@
                         <x:String>Top 150</x:String>
                         <x:String>Top 200</x:String>
                     </ComboBox>
-                    <TextBlock Text="Sort by:" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
-                    <RadioButton  Grid.Column="5" Grid.Row="0" Content="Player Name" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
-                    <RadioButton  Grid.Column="6" Grid.Row="0" Content="Rank" HorizontalAlignment="Center" IsEnabled="False" IsChecked="True" Foreground="White"/>
-                    <RadioButton  Grid.Column="7" Grid.Row="0" Content="Wins" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
-                    <RadioButton  Grid.Column="8" Grid.Row="0" Content="Losses" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
+                    <Border Grid.Column="4" Grid.Row="0" BorderThickness="0,1.5,0,1" BorderBrush="DimGray">
+                    <TextBlock Text="Sort by:"   VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
+                    </Border>
+                    <Border Grid.Column="5" Grid.Row="0" BorderThickness="0,1.5,0,1" BorderBrush="DimGray">
+                        <RadioButton   Content="Player Name" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
+                    </Border>
+                    <Border Grid.Column="6" Grid.Row="0" BorderThickness="0,1.5,0,1" BorderBrush="DimGray">
+                        <RadioButton   Content="Rank" HorizontalAlignment="Center" IsEnabled="False" IsChecked="True" Foreground="White"/>
+                    </Border>
+                    <Border Grid.Column="7" Grid.Row="0" BorderThickness="0,1.5,0,1" BorderBrush="DimGray">
+                        <RadioButton   Content="Wins" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
+                    </Border>
+                    <Border Grid.Column="8" Grid.Row="0" BorderThickness="0,1.5,1,1" BorderBrush="DimGray">
+                        <RadioButton   Content="Losses" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
+                    </Border>
+
                     <!-- Row 2-->
                     <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1 1 1 1">
                         <TextBlock Text="Rank"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"/>

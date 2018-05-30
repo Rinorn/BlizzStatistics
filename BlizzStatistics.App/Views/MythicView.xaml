@@ -4,22 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    
     xmlns:controls="using:Template10.Controls"
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
-
     mc:Ignorable="d"
     >
-
-  
-
 
     <Page.DataContext>
         <viewModels:RealmViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
     <Page.Resources>
-        
         <CollectionViewSource
             x:Name="RealmViewSource"
             Source="{x:Bind ViewModel.Realms}">
@@ -33,12 +27,10 @@
         </Style>
     </Page.Resources>
 
-
-
     <RelativePanel AlignLeftWithPanel="True" AlignRightWithPanel="True" x:Name="MainMythicPanel">
         <controls:PageHeader 
                 x:Name="PageHeader" 
-                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                 Text="Mythic+ Ladder" Background="Black">
         </controls:PageHeader>
 

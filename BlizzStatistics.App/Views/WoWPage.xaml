@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <viewModels:WoWPageViewModel x:Name="ViewModel" />
+        <viewModels:WoWPageViewModel />
     </Page.DataContext>
 
     <RelativePanel>
@@ -23,7 +23,8 @@
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
-            RelativePanel.AlignTopWithPanel="True" Text="Blizzard Logo" >
+            RelativePanel.AlignTopWithPanel="True" Text="World of Warcraft" >
+            
         </controls:PageHeader>
 
         <FlipView MaxWidth="800" MaxHeight="300" 
@@ -33,43 +34,44 @@
                 <Button x:Name="BtnLoadPagePvp" Click="BtnLoadPage">
                 <Image Source="http://localhost:60158/api/images/Pvp.jpg/" Stretch="Fill"/>
                 </Button>
-                <TextBlock Text="Player vs Player" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="20" ></TextBlock>
+                <TextBlock Text="Player vs Player" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="28" FontStyle="Oblique" ></TextBlock>
             </Grid>
             <Grid>
                 <Button x:Name="BtnLoadPagePve" Click="BtnLoadPage">
                     <Image Source="http://localhost:60158/api/images/Pve.jpg/" Stretch="Fill"/>
                 </Button>
-                <TextBlock Text="Mythic Dungeons" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="20" ></TextBlock>
+                <TextBlock Text="Mythic Dungeons" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="28" FontStyle="Oblique" Foreground="Black" ></TextBlock>
             </Grid>
             <Grid>
                 <Button x:Name="BtnLoadPageClasses" Click="BtnLoadPage">
                     <Image Source="http://localhost:60158/api/images/Classes.jpg/" Stretch="Fill"/>
                 </Button>
-                <TextBlock Text="Playable Classes" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="20" ></TextBlock>
+                <TextBlock Text="Playable Classes" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,120,0,0" FontSize="28" FontStyle="Oblique" Foreground="White"></TextBlock>
             </Grid>
             <Grid>
                 <Button x:Name="BtnLoadPageRaces" Click="BtnLoadPage">
                     <Image Source="http://localhost:60158/api/images/Races.jpg/" Stretch="Fill"/>
                 </Button>
-                <TextBlock Text="Playable Races" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="20" ></TextBlock>
+                <TextBlock Text="Playable Races" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,0,0,0" FontSize="28" FontStyle="Oblique" Foreground="White"></TextBlock>
             </Grid>
             <Grid>
                 <Button x:Name="BtnLoadPageOptimize" Click="BtnLoadPage">
                     <Image Source="http://localhost:60158/api/images/Optimize.jpg//" Stretch="Fill"/>
                 </Button>
-                <TextBlock Text="Optimize your gear" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="20" ></TextBlock>
+                <TextBlock Text="Optimize your gear" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,15,0,0" FontSize="28" FontStyle="Oblique" Foreground="White"></TextBlock>
             </Grid>
             
         </FlipView>
 
 
-        <RelativePanel Name="InfoPanel" Background="Bisque" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="NewsCarosell" RelativePanel.AlignBottomWithPanel="True" Margin="50,50,50,50">
+        <RelativePanel  Background="Bisque" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="NewsCarosell" RelativePanel.AlignBottomWithPanel="True" Margin="50,50,50,50">
+            
             <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions >
                     <ColumnDefinition x:Name="Col1" Width="*"></ColumnDefinition>
                     <ColumnDefinition x:Name="Col2" Width="*"></ColumnDefinition>
                     <ColumnDefinition x:Name="Col3" Width="*"></ColumnDefinition>
@@ -81,8 +83,8 @@
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
-                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col1}" VerticalAlignment="Top" >
-                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col1}" FontSize="15"  Text="On the Pvp page, you will be able to find the current top rated pvp players for 3v3 arena, 2v2 arena and Rated Battlegrounds. You will be able to filter according to class, player faction and how many players you want to view at once. There will at a later date be implemented sorting fuctions where you should be able to sort by player name, rank, total wins and total loss." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col1}" VerticalAlignment="Top" Stretch="Fill">
+                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col1}" FontSize="17"  Text="On the Pvp page, you will be able to find the current top rated pvp players for 3v3 arena, 2v2 arena and Rated Battlegrounds. You will be able to filter according to class, player faction and how many players you want to view at once. There will at a later date be implemented sorting fuctions where you should be able to sort by player name, rank, total wins and total loss." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
 
@@ -92,8 +94,8 @@
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
-                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col2}" VerticalAlignment="Top">
-                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col2}" FontSize="15" Text="On the Mythic tab, you will find the current top rated Mythic+ team's key level, rank, completion time/date as well as party composition. You will be able to select server, and the dungeon you would want to see the ranking for. There will also be a display of the weekly mods." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col2}"  VerticalAlignment="Top" Stretch="Fill">
+                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col2}"  FontSize="20" Text="On the Mythic tab, you will find the current top rated Mythic+ team's key level, rank, completion time/date as well as party composition. You will be able to select server, and the dungeon you would want to see the ranking for. There will also be a display of the weekly mods." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
 
@@ -103,8 +105,8 @@
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="2" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
-                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col3}" VerticalAlignment="Top">
-                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col3}" FontSize="15" Text="On the class and race tab, you will find some basic information about the race/class, such as a class/race description, what faction they belong to an so on. There is also an ingame model of every race and every class." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
+                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col3}" VerticalAlignment="Center" Stretch="Fill">
+                        <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col3}" FontSize="22" TextWrapping="WrapWholeWords" Text="On the class and race tab, you will find some basic information about the race/class, such as a class/race description, what faction they belong to an so on. There is also an ingame model of every race and every class." Foreground="Black" ></TextBlock>
                     </Viewbox>
                 </Border>
 
@@ -114,15 +116,12 @@
                     </Viewbox>
                 </Border>
                 <Border Grid.Column="3" Grid.Row="1" BorderBrush="Black" BorderThickness="1,0,1,1">
-                    <Viewbox Width="{Binding ActualWidth, ElementName=Col4}" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <TextBlock  MaxWidth="{Binding ActualWidth, ElementName=Col4}" FontSize="12" Text="Here you will be able to search for your wow characters and add them to your app. You will then be able to select this character, and all your character stats and gear will be loaded. You will then be able to optimize your gear by selecting gear from a gear list. This gear will have other stats than you current gear and this will be reflected under your optimized character statistics. You will in this way, be able to optimize your character stats in the most efficient way, to see what gearpiece you should have in each slot." Foreground="Black" TextWrapping="WrapWholeWords" ></TextBlock>
+                    <Viewbox MaxWidth="{Binding ActualWidth, ElementName=Col4}"   VerticalAlignment="top" Stretch="Fill">
+                        <TextBlock  MaxWidth="{Binding ActualWidth, ElementName=Col4}"  FontSize="12"  TextWrapping="WrapWholeWords" Text="Here you will be able to search for your wow characters and add them to your app. You will then be able to select this character, and all your character stats and gear will be loaded. You will then be able to optimize your gear by selecting gear from a gear list. This gear will have other stats than you current gear and this will be reflected under your optimized character statistics. You will in this way, be able to optimize your character stats in the most efficient way, to see what gearpiece you should have in each slot." Foreground="Black"  ></TextBlock>
                     </Viewbox>
                 </Border>
             </Grid>
         </RelativePanel>
-        <Border x:Name="Overlay" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Background="Black" Opacity="0.8" Visibility="Collapsed">
-            <ProgressRing x:Name="ProgressRing" Width="150" Height="150" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White"></ProgressRing>
-        </Border>
     </RelativePanel>
 
 </Page>

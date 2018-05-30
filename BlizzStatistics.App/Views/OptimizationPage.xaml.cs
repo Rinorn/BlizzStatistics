@@ -960,42 +960,116 @@ namespace BlizzStatistics.App.Views
         {
             img.Source = _defaultImg;
             ClearImgGrid(grd);
+            TextBlock tb = new TextBlock();
+            tb.Text = "Click to add an item";
+            grd.Children.Add(tb);
             _selectedItemStats = stat;
             GetOrgSlotStats();
             CheckIfChangeIsPositive();
             //SetStatIfNoGearEquipt();
         }
 
-        
+        private async Task CheckForExistingHeadSlot()
+        {
+            if (Character.HeadSlot != 0) { DefineItemSlots(BtnHeadSlot); await GetSavedEquipment(Character.HeadSlot); _slotArray[0] = Character.HeadSlot; }
+            else { DoIfNotOptGearEquipt(OptHeadSlotImg, OptTtHeadSlotGrid, _selectedChar.Items.head.stats); }
+        }
+
+        private async Task CheckForExistingNeckSlot()
+        {
+            if (Character.NeckSlot != 0) { DefineItemSlots(BtnNeckSlot); await GetSavedEquipment(Character.NeckSlot); _slotArray[1] = Character.NeckSlot; }
+            else { DoIfNotOptGearEquipt(OptNeckSlotImg, OptTtNeckSlotGrid, _selectedChar.Items.neck.stats); }
+        }
+
+        private async Task CheckForExistingShoulderSlot()
+        {
+            if (Character.ShoulderSlot != 0) { DefineItemSlots(BtnShoulderSlot); await GetSavedEquipment(Character.ShoulderSlot); _slotArray[2] = Character.ShoulderSlot; }
+            else { DoIfNotOptGearEquipt(OptShoulderSlotImg, OptTtShoulderSlotGrid, _selectedChar.Items.shoulder.stats); }
+        }
+
+        private async Task CheckForExistingBackSlot()
+        {
+            if (Character.BackSlot != 0) { DefineItemSlots(BtnBackSlot); await GetSavedEquipment(Character.BackSlot); _slotArray[3] = Character.BackSlot; }
+            else { DoIfNotOptGearEquipt(OptBackSlotImg, OptTtBackSlotGrid, _selectedChar.Items.back.stats); }
+        }
+
+        private async Task CheckForExistingChestSlot()
+        {
+            if (Character.ChestSlot != 0) { DefineItemSlots(BtnChestSlot); await GetSavedEquipment(Character.ChestSlot); _slotArray[4] = Character.ChestSlot; }
+            else { DoIfNotOptGearEquipt(OptChestSlotImg, OptTtChestSlotGrid, _selectedChar.Items.chest.stats); }
+        }
+
+        private async Task CheckForExistingWristSlot()
+        {
+            if (Character.WristSlot != 0) { DefineItemSlots(BtnWristSlot); await GetSavedEquipment(Character.WristSlot); _slotArray[8] = Character.WristSlot; }
+            else { DoIfNotOptGearEquipt(OptWristSlotImg, OptTtWristSlotGrid, _selectedChar.Items.wrist.stats); }
+        }
+
+        private async Task CheckForExistingRing1Slot()
+        {
+            if (Character.Ring1Slot != 0) { DefineItemSlots(BtnRing1Slot); await GetSavedEquipment(Character.Ring1Slot); _slotArray[10] = Character.Ring1Slot; }
+            else { DoIfNotOptGearEquipt(OptRing1SlotImg, OptTtRing1SlotGrid, _selectedChar.Items.finger1.stats); }
+        }
+
+        private async Task CheckForExistingTrinket1Slot()
+        {
+            if (Character.Trinket1Slot != 0) { DefineItemSlots(BtnTrinket1Slot); await GetSavedEquipment(Character.Trinket1Slot); _slotArray[12] = Character.Trinket1Slot; }
+            else { DoIfNotOptGearEquipt(OptTrinket1SlotImg, OptTtTrinket1SlotGrid, _selectedChar.Items.trinket1.stats); }
+        }
+
+        private async Task CheckForExistingGloveSlot()
+        {
+            if (Character.GlovesSlot != 0) { DefineItemSlots(BtnGlovesSlot); await GetSavedEquipment(Character.GlovesSlot); _slotArray[9] = Character.GlovesSlot; }
+            else { DoIfNotOptGearEquipt(OptGlovesSlotImg, OptTtGlovesSlotGrid, _selectedChar.Items.hands.stats); }
+        }
+
+        private async Task CheckForExistingBeltSlot()
+        {
+            if (Character.BeltSlot != 0) { DefineItemSlots(BtnBeltSlot); await GetSavedEquipment(Character.BeltSlot); _slotArray[5] = Character.BeltSlot; }
+            else { DoIfNotOptGearEquipt(OptBeltSlotImg, OptTtBeltSlotGrid, _selectedChar.Items.waist.stats); }
+        }
+
+        private async Task CheckForExistingLegsSlot()
+        {
+            if (Character.LegsSlot != 0) { DefineItemSlots(BtnLegsSlot); await GetSavedEquipment(Character.LegsSlot); _slotArray[6] = Character.LegsSlot; }
+            else { DoIfNotOptGearEquipt(OptLegsSlotImg, OptTtLegsSlotGrid, _selectedChar.Items.legs.stats); }
+        }
+
+        private async Task CheckForExistingFeetSlot()
+        {
+            if (Character.FeetSlot != 0) { DefineItemSlots(BtnFeetSlot); await GetSavedEquipment(Character.FeetSlot); _slotArray[7] = Character.FeetSlot; }
+            else { DoIfNotOptGearEquipt(OptFeetSlotImg, OptTtFeetSlotGrid, _selectedChar.Items.feet.stats); }
+        }
+
+        private async Task CheckForExistingRing2Slot()
+        {
+            if (Character.Ring2Slot != 0) { DefineItemSlots(BtnRing2Slot); await GetSavedEquipment(Character.Ring2Slot); _slotArray[11] = Character.Ring2Slot; }
+            else { DoIfNotOptGearEquipt(OptRing2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.finger2.stats); }
+        }
+
+        private async Task CheckForExistingTrinket2Slot()
+        {
+            if (Character.Trinket2Slot != 0) { DefineItemSlots(BtnTrinketSlot); await GetSavedEquipment(Character.Trinket2Slot); _slotArray[13] = Character.Trinket2Slot; }
+            else { DoIfNotOptGearEquipt(OptTrinket2SlotImg, OptTtTrinket2SlotGrid, _selectedChar.Items.trinket2.stats); }
+        }
+
+
         private async Task CheckForSavedGear()
-        {     
-            if (Character.HeadSlot != 0){  DefineItemSlots(BtnHeadSlot); await GetSavedEquipment(Character.HeadSlot); _slotArray[0] = Character.HeadSlot; } else { DoIfNotOptGearEquipt(OptHeadSlotImg, OptTtHeadSlotGrid, _selectedChar.Items.head.stats); }
-
-            if (Character.NeckSlot != 0){  DefineItemSlots(BtnNeckSlot); await GetSavedEquipment(Character.NeckSlot); _slotArray[1] = Character.NeckSlot; } else { DoIfNotOptGearEquipt(OptNeckSlotImg, OptTtNeckSlotGrid, _selectedChar.Items.neck.stats); }
-
-            if (Character.ShoulderSlot != 0){ DefineItemSlots(BtnShoulderSlot); await GetSavedEquipment(Character.ShoulderSlot); _slotArray[2] = Character.ShoulderSlot; } else { DoIfNotOptGearEquipt(OptShoulderSlotImg, OptTtShoulderSlotGrid, _selectedChar.Items.shoulder.stats); }
-
-            if (Character.BackSlot != 0){  DefineItemSlots(BtnBackSlot); await GetSavedEquipment(Character.BackSlot); _slotArray[3] = Character.BackSlot; } else { DoIfNotOptGearEquipt(OptBackSlotImg, OptTtBackSlotGrid, _selectedChar.Items.back.stats); }
-
-            if (Character.ChestSlot != 0){ DefineItemSlots(BtnChestSlot); await GetSavedEquipment(Character.ChestSlot); _slotArray[4] = Character.ChestSlot; } else { DoIfNotOptGearEquipt(OptChestSlotImg, OptTtChestSlotGrid, _selectedChar.Items.chest.stats); }
-
-            if (Character.WristSlot != 0){ DefineItemSlots(BtnWristSlot); await GetSavedEquipment(Character.WristSlot); _slotArray[8] = Character.WristSlot; } else { DoIfNotOptGearEquipt(OptWristSlotImg, OptTtWristSlotGrid, _selectedChar.Items.wrist.stats); }
-
-            if (Character.Ring1Slot != 0){ DefineItemSlots(BtnRing1Slot); await GetSavedEquipment(Character.Ring1Slot); _slotArray[10] = Character.Ring1Slot; } else { DoIfNotOptGearEquipt(OptRing1SlotImg, OptTtRing1SlotGrid, _selectedChar.Items.finger1.stats); }
-
-            if (Character.Trinket1Slot != 0){ DefineItemSlots(BtnTrinket1Slot); await GetSavedEquipment(Character.Trinket1Slot); _slotArray[12] = Character.Trinket1Slot; } else { DoIfNotOptGearEquipt(OptTrinket1SlotImg, OptTtTrinket1SlotGrid, _selectedChar.Items.trinket1.stats); }
-
-            if (Character.GlovesSlot != 0){  DefineItemSlots(BtnGlovesSlot); await GetSavedEquipment(Character.GlovesSlot); _slotArray[9] = Character.GlovesSlot; } else { DoIfNotOptGearEquipt(OptGlovesSlotImg, OptTtGlovesSlotGrid, _selectedChar.Items.hands.stats); }
-
-            if (Character.BeltSlot != 0){  DefineItemSlots(BtnBeltSlot); await GetSavedEquipment(Character.BeltSlot); _slotArray[5] = Character.BeltSlot; } else { DoIfNotOptGearEquipt(OptBeltSlotImg, OptTtBeltSlotGrid, _selectedChar.Items.waist.stats); }
-
-            if (Character.LegsSlot != 0){ DefineItemSlots(BtnLegsSlot); await GetSavedEquipment(Character.LegsSlot); _slotArray[6] = Character.LegsSlot; } else { DoIfNotOptGearEquipt(OptLegsSlotImg, OptTtLegsSlotGrid, _selectedChar.Items.legs.stats); }
-
-            if (Character.FeetSlot != 0){ DefineItemSlots(BtnFeetSlot); await GetSavedEquipment(Character.FeetSlot); _slotArray[7] = Character.FeetSlot; } else { DoIfNotOptGearEquipt(OptFeetSlotImg, OptTtFeetSlotGrid, _selectedChar.Items.feet.stats); }
-
-            if (Character.Ring2Slot != 0){  DefineItemSlots(BtnRing2Slot); await GetSavedEquipment(Character.Ring2Slot); _slotArray[11] = Character.Ring2Slot; } else { DoIfNotOptGearEquipt(OptRing2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.finger2.stats); }
-
-            if (Character.Trinket2Slot != 0){  DefineItemSlots(BtnTrinketSlot); await GetSavedEquipment(Character.Trinket2Slot); _slotArray[13] = Character.Trinket2Slot; } else { DoIfNotOptGearEquipt(OptTrinket2SlotImg, OptTtRing2SlotGrid, _selectedChar.Items.trinket2.stats); }
+        {
+            await CheckForExistingHeadSlot();
+            await CheckForExistingNeckSlot();
+           await CheckForExistingShoulderSlot();
+            await CheckForExistingBackSlot();
+            await CheckForExistingChestSlot();
+            await CheckForExistingWristSlot();
+            await CheckForExistingRing1Slot();
+            await CheckForExistingTrinket1Slot();
+            await CheckForExistingGloveSlot();
+            await CheckForExistingBeltSlot();
+            await CheckForExistingLegsSlot();
+            await CheckForExistingFeetSlot();
+            await CheckForExistingRing2Slot();
+            await CheckForExistingTrinket2Slot();
         }
 
         private async Task GetSavedEquipment(int id)
