@@ -7,12 +7,8 @@ using Windows.UI.Xaml.Media;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
-
-
 namespace BlizzStatistics.App.Views
 {
-
-   
     public sealed partial class PvpPage
     {
         private readonly string[] _classColors = { "#FFC79C6E", "#FFF58CBA", "#FFABD473", "#FFFFF569", "#FFFFFFFF", "#FFC41F3B", "#FF0070DE", "#FF69CCF0", "#FF9482C9", "#FF00FF96", "#FFFF7D0A", "#FFA330C9" };
@@ -34,7 +30,7 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         public PvpPage()
         {
-            InitializeComponent();
+           InitializeComponent();
            GetData();
         }
 
@@ -88,8 +84,7 @@ namespace BlizzStatistics.App.Views
         private void CreateGrid(Rootobject data)
         {
             var mainGrid = MenuGrid;
-            _childGrid = mainGrid;
-            
+            _childGrid = mainGrid;          
             var rowCount = 2;
             _tempInitNumber = _initNumber;
             for (var i = 0; i < _tempInitNumber; i++)
@@ -148,8 +143,7 @@ namespace BlizzStatistics.App.Views
                         tb.Text = data.Rows[i].Name;
                         break;
                     case 2:
-                        tb.Text = data.Rows[i].FactionId == 1 ? "Horde" : "Alliance";
-                        
+                        tb.Text = data.Rows[i].FactionId == 1 ? "Horde" : "Alliance";                       
                         break;
                     case 3:
                         CheckClass(data.Rows[i].ClassId);
@@ -300,15 +294,16 @@ namespace BlizzStatistics.App.Views
         /// </summary>
         /// <param name="raceIndex">Index of the race.</param>
         private void CheckRace(int raceIndex)
-        {   
-            
+        {               
             if (raceIndex == 22)
             {
                 raceIndex = 12;
-            } else if (raceIndex >= 24 && raceIndex <=26)
+            } 
+            else if (raceIndex >= 24 && raceIndex <=26)
             {
                 raceIndex = 13;
-            }else if (raceIndex >= 27)
+            }
+            else if (raceIndex >= 27)
             {
                 raceIndex = raceIndex - 13;
             }
