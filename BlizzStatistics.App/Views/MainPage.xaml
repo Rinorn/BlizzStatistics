@@ -5,37 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:BlizzStatistics.App.ViewModels" mc:Ignorable="d">
-
     <Page.DataContext>
         <vm:MainPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <RelativePanel>
        <RelativePanel.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/MainPage/stars_bg.jpg"></ImageBrush>
-       </RelativePanel.Background>
-       
-
+       </RelativePanel.Background>     
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True"
-            Text="BlizzardLogo">
-            
+            Text="BlizzardLogo">            
         </controls:PageHeader>
-
-
         <FlipView MaxWidth="600" Height="300" 
                   RelativePanel.AlignVerticalCenterWithPanel="True"
                   RelativePanel.AlignHorizontalCenterWithPanel="True">
             <Image Source="ms-appx:///Assets/MainPage/wow1.jpg" />
             <Image Source="ms-appx:///Assets/MainPage//wow2.jpg"/>
             <Image Source="ms-appx:///Assets/MainPage//wow3.jpg"/>
-
         </FlipView>
-
-
-
-
     </RelativePanel>
 </Page>
