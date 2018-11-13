@@ -16,7 +16,6 @@
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
                 <VisualState x:Name="VisualStateNarrow">
@@ -63,6 +62,5 @@
                 <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Value, Mode=OneWay, FallbackValue=DesigntimeValue}" />
             </StackPanel>
         </ScrollViewer>
-
     </RelativePanel>
 </Page>
