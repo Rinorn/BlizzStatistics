@@ -7,7 +7,6 @@
     xmlns:controls="using:Template10.Controls"
     mc:Ignorable="d">
 
-    
     <RelativePanel>
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
