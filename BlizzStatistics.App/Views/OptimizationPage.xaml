@@ -6,24 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Template10.Controls"
-    xmlns:classLibrary1="using:ClassLibrary1"
-    
+    xmlns:classLibrary1="using:ClassLibrary1"    
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
-
     mc:Ignorable="d">
     <Page.DataContext>
         <viewModels:OptimizationViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <Page.Resources>
         <CollectionViewSource
             x:Name="CharacterClassesViewSource"
             Source="{x:Bind ViewModel.SavedCharacters}">
-        </CollectionViewSource>
-        
+        </CollectionViewSource>      
     </Page.Resources>
-
-
     <RelativePanel >
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
@@ -367,7 +361,6 @@
                     </Viewbox>
                 </Border>
 
-
                 <!--Original statsBoxes-->
                 <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="22" Grid.RowSpan="2" BorderBrush="Black">
                     <TextBlock x:Name="OriginalMainStatBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"></TextBlock>
@@ -416,11 +409,8 @@
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="30" Grid.ColumnSpan="4" Grid.Row="25" Grid.RowSpan="2" BorderBrush="Black">
                     <TextBox x:Name="OriginalClassResource" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"></TextBox>
-                </Border>
-                
-                
+                </Border>                               
             </Grid>
-
         </RelativePanel>
     </RelativePanel>
 </Page>
