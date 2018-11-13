@@ -29,7 +29,6 @@ namespace BlizzStatistics.DataAccess
         /// </value>
         public virtual DbSet<SavedCharacter> SavedCharacters { get; set; }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BlizzStatisticsContext"/> class.
         /// </summary>
