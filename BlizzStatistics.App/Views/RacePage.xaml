@@ -8,21 +8,15 @@
     xmlns:controls="using:Template10.Controls"
     xmlns:classLibrary1="using:ClassLibrary1"
     mc:Ignorable="d">
-
     <Page.DataContext>
         <viewModels:RacePageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <Page.Resources>
-
-
-
         <CollectionViewSource
             x:Name="CharacterRaceViewSource"
             Source="{x:Bind ViewModel.CharacterRaces}">
         </CollectionViewSource>
     </Page.Resources>
-
     <RelativePanel AlignLeftWithPanel="True" AlignRightWithPanel="True" AlignBottomWithPanel="True" AlignTopWithPanel="True" Background="Bisque">
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
