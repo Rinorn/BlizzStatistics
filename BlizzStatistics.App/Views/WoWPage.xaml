@@ -5,38 +5,28 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
-    xmlns:controls="using:Template10.Controls"
-    
-   
+    xmlns:controls="using:Template10.Controls"       
     mc:Ignorable="d">
-
     <Page.DataContext>
         <viewModels:WoWPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <RelativePanel>
         <RelativePanel.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/MainPage/stars_bg.jpg"></ImageBrush>
         </RelativePanel.Background>
-
-
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True" Text="Blizzard Logo" >
         </controls:PageHeader>
-
         <MediaPlayerElement Source="ms-appx:///Assets/WoWpage/vidTest.mp4"
-                            RelativePanel.AlignHorizontalCenterWithPanel="True"
-                            
+                            RelativePanel.AlignHorizontalCenterWithPanel="True"                           
                             RelativePanel.Above="InfoPanel"
                             Margin="50"
                             MaxWidth="1000"
                             MaxHeight="400"
                             AutoPlay="True"
                             AreTransportControlsEnabled="True" />
-
-
         <RelativePanel Name="InfoPanel" Background="Bisque"
             RelativePanel.AlignBottomWithPanel="True"
             Margin="50"
@@ -45,8 +35,5 @@
             Width="1350"
             MinWidth="800">
         </RelativePanel>
-
-
     </RelativePanel>
-
 </Page>
