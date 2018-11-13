@@ -6,8 +6,7 @@ namespace BlizzStatistics.DataAccess
     public class BlizzStatisticsDbInitializer : DropCreateDatabaseIfModelChanges<BlizzStatisticsContext>
     {
         protected override void Seed(BlizzStatisticsContext context)
-        {
-            
+        {           
             //Seeds the db with the character classes
             context.CharacterClasses.Add(new CharacterClass()
             {
@@ -279,6 +278,5 @@ namespace BlizzStatistics.DataAccess
             });
             base.Seed(context);
         }
-
     }
 }
