@@ -11,11 +11,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:BlizzStatistics.App.ViewModels"
       mc:Ignorable="d">
-
     <Page.DataContext>
         <vm:SettingsPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <Page.Resources>
         <converter:ValueWhenConverter x:Name="FalseWhenTrueConverter">
             <converter:ValueWhenConverter.When>
@@ -29,9 +27,7 @@
             </converter:ValueWhenConverter.Otherwise>
         </converter:ValueWhenConverter>
     </Page.Resources>
-
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
                 <VisualState x:Name="VisualStateNarrow">
@@ -60,7 +56,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader"
                              Content="Settings Page"
@@ -68,7 +63,6 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" />
-
         <!--  content  -->
         <Pivot x:Name="MyPivot"
                Grid.Row="1"
@@ -76,14 +70,12 @@
                RelativePanel.AlignLeftWithPanel="True"
                RelativePanel.AlignRightWithPanel="True"
                RelativePanel.Below="pageHeader">
-
             <!--  settings  -->
             <PivotItem DataContext="{Binding SettingsPartViewModel}" Header="Settings">
                 <ScrollViewer Margin="0,12,-12,0"
                               HorizontalContentAlignment="Left"
                               VerticalScrollBarVisibility="Auto">
                     <RelativePanel HorizontalAlignment="Left">
-
                         <ToggleSwitch x:Name="UseShellDrawnBackButtonToggleSwtich"
                                       Header="Shell-drawn Back Button"
                                       IsOn="{Binding UseShellBackButton, Mode=TwoWay}"
@@ -91,7 +83,6 @@
                                       OnContent="Back button in Title/TaskBar"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.AlignTopWithPanel="True" />
-
                         <ToggleSwitch x:Name="UseLightThemeToggleSwitch"
                                       Header="Requested Application Theme"
                                       IsOn="{Binding UseLightThemeButton, Mode=TwoWay}"
@@ -99,7 +90,6 @@
                                       OnContent="Current theme is Light"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.Below="UseShellDrawnBackButtonToggleSwtich" />
-
                         <ToggleSwitch x:Name="ShowHamburgerButtonToggleSwitch"
                                       Header="BlizzStatistics.App Button Visibility"
                                       IsEnabled="{Binding IsOn, ElementName=IsFullScreenToggleSwitch, Converter={StaticResource FalseWhenTrueConverter}}"
@@ -108,7 +98,6 @@
                                       OnContent="BlizzStatistics.App Button is visible"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.Below="UseLightThemeToggleSwitch" />
-
                         <ToggleSwitch x:Name="IsFullScreenToggleSwitch"
                                       Header="Page content is Full Screen"
                                       IsOn="{Binding IsFullScreen, Mode=TwoWay}"
@@ -116,7 +105,6 @@
                                       OnContent="BlizzStatistics.App Menu is hidden"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.Below="ShowHamburgerButtonToggleSwitch" />
-
                         <TextBox x:Name="BusyTextTextBox"
                                  Width="200"
                                  Margin="0,12,0,0"
@@ -125,18 +113,14 @@
                                  RelativePanel.AlignLeftWithPanel="True"
                                  RelativePanel.Below="IsFullScreenToggleSwitch"
                                  Text="{Binding BusyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
                         <Button Margin="12,0,0,0"
                                 Command="{x:Bind ViewModel.SettingsPartViewModel.ShowBusyCommand}"
                                 Content="Show Busy"
                                 RelativePanel.AlignBottomWith="BusyTextTextBox"
                                 RelativePanel.RightOf="BusyTextTextBox" />
-
                     </RelativePanel>
-
                 </ScrollViewer>
             </PivotItem>
-
             <!--  privacy  -->
             <PivotItem DataContext="{Binding SettingsPartViewModel}"
                        Header="Privacy statement"
@@ -177,11 +161,9 @@
                     </TextBlock>
                 </ScrollViewer>
             </PivotItem>
-
             <!--  about  -->
             <PivotItem Header="About">
                 <RelativePanel DataContext="{Binding AboutPartViewModel}">
-
                     <Border x:Name="LogoImage"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -197,7 +179,6 @@
                                Source="{Binding Logo}"
                                Stretch="None" />
                     </Border>
-
                     <TextBlock x:Name="DisplayNameTextBlock"
                                Margin="0,0,0,12"
                                FontSize="24"
@@ -205,23 +186,18 @@
                                RelativePanel.AlignRightWith="LogoImage"
                                RelativePanel.AlignTopWithPanel="True"
                                Text="{Binding DisplayName}" />
-
                     <TextBlock x:Name="PublisherTextBlock"
                                RelativePanel.AlignLeftWithPanel="True"
                                RelativePanel.Below="DisplayNameTextBlock"
                                Text="{Binding Publisher}" />
-
                     <TextBlock x:Name="VersionTextBlock"
                                RelativePanel.AlignLeftWithPanel="True"
                                RelativePanel.Below="PublisherTextBlock">
                         <Run>Version</Run>
                         <Run Text="{Binding Version}" />
                     </TextBlock>
-
                 </RelativePanel>
             </PivotItem>
         </Pivot>
-
     </RelativePanel>
-
 </Page>
