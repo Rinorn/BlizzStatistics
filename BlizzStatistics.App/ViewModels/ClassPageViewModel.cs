@@ -19,7 +19,7 @@ namespace BlizzStatistics.App.ViewModels
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             { }
         }
-
+        
         /// <summary>
         /// The character classes
         /// </summary>
@@ -33,7 +33,7 @@ namespace BlizzStatistics.App.ViewModels
         public ObservableCollection<CharacterClass> CharacterClasses { get => _characterClasses;
             set => Set(ref _characterClasses, value);
         }
-
+        
         /// <summary>
         /// Called when [navigated to asynchronous].
         /// </summary>
@@ -47,13 +47,12 @@ namespace BlizzStatistics.App.ViewModels
             {
                 CharacterClasses = new ObservableCollection<CharacterClass>(await DataSource.CharacterClasses.Instance.GetCharacterClasses());
             }
-
             if (suspensionState.Any())
             {
             }
             await Task.CompletedTask;
         }
-
+        
         /// <summary>
         /// Called when [navigated from asynchronous].
         /// </summary>
@@ -67,7 +66,7 @@ namespace BlizzStatistics.App.ViewModels
             }
             await Task.CompletedTask;
         }
-
+        
         /// <summary>
         /// Raises the <see cref="E:NavigatingFromAsync" /> event.
         /// </summary>
