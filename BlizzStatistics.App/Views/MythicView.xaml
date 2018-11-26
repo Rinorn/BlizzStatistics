@@ -6,9 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Template10.Controls"
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
-    mc:Ignorable="d"
-    >
-
+    mc:Ignorable="d">
+     
     <Page.DataContext>
         <viewModels:RealmViewModel x:Name="ViewModel" />
     </Page.DataContext>
@@ -33,104 +32,95 @@
                 RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                 Text="Mythic+ Ladder" Background="Black">
         </controls:PageHeader>
-
         <RelativePanel RelativePanel.Below="PageHeader"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
             <ScrollViewer  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" VerticalScrollBarVisibility="Hidden">
                 <Viewbox>
                 <Grid x:Name="MenuGrid" Style="{StaticResource BgStyle}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True">
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.8*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.8*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" MinHeight="50" />
-                    <RowDefinition Height="50" MinHeight="50"/>
-                </Grid.RowDefinitions>
-                    <ComboBox Background="Black" Foreground="White" Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbServer_OnSelectionChanged" x:Name="CbServer" PlaceholderText="Garona" SelectedItem="{Binding Path=Realms}"  ItemsSource="{Binding Realms, Mode=OneWay}" DisplayMemberPath="name">
-                    
-                </ComboBox>
-                <ComboBox Background="Black" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" Foreground="White" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbDungeon_OnSelectionChanged" Name="CbDungeon" PlaceholderText="Black Rook Hold" >
-                    <x:String>Eye of Azshara</x:String>
-                    <x:String>Darkheart Thicket</x:String>
-                    <x:String>Black Rook Hold</x:String>
-                    <x:String>Halls of Valor</x:String>
-                    <x:String>Neltharion's Lair</x:String>
-                    <x:String>Vault of the Wardens</x:String>
-                    <x:String>Maw of Souls</x:String>
-                    <x:String>The Arcway</x:String>
-                    <x:String>Court of Stars</x:String>
-                    <x:String>Lower Karazhan</x:String>
-                    <x:String>Upper Karazhan</x:String>
-                    <x:String>Cathedral of Eternal Night</x:String>
-                    <x:String>Seat of the Triumvirate</x:String>
-                    </ComboBox>
-               
-                <Border Grid.Column="4" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="1,1,0,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Weekly best time: "  VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"/>
-                    </Viewbox>
-                    </Border>
-                <Border Grid.Column="5" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-                            <TextBlock x:Name="TbBestTime" HorizontalAlignment="Center"   VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-                    </Viewbox>
-                    </Border>
-                
-                <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff1" Style="{StaticResource TextStyle}"/>
-                    </Viewbox>
-                </Border>
-                <Border Grid.Column="7" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff2" Style="{StaticResource TextStyle}"/>
-                    </Viewbox>
-                </Border>
-                <Border Grid.Column="8" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff3" Style="{StaticResource TextStyle}"/>
-                    </Viewbox>
-                </Border>
-                <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Rank" VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"></TextBlock>
-                    </Viewbox>
-                </Border>
-                <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Key level" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
-                    </Viewbox>
-                </Border>
-                <Border Grid.Column="2" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Completion time" VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"></TextBlock>
-                    </Viewbox>
-                </Border>
-                <Border Grid.ColumnSpan="6" Grid.Column="3" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Party composition" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,55,0" Style="{StaticResource TextStyle}"></TextBlock>
-                    </Viewbox>
-                </Border>
-                <Border Grid.Column="8" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Completion date" VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"></TextBlock>
-                    </Viewbox>
-                </Border>
-            </Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="0.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" MinHeight="50" />
+                        <RowDefinition Height="50" MinHeight="50"/>
+                    </Grid.RowDefinitions>
+                        <ComboBox Background="Black" Foreground="White" Grid.ColumnSpan="2" Grid.Column="0" FontSize="20" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbServer_OnSelectionChanged" x:Name="CbServer" PlaceholderText="Garona" SelectedItem="{Binding Path=Realms}"  ItemsSource="{Binding Realms, Mode=OneWay}" DisplayMemberPath="name">   
+                        </ComboBox>
+                        <ComboBox Background="Black" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" FontSize="20" Foreground="White" HorizontalAlignment="Stretch" Height="50" SelectionChanged="CbDungeon_OnSelectionChanged" Name="CbDungeon" PlaceholderText="Black Rook Hold" >
+                            <x:String>Eye of Azshara</x:String>
+                            <x:String>Darkheart Thicket</x:String>
+                            <x:String>Black Rook Hold</x:String>
+                            <x:String>Halls of Valor</x:String>
+                            <x:String>Neltharion's Lair</x:String>
+                            <x:String>Vault of the Wardens</x:String>
+                            <x:String>Maw of Souls</x:String>
+                            <x:String>The Arcway</x:String>
+                            <x:String>Court of Stars</x:String>
+                            <x:String>Lower Karazhan</x:String>
+                            <x:String>Upper Karazhan</x:String>
+                            <x:String>Cathedral of Eternal Night</x:String>
+                            <x:String>Seat of the Triumvirate</x:String>
+                        </ComboBox>
+                        <Border Grid.Column="4" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="1,1,0,1">
+                           <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <TextBlock Text="Weekly best time: "  VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="5" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                <TextBlock x:Name="TbBestTime" HorizontalAlignment="Center"   VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="6" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff1" Style="{StaticResource TextStyle}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="7" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,0,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff2" Style="{StaticResource TextStyle}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="8" Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="TbAff3" Style="{StaticResource TextStyle}"/>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="Rank" VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="Key level" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="2" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="Completion time" VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.ColumnSpan="6" Grid.Column="3" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="Party composition" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,55,0" Style="{StaticResource TextStyle}"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                        <Border Grid.Column="8" Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1,1,1,1">
+                            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="Completion date" VerticalAlignment="Center" HorizontalAlignment="Stretch" Style="{StaticResource TextStyle}"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                    </Grid>
                 </Viewbox>
-            </ScrollViewer>
-                <!--<RelativePanel RelativePanel.Below="MenuGrid"  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" >
-                
-              
-            </RelativePanel>-->
-            
+            </ScrollViewer>            
         </RelativePanel>
         <Border x:Name="Overlay" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Background="Black" Opacity="0.8" Visibility="Collapsed">
             <ProgressRing x:Name="ProgressRing" Width="150" Height="150" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White"></ProgressRing>
