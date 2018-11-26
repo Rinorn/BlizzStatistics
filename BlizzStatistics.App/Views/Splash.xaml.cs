@@ -19,17 +19,12 @@ namespace BlizzStatistics.App.Views
         {
             if (splashScreen.ImageLocation.Top == 0)
             {
-              
                 return;
             }
             else
             {
                 rootCanvas.Background = null;
-               
             }
-            
         }
-
-        
     }
 }
