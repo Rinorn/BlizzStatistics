@@ -16,18 +16,12 @@ using Newtonsoft.Json;
 
 namespace BlizzStatistics.App.Views
 {
-    
     public sealed partial class OptimizationPage
     {
-        
         public SavedCharacter Character;
-       
         public string CharacterName;
-        
         public string CharacterServer;
-        
         public string ItemUrl1 = "https://wow.zamimg.com/images/wow/icons/large/";
-       
         public string ItemUrl2 = ".jpg";
         public string ItemThumbnail;
         public string CombinedUrl;
@@ -52,18 +46,15 @@ namespace BlizzStatistics.App.Views
         private int[] _slotArray;
         private int _gearSlotOffset;
 
-
         /// <summary>
         /// An Array Containing the Playable Classes
         /// </summary>
         private readonly string[] _classes = { "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Monk", "Druid", "Demon Hunter" };
 
-
         /// <summary>
         /// Enum used To get the playable classes armortype.
         /// </summary>
         enum ClassArmorType{ Plate = 4, Mail = 3, Leather = 2, Cloth = 1}
-
         public OptimizationPage(){ InitializeComponent();}
 
         /// <summary>
@@ -206,7 +197,8 @@ namespace BlizzStatistics.App.Views
             {
                 OptimizedMainStatBox.Text = data.Stats.Int.ToString();
                 _mainStatIndex = 1;
-            }else if (OptimizedMainStatBlock.Text.Equals("Agility"))
+            }
+            else if (OptimizedMainStatBlock.Text.Equals("Agility"))
             {
                 OptimizedMainStatBox.Text = data.Stats.Agi.ToString();
                 _mainStatIndex = 2;
@@ -217,6 +209,7 @@ namespace BlizzStatistics.App.Views
                 _mainStatIndex = 3;
             }
         }
+        
         /// <summary>
         /// Sets the optimized stats to be equal to the Original stats. This is to have a Base to correctly calculate the Optimized stats later on. 
         /// </summary>
@@ -308,10 +301,10 @@ namespace BlizzStatistics.App.Views
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
-
             var item = data.Items.Head.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the neckslotbox.
         /// </summary>
@@ -405,6 +398,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Back.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Chestslotbox.
         /// </summary>
@@ -437,6 +431,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Chest.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Bracerslotbox.
         /// </summary>
@@ -459,14 +454,14 @@ namespace BlizzStatistics.App.Views
                         break;
                     case 1:
                         tbName.Text = "Item Level " + data.Items.Wrist.ItemLevel;
-                        break;
-                    
+                        break; 
                 }
                 AddToGrid(b, tbName, mainGrid, i, 15);
             }
             var item = data.Items.Wrist.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Trinket1slotbox.
         /// </summary>
@@ -496,6 +491,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Trinket1.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Glovesslotbox.
         /// </summary>
@@ -528,6 +524,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Hands.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Beltslotbox.
         /// </summary>
@@ -560,6 +557,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Waist.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Legsslotbox.
         /// </summary>
@@ -592,6 +590,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Legs.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Feetslotbox.
         /// </summary>
@@ -624,6 +623,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Feet.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Ring1slotbox.
         /// </summary>
@@ -656,6 +656,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Finger1.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Ring2slotbox.
         /// </summary>
@@ -688,6 +689,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Finger2.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Trinket2slotbox.
         /// </summary>
@@ -720,6 +722,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.Trinket2.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Mainhandslotbox.
         /// </summary>
@@ -756,6 +759,7 @@ namespace BlizzStatistics.App.Views
             var item = data.Items.MainHand.Stats;
             DefineStats(mainGrid, rowCount, item);
         }
+        
         /// <summary>
         /// Same as DefineHeadSlot, but for the Offhandslotbox.
         /// </summary>
@@ -883,6 +887,7 @@ namespace BlizzStatistics.App.Views
                 rowCount++;
             }
         }
+        
         /// <summary>
         /// Adds a textblock to a tooltip grid.
         /// </summary>
@@ -902,6 +907,7 @@ namespace BlizzStatistics.App.Views
             mainGrid.Children.Add(g);
 
         }
+        
         /// <summary>
         /// Removes all elements from the  Original gearboxes. this is so that the ToolTips can be defined again in the same way
         /// </summary>
@@ -1033,6 +1039,7 @@ namespace BlizzStatistics.App.Views
             else if (clickedBtn == BtnTrinket1Slot){_itemSlot = 12; _gearSlotOffset = 0; _saveToDbIndex = 13; _clickedImage = OptTrinket1SlotImg; _clickedImgGrid = OptTtTrinket1SlotGrid; _selectedItemStats = _selectedChar.Items.Trinket1.Stats;}
             else if (clickedBtn == BtnTrinketSlot){_itemSlot = 12; _gearSlotOffset = 1;  _saveToDbIndex = 14; _clickedImage = OptTrinket2SlotImg; _clickedImgGrid = OptTtTrinket2SlotGrid; _selectedItemStats = _selectedChar.Items.Trinket2.Stats;}
         }
+        
         /// <summary>
         /// Defines what kind of armor the selected character uses.
         /// </summary>
@@ -1062,6 +1069,7 @@ namespace BlizzStatistics.App.Views
                     break;
             }
         }
+        
         /// <summary>
         /// Handles the SelectedItem event of the ItemList control. called when an item is selected from the ItemList in the ItemContenDialog. it then saved the selected item as a Equipment object, calls a function to alter the Optimized stats, adds the itemid to the corresponding selectedcharacter itemslot, and adds the itemId to the _slotArray.
         /// </summary>
@@ -1097,6 +1105,7 @@ namespace BlizzStatistics.App.Views
             imgGrid.Children.Clear();
             imgGrid.RowDefinitions.Clear();
         }
+        
         /// <summary>
         /// Defines the change in gear and stats.
         /// </summary>
@@ -1268,7 +1277,6 @@ namespace BlizzStatistics.App.Views
             else { DoIfNotOptGearEquipt(OptTrinket2SlotImg, OptTtTrinket2SlotGrid, _selectedChar.Items.Trinket2.Stats); }
         }
 
-
         /// <summary>
         /// Calls the different CheckForExsistingGearSlot functions
         /// </summary>
@@ -1307,6 +1315,7 @@ namespace BlizzStatistics.App.Views
                 }
             }
         }
+        
         /// <summary>
         /// Redefines the opttimized stats.
         /// </summary>
@@ -1321,7 +1330,6 @@ namespace BlizzStatistics.App.Views
             OptimizedHasteBox.Text = (int.Parse(OptimizedHasteBox.Text) + (_selectedEquipment.Haste - _orgHasteValue)).ToString();
             OptimizedVersatilityBox.Text = (int.Parse(OptimizedVersatilityBox.Text) + (_selectedEquipment.Versatility - _orgVersatilityValue)).ToString();
             CheckIfChangeIsPositive();
-
         }
 
         /// <summary>
@@ -1342,6 +1350,7 @@ namespace BlizzStatistics.App.Views
             }
             return false;
         }
+        
         /// <summary>
         /// Checks if change is positive. if it is the statValue turns green, if negative it turns red, if it is equal to the Original stat value it turns/stays black
         /// </summary>
@@ -1385,7 +1394,6 @@ namespace BlizzStatistics.App.Views
             _orgCritValue = 0;
             _orgHasteValue = 0;
             _orgVersatilityValue = 0;
-            
         }
     
         /// <summary>
@@ -1447,6 +1455,7 @@ namespace BlizzStatistics.App.Views
                 }
             }
         }
+        
         /// <summary>
         /// Defines the tooltip based on the equipments stats.
         /// </summary>
@@ -1477,7 +1486,6 @@ namespace BlizzStatistics.App.Views
                 }
                 AddToGrid(g, tb, _clickedImgGrid, i-rowOffsett, rowHeight);
             }
-            
         }
 
         /// <summary>
@@ -1493,7 +1501,6 @@ namespace BlizzStatistics.App.Views
                 if (view != ContentDialogResult.Primary) return;
                 Character.SavedAs = NewCharacterNameBox.Text;
                 await DataSource.SavedCharacters.Instance.PutSavedCharacter(Character);
-                
             }
             catch (Exception ex)
             {
@@ -1501,8 +1508,8 @@ namespace BlizzStatistics.App.Views
                 await msg.ShowAsync();
                 await LogToDbAsync(ex);
             }
-            
         }
+        
         /// <summary>
         /// Adds the new character to database.
         /// </summary>
@@ -1522,14 +1529,12 @@ namespace BlizzStatistics.App.Views
                 var result = await response.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<GameCharacter>(result);
                 var classIndex = data.Class;
-
                 var character = new SavedCharacter()
                 {
                     Name = data.Name,
                     Level = data.Level,
                     ClassName = _classes[classIndex - 1],
                     Realm = data.Realm,
-
                 };
                 await DataSource.SavedCharacters.Instance.AddSavedCharacter(character);
                 ViewModel.SavedCharacters.Add(character);
