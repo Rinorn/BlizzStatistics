@@ -9,8 +9,6 @@ using Windows.UI.Xaml.Media;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
-
-
 namespace BlizzStatistics.App.Views
 {
     public sealed partial class MythicView
@@ -58,8 +56,7 @@ namespace BlizzStatistics.App.Views
                 _reconnectAttempt++;
                 if (_reconnectAttempt == 3){throw;}
                 GetData();
-            }
-            
+            }  
         }
 
         /// <summary>
@@ -79,7 +76,6 @@ namespace BlizzStatistics.App.Views
             await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
         }
 
-
         /// <summary>
         /// Converts the timestamp to time.
         /// </summary>
@@ -91,7 +87,6 @@ namespace BlizzStatistics.App.Views
             var timeHour = DateTimeOffset.FromUnixTimeSeconds(time).DateTime.Hour;
             var timeMin = DateTimeOffset.FromUnixTimeSeconds(time).DateTime.Minute;
             var timeSec = DateTimeOffset.FromUnixTimeSeconds(time).DateTime.Second;
-            
             tb.Text = timeHour +":"+ timeMin + ":" + timeSec;
         }
         /// <summary>
@@ -111,7 +106,6 @@ namespace BlizzStatistics.App.Views
         /// <param name="tb">The tb.</param>
         private static void DefineText(TextBlock tb)
         {
-           
             tb.TextAlignment = TextAlignment.Center;
             tb.VerticalAlignment = VerticalAlignment.Center;
             tb.FontSize = 15;
@@ -129,7 +123,7 @@ namespace BlizzStatistics.App.Views
             _childGrid = mainGrid;
             RelativePanel.SetAlignLeftWithPanel(MainMythicPanel, true);
             RelativePanel.SetAlignRightWithPanel(MainMythicPanel, true);
-           
+
             for (var i = 0; i < CheckNumberOfLeadingGroups(data); i++)
             {
                 for (var a = 0; a < 9; a++)
@@ -314,6 +308,4 @@ namespace BlizzStatistics.App.Views
             }
         }
     }
-    
-
 }
