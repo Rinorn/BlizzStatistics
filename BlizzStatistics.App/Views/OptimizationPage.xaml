@@ -7,12 +7,11 @@
     xmlns:controls="using:Template10.Controls"
     xmlns:classLibrary1="using:ClassLibrary1"
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
-
     mc:Ignorable="d">
     <Page.DataContext>
         <viewModels:OptimizationViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
+     
     <Page.Resources>
         <CollectionViewSource
             x:Name="SavedCharactersViewSource"
@@ -105,9 +104,7 @@
                     <Button x:Name="BtnHeadSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptHeadSlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip>
-
-                                <Grid x:Name="OptTtHeadSlotGrid">
-                                    
+                                <Grid x:Name="OptTtHeadSlotGrid">                                 
                                 </Grid>
                             </ToolTipService.ToolTip>
                         </Image>
@@ -252,8 +249,7 @@
                     <Button x:Name="BtnTrinketSlot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0" BorderThickness="0" Background="Black" Click="BtnShowItemList">
                         <Image x:Name="OptTrinket2SlotImg" Source="http://localhost:60158/api/images/add.jpg/"  Stretch="Fill" >
                             <ToolTipService.ToolTip>
-                                <Grid x:Name="OptTtTrinket2SlotGrid">
-                                    
+                                <Grid x:Name="OptTtTrinket2SlotGrid">  
                                 </Grid>
                             </ToolTipService.ToolTip>
                         </Image>
@@ -264,7 +260,6 @@
                     <Image x:Name="HeadSlot" Stretch="Fill">
                         <ToolTipService.ToolTip >
                             <Grid x:Name="TtHeadSlotGrid" >
-                                
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -281,7 +276,6 @@
                     <Image x:Name="ShoulderSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtShoulderSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -290,7 +284,6 @@
                     <Image x:Name="BackSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtBackSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -299,7 +292,6 @@
                     <Image x:Name="ChestSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtChestSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -308,7 +300,6 @@
                     <Image x:Name="BracerSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtBracerSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -317,7 +308,6 @@
                     <Image x:Name="Trinket1Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtTrinket1SlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -326,16 +316,14 @@
                     <Image x:Name="OffhandSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtOffhandSlotGrid">
-
                             </Grid>
-            </ToolTipService.ToolTip>
+                        </ToolTipService.ToolTip>
                     </Image>
                 </Border>
                 <Border BorderThickness="1,1,1,1" Grid.Column="8"  Grid.Row="18"  BorderBrush="Black">
                     <Image x:Name="MainhandSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtMainhandSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -344,7 +332,6 @@
                     <Image x:Name="GlovesSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtGlovesSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -353,7 +340,6 @@
                     <Image x:Name="BeltSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtBeltSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -362,7 +348,6 @@
                     <Image x:Name="LegsSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtLegsSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -371,7 +356,6 @@
                     <Image x:Name="FeetSlot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtFeetSlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -380,7 +364,6 @@
                     <Image x:Name="Ring1Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtRing1SlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -389,7 +372,6 @@
                     <Image x:Name="Ring2Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtRing2SlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
@@ -398,13 +380,11 @@
                     <Image x:Name="Trinket2Slot" Stretch="Fill">
                         <ToolTipService.ToolTip>
                             <Grid x:Name="TtTrinket2SlotGrid">
-
                             </Grid>
                         </ToolTipService.ToolTip>
                     </Image>
                 </Border>
-
-
+                
                 <!--Optimized Character Stats-->
                 <Border BorderThickness="1,1,1,1" Grid.Column="6"  Grid.Row="1"  Grid.ColumnSpan="8" BorderBrush="Black" Margin="0,10,0,0" Style="{StaticResource BorderStyle}">
                     <Viewbox StretchDirection="DownOnly">
@@ -493,6 +473,7 @@
                 </Border>
             </Grid>
         </RelativePanel>
+        
         <RelativePanel RelativePanel.RightOf="OptimizePanel" RelativePanel.Below="PageHeader" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
             <Grid RelativePanel.AlignRightWithPanel="True"  RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignBottomWithPanel="True" Background="DarkSlateGray">
                 <Grid.ColumnDefinitions>
@@ -670,12 +651,10 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-
                     <TextBlock Text="Characters Server:" VerticalAlignment="Center"/>
                     <TextBox x:Name="AddCharServerBox" PlaceholderText="Server where character exist" Grid.Column="1" Grid.Row="0"/>
                     <TextBlock Text="Characters Name:" Grid.Row="1" VerticalAlignment="Center" Grid.Column="0"/>
@@ -703,10 +682,7 @@
                     <TextBox x:Name="NewCharacterNameBox" PlaceholderText="Server where character exist" Grid.Column="1" Grid.Row="0"/>
                 </Grid>
             </ContentDialog>
-           
         </RelativePanel>
-        
-        
         <Border x:Name="Overlay" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Background="Black" Opacity="0.8" Visibility="Collapsed">
             <ProgressRing x:Name="ProgressRing" Width="150" Height="150" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White"></ProgressRing>
         </Border>
