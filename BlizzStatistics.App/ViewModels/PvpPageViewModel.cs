@@ -6,9 +6,6 @@ namespace BlizzStatistics.App.ViewModels
 {
     class PvpPageViewModel
     {
-
-
-
         public async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
             if (suspending)
@@ -28,5 +25,4 @@ namespace BlizzStatistics.App.ViewModels
             await Task.CompletedTask;
         }
     }
-
 }
