@@ -10,16 +10,13 @@
              mc:Ignorable="d">
 
     <Grid Background="{StaticResource ExtendedSplashBackground}">
-        
         <Canvas x:Name="rootCanvas"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch">
             <Canvas.Background>
                 <ImageBrush ImageSource="http://localhost:60158/api/images/WowPageBg.jpg/" Stretch="Uniform" />
             </Canvas.Background>
-            
         </Canvas>
-
         <ProgressRing x:Name="progressRing"
                       Width="50"
                       Height="50"
@@ -32,7 +29,5 @@
                 <CompositeTransform x:Name="ProgressTransform" TranslateY="120" />
             </ProgressRing.RenderTransform>
         </ProgressRing>
-
     </Grid>
-
 </UserControl>
