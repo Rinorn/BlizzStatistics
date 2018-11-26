@@ -1,7 +1,4 @@
-﻿
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -28,7 +25,8 @@ namespace BlizzStatistics.App.Views
             if (btn == BtnLoadPagePvp)
             {
                 Frame.Navigate(typeof(PvpPage));
-            }else if (btn == BtnLoadPagePve)
+            }
+            else if (btn == BtnLoadPagePve)
             {
                 Frame.Navigate(typeof(MythicView));
             }
@@ -45,6 +43,5 @@ namespace BlizzStatistics.App.Views
                 Frame.Navigate(typeof(OptimizationPage));
             }
         }
-
     }
 }
