@@ -21,9 +21,7 @@ namespace BlizzStatistics.App.ViewModels
             _viewModel = viewModel;
         }
         //This need be here, or else  the ICommand would not be implementet
-#pragma warning disable CS0067 // The event 'DeleteSavedCharacterCommand.CanExecuteChanged' is never used
         public event EventHandler CanExecuteChanged;
-#pragma warning restore CS0067 // The event 'DeleteSavedCharacterCommand.CanExecuteChanged' is never used
 
         public bool CanExecute(object parameter) => parameter != null;
 
@@ -37,10 +35,8 @@ namespace BlizzStatistics.App.ViewModels
         }
     }
 
-
     public class OptimizationViewModel : ViewModelBase
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="OptimizationViewModel"/> class.
         /// </summary>
@@ -48,9 +44,7 @@ namespace BlizzStatistics.App.ViewModels
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             { }
-
-            DeleteSavedCharacterCommand = new DeleteSavedCharacterCommand(this);
-            
+            DeleteSavedCharacterCommand = new DeleteSavedCharacterCommand(this); 
         }
 
         /// <summary>
@@ -64,18 +58,14 @@ namespace BlizzStatistics.App.ViewModels
         /// The saved characters.
         /// </value>
         public ObservableCollection<SavedCharacter> SavedCharacters{get => _savedCharacters;
-            set => Set(ref _savedCharacters, value);
-            
+            set => Set(ref _savedCharacters, value);         
         }
-        
         private ObservableCollection<Equipment> _equipments;
         public ObservableCollection<Equipment> Equipments
         {
             get => _equipments;
-            set => Set(ref _equipments, value);
-            
+            set => Set(ref _equipments, value); 
         }
-
 
         /// <summary>
         /// Called when [navigated to asynchronous].
@@ -85,14 +75,11 @@ namespace BlizzStatistics.App.ViewModels
         /// <param name="suspensionState">State of the suspension.</param>
         /// <returns></returns>
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
-        {
-            
+        {  
             if (SavedCharacters == null) 
             {
                 SavedCharacters = new ObservableCollection<SavedCharacter>(await DataSource.SavedCharacters.Instance.GetSavedCharacter());
-            }
-
-            
+            } 
             if (suspensionState.Any())
             {
             }
