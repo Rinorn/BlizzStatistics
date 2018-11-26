@@ -11,15 +11,12 @@
     <Page.DataContext>
         <viewModels:ClassPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <Page.Resources>
-
         <CollectionViewSource
             x:Name="CharacterClassesViewSource"
             Source="{x:Bind ViewModel.CharacterClasses}">
         </CollectionViewSource>
     </Page.Resources>
-
     <RelativePanel AlignLeftWithPanel="True" AlignRightWithPanel="True" AlignBottomWithPanel="True" AlignTopWithPanel="True" Background="SkyBlue">
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
@@ -40,7 +37,6 @@
                             <RowDefinition Height="15" ></RowDefinition>
                             <RowDefinition Height="75"></RowDefinition>
                             <RowDefinition Height="100"></RowDefinition>
-                            
                         </Grid.RowDefinitions>
                         <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" BorderThickness="1,1,1,1" BorderBrush="Black">
                             <Image Source="{Binding ClassModel, Mode=OneWay}" Stretch="Fill"></Image>
