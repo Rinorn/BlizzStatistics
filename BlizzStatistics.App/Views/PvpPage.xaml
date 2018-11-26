@@ -19,18 +19,14 @@
     </Page.Resources>
     
     <RelativePanel  AlignRightWithPanel="True" AlignLeftWithPanel="True"  AlignTopWithPanel="True" AlignBottomWithPanel="True">
-        
-
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True" Text="Player vs Player"  >
         </controls:PageHeader>
-
         <ScrollViewer  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True">
             <Viewbox  RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="PageHeader" RelativePanel.AlignBottomWithPanel="True" VerticalAlignment="Top" >
                 <Grid Background="Black" Name="MenuGrid" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="PageHeader">
-
                     <Grid.ColumnDefinitions >
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -80,7 +76,7 @@
                         <x:String>Top 200</x:String>
                     </ComboBox>
                     <Border Grid.Column="4" Grid.Row="0" BorderThickness="0,1.5,0,1" BorderBrush="DimGray">
-                    <TextBlock Text="Sort by:"   VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
+                        <TextBlock Text="Sort by:"   VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyle}"></TextBlock>
                     </Border>
                     <Border Grid.Column="5" Grid.Row="0" BorderThickness="0,1.5,0,1" BorderBrush="DimGray">
                         <RadioButton   Content="Player Name" HorizontalAlignment="Center" IsEnabled="False" Foreground="White"/>
@@ -130,5 +126,4 @@
             <ProgressRing x:Name="ProgressRing" Width="150" Height="150" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White"></ProgressRing>
         </Border>
     </RelativePanel>
-
 </Page>
