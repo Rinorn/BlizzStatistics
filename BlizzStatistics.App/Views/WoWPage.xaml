@@ -6,8 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:BlizzStatistics.App.ViewModels"
     xmlns:controls="using:Template10.Controls"
-    
-   
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -18,21 +16,17 @@
         <RelativePanel.Background>
             <ImageBrush ImageSource="http://localhost:60158/api/images/WowPageBg.jpg/"></ImageBrush>
         </RelativePanel.Background>
-
-
         <controls:PageHeader 
             x:Name="PageHeader" RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True" Text="World of Warcraft" >
-            
         </controls:PageHeader>
-
         <FlipView MaxWidth="800" MaxHeight="300" 
                   RelativePanel.Below="PageHeader" Margin="0,30,0,0"
                   RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="NewsCarosell">
             <Grid>
                 <Button x:Name="BtnLoadPagePvp" Click="BtnLoadPage">
-                <Image Source="http://localhost:60158/api/images/Pvp.jpg/" Stretch="Fill"/>
+                    <Image Source="http://localhost:60158/api/images/Pvp.jpg/" Stretch="Fill"/>
                 </Button>
                 <TextBlock Text="Player vs Player" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,20,0,0" FontSize="28" FontStyle="Oblique" ></TextBlock>
             </Grid>
@@ -60,9 +54,7 @@
                 </Button>
                 <TextBlock Text="Optimize your gear" HorizontalAlignment="Center" VerticalAlignment="top" Margin="0,15,0,0" FontSize="28" FontStyle="Oblique" Foreground="White"></TextBlock>
             </Grid>
-            
         </FlipView>
-
 
         <RelativePanel  Background="Bisque" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="NewsCarosell" RelativePanel.AlignBottomWithPanel="True" Margin="50,50,50,50">
             
@@ -87,7 +79,6 @@
                         <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col1}" FontSize="17"  Text="On the Pvp page, you will be able to find the current top rated pvp players for 3v3 arena, 2v2 arena and Rated Battlegrounds. You will be able to filter according to class, player faction and how many players you want to view at once. There will at a later date be implemented sorting fuctions where you should be able to sort by player name, rank, total wins and total loss." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
-
                 <Border Grid.Column="1" Grid.Row="0"  BorderBrush="Black" BorderThickness="1,1,1,1">
                     <Viewbox>
                         <TextBlock Text="Mythic Dungeon" HorizontalAlignment="Center" Foreground="Black" FontSize="25" ></TextBlock>
@@ -98,7 +89,6 @@
                         <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col2}"  FontSize="20" Text="On the Mythic tab, you will find the current top rated Mythic+ team's key level, rank, completion time/date as well as party composition. You will be able to select server, and the dungeon you would want to see the ranking for. There will also be a display of the weekly mods." Foreground="Black" TextWrapping="WrapWholeWords"></TextBlock>
                     </Viewbox>
                 </Border>
-
                 <Border Grid.Column="2" Grid.Row="0"  BorderBrush="Black" BorderThickness="1,1,1,1">
                     <Viewbox>
                         <TextBlock Text="Race and Class" HorizontalAlignment="Center" Foreground="Black" FontSize="25"></TextBlock>
@@ -109,7 +99,6 @@
                         <TextBlock MaxWidth="{Binding ActualWidth, ElementName=Col3}" FontSize="22" TextWrapping="WrapWholeWords" Text="On the class and race tab, you will find some basic information about the race/class, such as a class/race description, what faction they belong to an so on. There is also an ingame model of every race and every class." Foreground="Black" ></TextBlock>
                     </Viewbox>
                 </Border>
-
                 <Border Grid.Column="3" Grid.Row="0"  BorderBrush="Black" BorderThickness="1,1,1,1">
                     <Viewbox>
                         <TextBlock Text="Character Optimization" HorizontalAlignment="Center" Foreground="Black" FontSize="25"></TextBlock>
@@ -123,5 +112,4 @@
             </Grid>
         </RelativePanel>
     </RelativePanel>
-
 </Page>
