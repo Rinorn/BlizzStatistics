@@ -29,7 +29,5 @@ namespace BlizzStatistics.App.Views
             HamburgerMenu.IsFullScreen = _settings.IsFullScreen;
             HamburgerMenu.HamburgerButtonVisibility = _settings.ShowHamburgerButton ? Visibility.Visible : Visibility.Collapsed;
         }
-
-        
     }
 }
