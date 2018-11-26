@@ -8,12 +8,8 @@ using Windows.UI.Xaml.Media;
 using ClassLibrary1;
 using Newtonsoft.Json;
 
-
-
 namespace BlizzStatistics.App.Views
 {
-
-   
     public sealed partial class PvpPage
     {
         private readonly string[] _classColors = { "#FFC79C6E", "#FFF58CBA", "#FFABD473", "#FFFFF569", "#FFFFFFFF", "#FFC41F3B", "#FF0070DE", "#FF69CCF0", "#FF9482C9", "#FF00FF96", "#FFFF7D0A", "#FFA330C9" };
@@ -28,14 +24,13 @@ namespace BlizzStatistics.App.Views
         private int _sortClassIndex = 13;
         private string _playerRace = "Error";
         private int _selectedLadder = 1;
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PvpPage"/> class.
         /// </summary>
         public PvpPage()
         {
-            InitializeComponent();
+           InitializeComponent();
            GetData();
         }
 
@@ -54,6 +49,7 @@ namespace BlizzStatistics.App.Views
                     break;
             }
         }
+       
         /// <summary>
         /// Gets the data from the selected ladder.
         /// </summary>
@@ -76,10 +72,10 @@ namespace BlizzStatistics.App.Views
                 MessageDialog msg = new MessageDialog(e.Message + "\nThe selected Ladder could not be found. Please Select another ladder");
                 await msg.ShowAsync();
                 await LogToDbAsync(e);
-                
             }
             SetOverlayStatus(false);
         }
+       
         // Medthod that logs an exceptions by createing an instance of the ExceptionHandler class and uploads the object to the database.
         private async System.Threading.Tasks.Task LogToDbAsync(Exception e)
         {
@@ -92,6 +88,7 @@ namespace BlizzStatistics.App.Views
             };
             await DataSource.ExceptionHandlers.Instance.AddExceptionHandler(exception);
         }
+       
         /// <summary>
         /// Selects the players from the RootObject that should be shown in the grid, filtered by rank, faction, class and how many players that should be shown at a given time. this is selected by the user, from the 2nd time it is run.
         /// </summary>
@@ -100,7 +97,6 @@ namespace BlizzStatistics.App.Views
         {
             var mainGrid = MenuGrid;
             _childGrid = mainGrid;
-            
             var rowCount = 2;
             _tempInitNumber = _initNumber;
             for (var i = 0; i < _tempInitNumber; i++)
@@ -311,14 +307,15 @@ namespace BlizzStatistics.App.Views
         /// <param name="raceIndex">Index of the race.</param>
         private void CheckRace(int raceIndex)
         {   
-            
             if (raceIndex == 22)
             {
                 raceIndex = 12;
-            } else if (raceIndex >= 24 && raceIndex <=26)
+            } 
+            else if (raceIndex >= 24 && raceIndex <=26)
             {
                 raceIndex = 13;
-            }else if (raceIndex >= 27)
+            }
+            else if (raceIndex >= 27)
             {
                 raceIndex = raceIndex - 13;
             }
